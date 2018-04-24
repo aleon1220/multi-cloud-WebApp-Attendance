@@ -1,3 +1,5 @@
+![Multi Cloud architecture](https://3.bp.blogspot.com/-asp4NOYlj2s/Wt61yHZzATI/AAAAAAADERA/SPh7RSMl_wI1-TlWjY5FgccQMZTq3fn0QCLcBGAs/s1600/MultiCloud%2BProject.jpg)
+
 # Introduction
 Attendance WebApp is a proof of concept to improve the way attendance is managed at AUT university. the application uses maven, primefaces, gson.
 The idea is that you have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
@@ -17,10 +19,9 @@ mvn package
 deploy in tomcat.
 For the purpose of testing a container architecture using 
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better.
+# New versions
+include video tutorial on functionality and relate to GitHub repos containing the cloud source code
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Contribute
+Create an automated YML automated deployment configuration to test the multi cloud environment.
+
