@@ -1,0 +1,94 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+
+<h:head>
+	<title>Generate Attendance System</title>
+</h:head>
+<body>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="center">
+
+			<p:panel>
+				<f:facet name="header">Generate Attendance Code</f:facet>
+
+				<h:form id="attendance">
+					<p>Attendance System Date</p>
+
+					<h4>Time and Date </h4>
+					<p:clock pattern="HH:mm:ss dd/MM/yyyy" mode="server" />
+
+				</h:form>
+				<br />
+				<br />
+				<br />
+
+				<p:outputLabel for="class" value="Select Class: " />
+
+				<p:selectOneMenu id="class" value="#{attendanceGenerate.className}"
+					lazy="true" style="width:150px">
+					<f:selectItem itemLabel="Select One Class" itemValue="" />
+					<f:selectItems value="#{attendanceGenerate.classes}" />
+				</p:selectOneMenu>
+
+				<p>
+					Welcome
+					<p:outputLabel value="#{userBean.id}" />
+					to the session
+					<p:outputLabel value="#{Room.obtainSessionNumber}" />
+					for Lecture.
+					<p:outputLabel value="#{paper.lecturerId}" />
+
+					<br />Generate a code to register attendance for this session.
+					Remember each student in the class has a time frame for 1 minute.
+				</p>
+				<br />
+
+				<table>
+					<tr>
+						<th><h:outputText value="Generate Random Code" /></th>
+						<th rowspan="1"/>
+
+						<th>
+							<p:commandButton value="Generate Attendance Code"	id="generateCode"
+								actionListener="#{attendanceGenerate.generateAttendanceCode}"
+								update="codeId" icon="ui-icon-transferthick-e-w" />
+						</th>
+					</tr>
+				</table>
+
+				<table>
+					<tr>
+						<th rowspan="3"/>
+						<th rowspan="2">
+							<p:button icon="ui-icon-locked" title="Attendance Code"	disabled="true" />
+						</th>
+
+						<th><p:outputLabel id="codeId" value="#{attendanceGenerate.randomCode}" />
+						</th>
+					</tr>
+				</table>
+
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<center>
+					<p:button icon="ui-icon-circle-arrow-w" title="Go back"
+						outcome="main" />
+				</center>
+
+			</p:panel>
+
+		</p:layoutUnit>
+
+	</p:layout>
+
+</body>
+</html>
