@@ -15,13 +15,15 @@ TODO: Guide users through getting your code up and running on their own system. 
 git clone repo
 import in IDE Eclipse suggested
 execute some of the unit tests
-mvn package
-deploy in tomcat.
-For the purpose of testing a container architecture using 
+mvn package will generate the .WAR file
+deploy .WAR in tomcat.
 
-# New versions
+#Future Versions
 include video tutorial on functionality and relate to GitHub repos containing the cloud source code
 
 # Contribute
 Create an automated YML automated deployment configuration to test the multi cloud environment.
+update visual looks and format in the wiki
 
+
+![image Test](https://photos.google.com/share/AF1QipPZadRCTL0fBX1saKXnB3tQ2XFcHs0wgWurXhP7Y_EIqQH0TEHvgQW2ObC4tliLaA/photo/AF1QipMmxTvNK8-LR-hryZNc6HndN2c9u8WyLteWRAh9?key=UzZLMmtIT01mek0xZzJxYzNkNS1lTXlUeHFKU19R)
