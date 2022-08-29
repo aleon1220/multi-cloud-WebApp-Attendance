@@ -136,7 +136,7 @@
 		<junit.version>4.12</junit.version>
 		<servlet.version>3.1.0</servlet.version>
 		<mojarra.version>2.2.12</mojarra.version>
-		<primefaces.version>5.3</primefaces.version>
+		<primefaces.version>6.0</primefaces.version>
 		<maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jjwt.version>0.7.0</jjwt.version>
