@@ -42,3 +42,6 @@ deploy .WAR in tomcat.
 * include video tutorial on functionality and relate to GitHub repos containing the cloud source code
 * replicate the cloud services using containers' orchestration
 * create a composite service by uniting functionalities of the different platforms.
+
+## GitHub Vulnerability report
+https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
