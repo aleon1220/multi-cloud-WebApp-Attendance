@@ -13,11 +13,11 @@ import javax.faces.bean.ManagedBean;
 // (name = "room")
 public class Room {
 
-	public String obtainSessionNumber() {
+    public String obtainSessionNumber() {
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
 
-		return dtf.format(now);
-	}
+        return dtf.format(now);
+    }
 }

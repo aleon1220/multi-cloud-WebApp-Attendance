@@ -25,88 +25,87 @@ import service.UserService;
 @ManagedBean
 public class AttendanceRegister {
 
-	private String inputCode;
-	private Integer progress;
+    private String inputCode;
+    private Integer progress;
 
-	public String confirmAttendance() {
+    public String confirmAttendance() {
 
-		String replyFromMS = null;
+        String replyFromMS = null;
 
-		UserService tok = new UserService();
-		String token = tok.obtainIdToken("10295765", "Value!12");
-		// 1-open connection and send user and password as a POST method
-		ClientConfig config = new DefaultClientConfig();
+        UserService tok = new UserService();
+        String token = tok.obtainIdToken("10295765", "Value!12");
+        // 1-open connection and send user and password as a POST method
+        ClientConfig config = new DefaultClientConfig();
 
-		Client client = Client.create(config);
-		WebResource webResource = client.resource(UriBuilder.fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
-		// Passing parameters
-		// {"studentId": "246810","paperId": "COMP101","status": "present"}
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
+        // Passing parameters
+        // {"studentId": "246810","paperId": "COMP101","status": "present"}
 
-		MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
-		formData.add("studentId", "246810");
-		formData.add("paperId", "COMP101");
-		formData.add("status", "present");
+        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
+        formData.add("studentId", "246810");
+        formData.add("paperId", "COMP101");
+        formData.add("status", "present");
 
-		JsonObject jsonPayLoad = new JsonObject();
-		jsonPayLoad.addProperty("studentId", "246810");
-		jsonPayLoad.addProperty("paperId", "COMP101");
-		jsonPayLoad.addProperty("status", "present");
+        JsonObject jsonPayLoad = new JsonObject();
+        jsonPayLoad.addProperty("studentId", "246810");
+        jsonPayLoad.addProperty("paperId", "COMP101");
+        jsonPayLoad.addProperty("status", "present");
 
-		//
-		//ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
-		ClientResponse response = webResource.header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
-		//
-		replyFromMS = response.getEntity(String.class);
-		//String replyFromMS = webResource.path("addAttendance").accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(String.class, jsonPayLoad.toString());
+        //ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
+        ClientResponse response = webResource.header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
+        //
+        replyFromMS = response.getEntity(String.class);
+        //String replyFromMS = webResource.path("addAttendance").accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(String.class, jsonPayLoad.toString());
 
-		System.out.println("AttendanceRegisterResponse:" + response);
+        System.out.println("AttendanceRegisterResponse:" + response);
 
-		// invoke WS to confirm Attendance and validate
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "CORRECT", "Attendance Registered!!!"));
+        // invoke WS to confirm Attendance and validate
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "CORRECT", "Attendance Registered!!!"));
 
-		if (replyFromMS.isEmpty()) {
-			return "attendanceNOK.xhtml";
-		} else {
-			return "attendanceOK.xhtml";
-		}
-	}
+        if (replyFromMS.isEmpty()) {
+            return "attendanceNOK.xhtml";
+        } else {
+            return "attendanceOK.xhtml";
+        }
+    }
 
-	public Integer getProgress() {
-		if (progress == null) {
-			progress = 0;
-		} else {
-			progress = progress + (int) (Math.random() * 35);
+    public Integer getProgress() {
+        if (progress == null) {
+            progress = 0;
+        } else {
+            progress = progress + (int) (Math.random() * 35);
 
-			if (progress > 100)
-				progress = 100;
-		}
+            if (progress > 100)
+                progress = 100;
+        }
 
-		return progress;
-	}
+        return progress;
+    }
 
-	public void setProgress(Integer progress) {
-		this.progress = progress;
-	}
+    public void setProgress(Integer progress) {
+        this.progress = progress;
+    }
 
-	public void onComplete() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Ended"));
-	}
+    public void onComplete() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Ended"));
+    }
 
-	public String onTimeout() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Out"));
-		return "main.xhtml";
-	}
+    public String onTimeout() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Out"));
+        return "main.xhtml";
+    }
 
-	public void cancel() {
-		progress = null;
-	}
+    public void cancel() {
+        progress = null;
+    }
 
-	public String getInputCode() {
-		return inputCode;
-	}
+    public String getInputCode() {
+        return inputCode;
+    }
 
-	public void setInputCode(String inputCode) {
-		this.inputCode = inputCode;
-	}
+    public void setInputCode(String inputCode) {
+        this.inputCode = inputCode;
+    }
 }

@@ -19,10 +19,10 @@ import javax.faces.context.FacesContext;
 public class ClassDropDownView implements Serializable {
      
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
     private String country; 
     private String city;  
     private Map<String,String> countries;

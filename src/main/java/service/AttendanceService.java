@@ -9,14 +9,13 @@ package service;
 //Class is used to show invokations to entities MS
 
 public class AttendanceService {
-	
-	private String randomCode;
+    
+    private String randomCode;
 
     public AttendanceService() {
 
     }
 
-	
    public String getRandomCode() {
        return randomCode;
    }
