@@ -1,96 +1,97 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
-	<title>Main Menu Attendance System</title>
+    <title>Main Menu Attendance System</title>
 </h:head>
+
 <body>
 
-	<p:layout fullPage="true">
+    <p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="100" header="Attendance System Main Menu" resizable="true" closable="true" collapsible="false">
-			<table style="width: 40%">
-				<tr>
-					<th>WSDL Invokation</th>
-					<th>REST Get invokation</th>
-				</tr>
-				<tr>
-					<td>
-						<h:outputText value="#{main.geoIpWS}" />
-					</td>
-					<td>
-						<h:outputText value="#{main.bibleVerse}" />
-					</td>
-				</tr>
-			</table>		
-			
-		</p:layoutUnit>
+        <p:layoutUnit position="north" size="100" header="Attendance System Main Menu" resizable="true" closable="true"
+            collapsible="false">
+            <table style="width: 40%">
+                <tr>
+                    <th>WSDL Invokation</th>
+                    <th>REST Get invokation</th>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputText value="#{main.geoIpWS}" />
+                    </td>
+                    <td>
+                        <h:outputText value="#{main.bibleVerse}" />
+                    </td>
+                </tr>
+            </table>
 
-		<p:layoutUnit position="center">
-		
-			<h:form id="mainMenu" target="_blank">
+        </p:layoutUnit>
 
-				<p:panel>
+        <p:layoutUnit position="center">
 
-					<table style="width: 40%">
-						<tr>
-							<th>Role: Lecturer</th>
-							<th>Role: Student</th>
+            <h:form id="mainMenu" target="_blank">
 
-						</tr>
-						<tr>
-							<td>
-								<p:button value="Generate Attendance" action="mainMenu"	icon="ui-icon-info" outcome="attendanceGenerate" style="background:#287DF9; color:white;" />
-							</td>
-							<td>
-								<p:button value="Register Attendance" icon="ui-icon-home" outcome="attendanceRegister" style="background:#287DF9; color:white;" />
-							</td>
-						</tr>
-					</table>
+                <p:panel>
 
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
+                    <table style="width: 40%">
+                        <tr>
+                            <th>Role: Lecturer</th>
+                            <th>Role: Student</th>
 
-					<center>
-						<p:button icon="ui-icon-circle-close" title="Log Out" outcome="login" style="background:287DF9; color:white;"/>
-					</center>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:button value="Generate Attendance" action="mainMenu" icon="ui-icon-info"
+                                    outcome="attendanceGenerate" style="background:#287DF9; color:white;" />
+                            </td>
+                            <td>
+                                <p:button value="Register Attendance" icon="ui-icon-home" outcome="attendanceRegister"
+                                    style="background:#287DF9; color:white;" />
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <center>
+                        <p:button icon="ui-icon-circle-close" title="Log Out" outcome="login"
+                            style="background:287DF9; color:white;" />
+                    </center>
 
-				</p:panel>
+                </p:panel>
 
-			</h:form>
-		</p:layoutUnit>
+            </h:form>
+        </p:layoutUnit>
 
-		<p:layoutUnit position="south" size="100" header="Authentication/Session Data" resizable="true" closable="true" collapsible="true">
-			<p>
-				<strong>AccessToken :</strong>
-				<h:outputText value="#{userBean.accessToken}"/>
-			</p>
-			<p>
-				<strong>ExpiresIn :</strong>
-				<h:outputText value="#{userBean.expiresIn}"/>
-			</p>
-			<p>
-				<strong>IdToken :</strong>
-				<h:outputText value="#{userBean.idToken}"/>
-			</p>
-			<p>
-				<strong>RefreshToken :</strong>
-				<h:outputText value="#{userBean.refreshToken}"/>
-			</p>
-			<p>
-				<strong>TokenType:</strong>
-				<h:outputText value="#{userBean.tokenType}"/>
-			</p>
-		
-		</p:layoutUnit>		
-		
-	</p:layout>
-	
+        <p:layoutUnit position="south" size="100" header="Authentication/Session Data" resizable="true" closable="true"
+            collapsible="true">
+            <p>
+                <strong>AccessToken :</strong>
+                <h:outputText value="#{userBean.accessToken}" />
+            </p>
+            <p>
+                <strong>ExpiresIn :</strong>
+                <h:outputText value="#{userBean.expiresIn}" />
+            </p>
+            <p>
+                <strong>IdToken :</strong>
+                <h:outputText value="#{userBean.idToken}" />
+            </p>
+            <p>
+                <strong>RefreshToken :</strong>
+                <h:outputText value="#{userBean.refreshToken}" />
+            </p>
+            <p>
+                <strong>TokenType:</strong>
+                <h:outputText value="#{userBean.tokenType}" />
+            </p>
+
+        </p:layoutUnit>
+
+    </p:layout>
+
 </body>
+
 </html>

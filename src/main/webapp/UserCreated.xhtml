@@ -1,39 +1,37 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
-	<title>Main Menu Attendance System</title>
+    <title>Main Menu Attendance System</title>
 </h:head>
 <body>
 
-	<p:layout fullPage="true">
+    <p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="100" header="Attendance System" collapsible="false">
-			<h:outputText value="Attendance System Main Menu." />
-		</p:layoutUnit>
+        <p:layoutUnit position="north" size="100" header="Attendance System" collapsible="false">
+            <h:outputText value="Attendance System Main Menu." />
+        </p:layoutUnit>
 
-		<p:layoutUnit position="center">
-		
-			<h:form id="mainMenu" target="_blank">
-			
-				<p:panel>
-					<p:button value="Generate Attendance" action="mainMenu" icon="ui-icon-info" outcome="attendance">
-						<f:param name="linkedPage" value="1" />
-						<!-- <h:link value="generate Attendance" outcome="attendance" /> -->
-					</p:button>
+        <p:layoutUnit position="center">
+        
+            <h:form id="mainMenu" target="_blank">
+            
+                <p:panel>
+                    <p:button value="Generate Attendance" action="mainMenu" icon="ui-icon-info" outcome="attendance">
+                        <f:param name="linkedPage" value="1" />
+                        <!-- <h:link value="generate Attendance" outcome="attendance" /> -->
+                    </p:button>
 
-					<p:button value="Register Attendance" icon="ui-icon-home" outcome="attendanceRegister">
-						<f:param name="linkedPage" value="2" />
-					</p:button>
-				
-				</p:panel>
-				
-			</h:form>
-		</p:layoutUnit>
-	</p:layout>
-	
+                    <p:button value="Register Attendance" icon="ui-icon-home" outcome="attendanceRegister">
+                        <f:param name="linkedPage" value="2" />
+                    </p:button>
+                </p:panel>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+    
 </body>
 </html>
