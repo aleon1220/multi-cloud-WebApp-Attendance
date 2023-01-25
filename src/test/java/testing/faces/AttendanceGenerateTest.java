@@ -10,13 +10,11 @@ import bean.UserBean;
 
 public class AttendanceGenerateTest {
 
-	@Test
-	public void testRandomCode() {
-		AttendanceBean at = new AttendanceBean();
+    @Test
+    public void testRandomCode() {
+        AttendanceBean at = new AttendanceBean();
 
-		assertNotNull("data", at.generateAttendanceCode());
-	}
-
-
+        assertNotNull("data", at.generateAttendanceCode());
+    }
 
 }
