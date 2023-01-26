@@ -27,7 +27,7 @@ public class AuthenticationResult {
     @SerializedName("IdToken")
     private String idToken;
     
-    //Setters and getters
+    // Setters and getters
 
     public String getAccessToken() {
         return accessToken;

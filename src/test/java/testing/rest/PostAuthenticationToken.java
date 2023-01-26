@@ -15,72 +15,72 @@ import javax.json.JsonReader;
 
 public class PostAuthenticationToken {
 
-	// authentication scheme based on tokens follow these steps, steps are numbered
+    // authentication scheme based on tokens follow these steps, steps are numbered
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		try {
+        try {
 
-			URL url = new URL("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
+            URL url = new URL("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
 
-			String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
+            String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
 
-			OutputStream os = conn.getOutputStream();
-			// 1.The client sends their credentials (username and password) to the server.
-			os.write(input.getBytes());
-			os.flush();
+            OutputStream os = conn.getOutputStream();
+            // 1.The client sends their credentials (username and password) to the server.
+            os.write(input.getBytes());
+            os.flush();
 
-			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-			}
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
 
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-			String output;
-			// 2.The server authenticates the credentials and, if they are valid, generate a
-			// token for the user.
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				JsonReader rdr = Json.createReader(br);
-				System.out.println("creates object");
-				//rdr.readObject();
-				System.out.println("obtain object"+rdr.toString());
-				System.out.println("prints output "+br.readLine());
+            String output;
+            // 2.The server authenticates the credentials and, if they are valid, generate a
+            // token for the user.
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                JsonReader rdr = Json.createReader(br);
+                System.out.println("creates object");
+                // rdr.readObject();
+                System.out.println("obtain object" + rdr.toString());
+                System.out.println("prints output " + br.readLine());
 
-				JsonObject obj = rdr.readObject();
-				System.out.println("before reading object");
-				
-				JsonArray results = obj.getJsonArray("AuthenticationResult");
-				//obj.getJsonString(arg0)
-				System.out.print("value type: "+results.getValueType());
-				
-//				for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-//					System.out.print("value type: "+results.getValueType());
-//					System.out.println("token"+ result.getString("IdToken"));
-//				}
-				
-				System.out.println(output);
-			}//end of while
-			
-			System.out.println("prints output 1"+br.readLine());
+                JsonObject obj = rdr.readObject();
+                System.out.println("before reading object");
 
-			/// put object in hashmap somehow
+                JsonArray results = obj.getJsonArray("AuthenticationResult");
+                // obj.getJsonString(arg0)
+                System.out.print("value type: " + results.getValueType());
 
-			// disconnects
-			conn.disconnect();
+                // for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+                // System.out.print("value type: "+results.getValueType());
+                // System.out.println("token"+ result.getString("IdToken"));
+                // }
 
-		} catch (MalformedURLException e) {
+                System.out.println(output);
+            } // end of while
 
-			e.printStackTrace();
+            System.out.println("prints output 1" + br.readLine());
 
-		} catch (IOException e) {
+            /// put object in hashmap somehow
 
-			e.printStackTrace();
+            // disconnects
+            conn.disconnect();
 
-		}
-	}
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+    }
 }

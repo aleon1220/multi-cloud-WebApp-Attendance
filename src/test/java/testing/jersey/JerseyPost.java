@@ -14,23 +14,23 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 public class JerseyPost {
 
-	public static void main(String[] args) throws ClientProtocolException, IOException {
+    public static void main(String[] args) throws ClientProtocolException, IOException {
 
-		ClientConfig config = new DefaultClientConfig();
+        ClientConfig config = new DefaultClientConfig();
 
-		Client client = Client.create(config);
+        Client client = Client.create(config);
 
-		WebResource webResource = client.resource(UriBuilder.fromUri("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/").build());
+        WebResource webResource = client.resource(UriBuilder.fromUri("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/").build());
 
-		MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
+        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
 
-		formData.add("id", "10295765");
-		formData.add("password", "Value!12");
+        formData.add("id", "10295765");
+        formData.add("password", "Value!12");
 
-		ClientResponse response = webResource.path("dev").path("login").type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, formData);
+        ClientResponse response = webResource.path("dev").path("login").type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, formData);
 
-		System.out.println("Response " + response.getEntity(String.class));
+        System.out.println("Response " + response.getEntity(String.class));
 
-	}
+    }
 
 }

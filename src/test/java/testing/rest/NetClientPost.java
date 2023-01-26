@@ -10,50 +10,47 @@ import java.net.URL;
 
 public class NetClientPost {
 
-	// http://localhost:8080/RESTfulExample/json/product/post
-	public static void main(String[] args) {
+    // http://localhost:8080/RESTfulExample/json/product/post
+    public static void main(String[] args) {
 
-		try {
+        try {
+            URL url = new URL("https://fahze41owc.execute-api.us-east-1.amazonaws.com/dev/user");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
 
-			URL url = new URL("https://fahze41owc.execute-api.us-east-1.amazonaws.com/dev/user");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
+            String input = "{\r\n" +
+                    "      \"id\": \"102030\",\r\n" +
+                    "      \"firstName\": \"Julito\",\r\n" +
+                    "      \"lastName\": \"Schwartzenegger\",\r\n" +
+                    "      \"type\": \"administrator\"\r\n" +
+                    "}";
 
-			String input = "{\r\n" + 
-					"      \"id\": \"102030\",\r\n" + 
-					"      \"firstName\": \"Julito\",\r\n" + 
-					"      \"lastName\": \"Schwartzenegger\",\r\n" + 
-					"      \"type\": \"administrator\"\r\n" + 
-					"}";
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
 
-			OutputStream os = conn.getOutputStream();
-			os.write(input.getBytes());
-			os.flush();
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
 
-			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-			}
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
 
-			String output;
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
+            conn.disconnect();
 
-			conn.disconnect();
+        } catch (MalformedURLException e) {
 
-		} catch (MalformedURLException e) {
+            e.printStackTrace();
 
-			e.printStackTrace();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-	}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

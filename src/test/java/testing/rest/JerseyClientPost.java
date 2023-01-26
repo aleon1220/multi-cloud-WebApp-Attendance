@@ -8,26 +8,26 @@ public class JerseyClientPost {
 
   public static void main(String[] args) {
 
-	try {
+    try {
 
-		Client client = Client.create();
-		WebResource webResource = client.resource("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
-		String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
-		ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
+        Client client = Client.create();
+        WebResource webResource = client.resource("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
+        String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
+        ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
 
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
-		}
+        if (response.getStatus() != 201) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                 + response.getStatus());
+        }
 
-		System.out.println("Output from Server .... \n");
-		String output = response.getEntity(String.class);
-		System.out.println(output);
+        System.out.println("Output from Server .... \n");
+        String output = response.getEntity(String.class);
+        System.out.println(output);
 
-	  } catch (Exception e) {
+      } catch (Exception e) {
 
-		e.printStackTrace();
+        e.printStackTrace();
 
-	  }
-	}
+      }
+    }
 }

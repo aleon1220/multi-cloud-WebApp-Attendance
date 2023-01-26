@@ -4,68 +4,69 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuthenticationResult {
 
-	public AuthenticationResult(String accessToken, Integer expiresIn, String tokenType, String refreshToken, String idToken) {
-		this.accessToken = accessToken;
-		this.expiresIn = expiresIn;
-		this.tokenType = tokenType;
-		this.refreshToken = refreshToken;
-		this.idToken = idToken;
-	}
+    public AuthenticationResult(String accessToken, Integer expiresIn, String tokenType, String refreshToken,
+            String idToken) {
+        this.accessToken = accessToken;
+        this.expiresIn = expiresIn;
+        this.tokenType = tokenType;
+        this.refreshToken = refreshToken;
+        this.idToken = idToken;
+    }
 
-	@SerializedName("AccessToken")
-	private String accessToken;
-	
-	@SerializedName("ExpiresIn")
-	private Integer expiresIn;
-	
-	@SerializedName("TokenType")
-	private String tokenType;
-	
-	@SerializedName("RefreshToken")
-	private String refreshToken;
-	
-	@SerializedName("IdToken")
-	private String idToken;
-	
-	//Setters and getters
+    @SerializedName("AccessToken")
+    private String accessToken;
 
-	public String getAccessToken() {
-		return accessToken;
-	}
+    @SerializedName("ExpiresIn")
+    private Integer expiresIn;
 
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
+    @SerializedName("TokenType")
+    private String tokenType;
 
-	public Integer getExpiresIn() {
-		return expiresIn;
-	}
+    @SerializedName("RefreshToken")
+    private String refreshToken;
 
-	public void setExpiresIn(Integer expiresIn) {
-		this.expiresIn = expiresIn;
-	}
+    @SerializedName("IdToken")
+    private String idToken;
 
-	public String getTokenType() {
-		return tokenType;
-	}
+    // Setters and getters
 
-	public void setTokenType(String tokenType) {
-		this.tokenType = tokenType;
-	}
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-	public String getRefreshToken() {
-		return refreshToken;
-	}
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
-	public void setRefreshToken(String refreshToken) {
-		this.refreshToken = refreshToken;
-	}
+    public Integer getExpiresIn() {
+        return expiresIn;
+    }
 
-	public String getIdToken() {
-		return idToken;
-	}
+    public void setExpiresIn(Integer expiresIn) {
+        this.expiresIn = expiresIn;
+    }
 
-	public void setIdToken(String idToken) {
-		this.idToken = idToken;
-	}
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
+    }
 }
