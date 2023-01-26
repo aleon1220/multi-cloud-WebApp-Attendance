@@ -5,7 +5,7 @@
 /.project
 
 #target with generated objects
-/target/
+/target
 
 # Compiled class file
 *.class
