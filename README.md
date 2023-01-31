@@ -33,6 +33,60 @@ execute some of the unit tests
 mvn package will generate the .WAR file
 deploy .WAR in tomcat.
 
+
+# Build using docker containers
+## Run the maven build
+refer to maven docker official image https://hub.docker.com/_/maven 
+
+
+
+- Create a volume
+``` bash
+docker volume create --name maven-repo-volume
+```
+
+- download the artifacts
+``` bash
+docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+
+docker run -it -v maven-repo-volume:/root/.m2 maven mvn archetype:generate # will download artifacts
+
+docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+
+```
+
+- build the project locally with a locally installed maven client
+> Tested in Win1 with WSL
+``` bash
+mvn verify
+```
+- Use a docker tag to build the image
+> 8-jdk8-corretto
+
+``` bash
+TOMCAT_DOCKER_TAG="8-jdk8-corretto"
+```
+- build the container to the latest version tag
+``` bash
+docker build --tag aleon1220/soa:latest
+```
+
+- Run the tomcat server with the pre-built WAR web Archive file
+Use the tag latest or a particular version e.g. v2
+```
+docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa
+```
+
+refer to https://hub.docker.com/_/tomcat
+
+- Access container
+``` bash
+docker container exec -it aleon1220/soa /bin/bash
+```
+
+- The URl is localhost:8888/AttendanceWebApp 
+[AttendanceWebApp](localhost:8888/AttendanceWebApp)
+
 # Contribute
 * Create an automated YML automated deployment configuration to test the multi
 * Cloud environment using docker containers and execute a performance testing
