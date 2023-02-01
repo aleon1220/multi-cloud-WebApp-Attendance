@@ -32,31 +32,9 @@ import in IDE Eclipse suggested
 execute some of the unit tests
 mvn package will generate the .WAR file
 deploy .WAR in tomcat.
-
-
-# Build using docker containers
-## Run the maven build
-refer to maven docker official image https://hub.docker.com/_/maven 
-
-
-
-- Create a volume
-``` bash
-docker volume create --name maven-repo-volume
-```
-
-- download the artifacts
-``` bash
-docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-
-docker run -it -v maven-repo-volume:/root/.m2 maven mvn archetype:generate # will download artifacts
-
-docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-
-```
-
+## Run the maven build Locally
 - build the project locally with a locally installed maven client
-> Tested in Win1 with WSL
+> Tested in Win11 with WSL
 ``` bash
 mvn verify
 ```
@@ -87,14 +65,38 @@ docker container exec -it aleon1220/soa /bin/bash
 - The URl is localhost:8888/AttendanceWebApp 
 [AttendanceWebApp](localhost:8888/AttendanceWebApp)
 
+---
+## Build using docker containers
+Refer to maven docker official image https://hub.docker.com/_/maven 
+
+- Create a volume
+``` bash
+docker volume create --name maven-repo-volume
+```
+
+- Docker container build using the volume above
+``` bash
+docker run -it -v maven-repo-volume:/root/.m2 maven mvn archetype:generate # will download artifacts
+```
+
+- Docker container run and build using the maven image
+``` bash
+docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+```
+
+- docker run build using bind volume mount
+``` bash
+docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+```
+
 # Contribute
-* Create an automated YML automated deployment configuration to test the multi
+* Create an automated YML automated deployment configuration to test the multi-cloud deployment
 * Cloud environment using docker containers and execute a performance testing
 * update visual looks and improve ui and UX of the apps
 
 # Future Versions
 * include video tutorial on functionality and relate to GitHub repos containing the cloud source code
-* replicate the cloud services using containers' orchestration
+* replicate the cloud services using containers orchestration
 * create a composite service by uniting functionalities of the different platforms.
 
 ## GitHub Vulnerability report
