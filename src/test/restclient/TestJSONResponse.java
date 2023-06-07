@@ -11,7 +11,7 @@ import javax.json.Json;
 import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
 
-public class JSONExample {
+public class TestJSONResponse {
 
     public static void main(String[] args) throws MalformedURLException {
         //URL url = new URL("https://graph.facebook.com/search?q=java&type=post");

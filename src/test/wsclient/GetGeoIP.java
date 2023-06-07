@@ -65,5 +65,4 @@ public class GetGeoIP {
     public void setIPAddress(String value) {
         this.ipAddress = value;
     }
-
 }

@@ -80,7 +80,6 @@ public class AttendanceRegister {
             if (progress > 100)
                 progress = 100;
         }
-
         return progress;
     }
 

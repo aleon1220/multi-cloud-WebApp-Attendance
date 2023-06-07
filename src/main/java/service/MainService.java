@@ -12,20 +12,15 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
-import wsclient.GeoIP;
-import wsclient.GeoIPService;
-
 public class MainService {
     
     public String invokeWSDLForIP() {
-        
-        GeoIPService service = new GeoIPService();
-        
-        GeoIP ipService = service.getGeoIPServiceSoap().getGeoIPContext();
-        
+        // GeoIPService service = new GeoIPService();
+        // GeoIP ipService = service.getGeoIPServiceSoap().getGeoIPContext();
+        String result = "WSDL and SOAP being deprecated";
         //String result = ipService.getCountryCode().concat(": ")+ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat(" the return code details are: ")+ipService.getReturnCodeDetails();
-        
-        return ipService.getCountryCode().concat(": ")+ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat(" the return code details are: ")+ipService.getReturnCodeDetails();
+        // String wsdlResult = ipService.getCountryCode().concat(": ")+ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat(" the return code details are: ")+ipService.getReturnCodeDetails();
+        return result;
     }
     
     

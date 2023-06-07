@@ -26,7 +26,6 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface GeoIPServiceSoap {
 
-
     /**
      * GeoIPService - GetGeoIP enables you to easily look up countries by IP addresses
      * 
