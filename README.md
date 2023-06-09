@@ -48,7 +48,8 @@ since this is a 2018 project a lot of things need to change
 4. API references. API docs
 
 # Build and Test
-``` bash
+
+```bash
 git clone repo
 # import in IDE Eclipse suggested or use online IDE
 # execute some of the unit tests
@@ -57,7 +58,9 @@ mvn package
 # Deploy WebArchive file in tomcat. Docker apps info below
 deploy .WAR in tomcat
 ```
+
 ## Maven
+
 ### Run the maven build Locally
 
 - build the project locally with a locally installed maven client
@@ -69,6 +72,7 @@ mvn verify
 ```
 
 - Use a docker tag to select a target JDK
+
 > 8-jdk8-corretto
 
 ```bash
@@ -78,13 +82,13 @@ TOMCAT_DOCKER_TAG="8-jdk8-corretto"
 - build the container to the latest version tag
 
 ```bash
-docker build --tag aleon1220/soa:latest
+docker build --tag aleon1220/soa:latest .
 ```
 
 - Run the tomcat server with the pre-built WAR web Archive file
   Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
 
-```
+```bash
 docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 
@@ -96,8 +100,7 @@ refer to https://hub.docker.com/_/tomcat
 docker container exec -it aleon1220/soa /bin/bash
 ```
 
-- The URl is localhost:8888/AttendanceWebApp
-  [AttendanceWebApp](localhost:8888/AttendanceWebApp)
+- The URl is localhost:8888/AttendanceWebApp | [AttendanceWebApp](http://localhost:8888/AttendanceWebApp)
 
 ---
 
