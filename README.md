@@ -1,6 +1,19 @@
+- [Attendance WebApp](#attendance-webapp)
+  - [Introduction](#introduction)
+  - [Attendance WebApp Architecture (re-architected)](#attendance-webapp-architecture-re-architected)
+    - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
+    - [Attendance WebApp UI](#attendance-webapp-ui)
+  - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
+- [Project general guidelines](#project-general-guidelines)
+- [Build and Test](#build-and-test)
+  - [Maven](#maven)
+    - [Run the maven build Locally](#run-the-maven-build-locally)
+  - [Build using maven docker container](#build-using-maven-docker-container)
+  - [GitHub Vulnerability report](#github-vulnerability-report)
+
 # Attendance WebApp
 
-# Introduction
+## Introduction
 
 Attendance WebApp is a proof of concept to improve the way attendance is managed at AUT university.
 
@@ -9,15 +22,14 @@ The idea is that you have a short timeframe to submit a random generated code by
 
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
 
-> ## Security Warning
-
+> Security Warning
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
 
 ## Attendance WebApp Architecture (re-architected)
 
-since this is a 2018 project a lot of things need to change
+2018 project with a lot of things to change
 
 * Simplification of used services
 * Streamline app to use 100% rest and deprecate SOAP and WSDL

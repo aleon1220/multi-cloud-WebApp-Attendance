@@ -1,7 +1,7 @@
-   /**
-    * Class UserBean performs specialized login
-    * contains attributes of user object and performs login calling service objects and functionalities
-    */
+/**
+ * Class UserBean performs specialized login
+ * contains attributes of user object and performs login calling service objects and functionalities
+ */
 
 package bean;
 
@@ -30,19 +30,18 @@ public class UserBean {
     private String idToken;
     private String refreshToken;
     private String tokenType;
-    
+
     // Login Method
     public String login() {
         try {
             UserService userService = new UserService();
-            //System.out.println("userBean: print the name to see if it got it: "+getId());
-            
+            // System.out.println("userBean: print the name to see if it got it: "+getId());
             String IdToken = userService.obtainIdToken(getId(), getPassword());
-            //System.out.println("IdToken in UserBean: " + IdToken);	
-            //System.out.println("UserBean checking value of response before if");
+            // System.out.println("IdToken in UserBean: " + IdToken);
+            // System.out.println("UserBean checking value of response before if");
 
             if (userService.createSession(IdToken).equals("ok")) {
-                
+
                 setAccessToken(userService.getAccessToken());
                 setExpiresIn(userService.getExpiresIn().toString());
                 setIdToken(userService.getIdToken());
@@ -62,7 +61,7 @@ public class UserBean {
             System.out.println("UserBean. inside exception catch.");
             return "loginError";
         }
-    }// end of login method	
+    }// end of login method
 
     public String getAccessToken() {
         return accessToken;

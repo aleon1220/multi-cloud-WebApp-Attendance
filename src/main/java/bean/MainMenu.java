@@ -20,7 +20,6 @@ public class MainMenu{
     
     public String getlinkedPage() {
         if (linkedPage=="1") {
-            
             linkedPage = "attendance";
             System.out.println("this page is-->"+linkedPage);
         } else {

@@ -1,63 +1,63 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
     <title>Login Attendance System</title>
 </h:head>
+
 <body>
 
-<p:layout fullPage="true">
+    <p:layout fullPage="true">
 
-    <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="North unit content."/>
-    </p:layoutUnit>
+        <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+            <h:outputText value="North unit content." />
+        </p:layoutUnit>
 
-     <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="West unit content."/>
-    </p:layoutUnit>
+        <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+            <h:outputText value="West unit content." />
+        </p:layoutUnit>
 
-    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true"
-                  effect="drop">
-        <h:outputText value="Right unit content."/>
-    </p:layoutUnit>
+        <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true"
+            effect="drop">
+            <h:outputText value="Right unit content." />
+        </p:layoutUnit>
 
-    <p:layoutUnit position="center">
-        <h:form id="loginForm">
-            <p:panel>
-                <f:facet name="header">Login</f:facet>
-                <p>Attendance System</p>
+        <p:layoutUnit position="center">
+            <h:form id="loginForm">
+                <p:panel>
+                    <f:facet name="header">Login</f:facet>
+                    <p>Attendance System</p>
+                    <img src="https://i.imgur.com/xvMvUGX.gif" alt="AUT Attendance"
+                        style="width: 400px; height: 270px;" />
+                    <div class="dialog">
+                        <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+                            <h:outputLabel for="username Id">Username ID</h:outputLabel>
+                            <h:inputText id="username" value="#{userBean.id}" />
+                            <h:outputLabel for="password">Password</h:outputLabel>
+                            <h:inputSecret id="password" value="#{userBean.password}" />
+                        </h:panelGrid>
+                    </div>
 
-                    <img src="https://i.imgur.com/xvMvUGX.gif" alt="AUT Attendance" style="width: 400px; height: 270px;"/> 
+                    <div class="actionButtons">
+                        <center>
+                            <h:commandButton id="submit" value="Login" action="#{userBean.login}"
+                                style="height: 40px; width: 85px; background:#287DF9; color:white;" />
+                        </center>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <p>
+                        <i>Info: - </i> Enter Username and password
+                    </p>
+                </p:panel>
+            </h:form>
+        </p:layoutUnit>
 
-                <div class="dialog">
-                    <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                        <h:outputLabel for="username Id">Username ID</h:outputLabel>
-                        <h:inputText id="username" value="#{userBean.id}"/>
-                        <h:outputLabel for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{userBean.password}"/>
-                    </h:panelGrid>
-                </div>
-
-                <div class="actionButtons">
-                    <center>
-                        <h:commandButton id="submit" value="Login" action="#{userBean.login}" style="height: 40px; width: 85px; background:#287DF9; color:white;"/>
-                    </center>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-                <p>
-                    <i>Info: - </i> Enter Username and password
-                </p>
-            </p:panel>
-        </h:form>
-    </p:layoutUnit>
-
-</p:layout>
+    </p:layout>
 
 </body>
+
 </html>

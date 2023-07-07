@@ -1,7 +1,7 @@
-   /**
-    * Class AttendanceRegister
-    * sends invocation to webservice for confirmation of attendance. Includes prime faces UI functionality.
-    */
+/**
+ * Class AttendanceRegister
+ * sends invocation to webservice for confirmation of attendance. Includes prime faces UI functionality.
+ */
 
 package bean;
 
@@ -38,7 +38,8 @@ public class AttendanceRegister {
         ClientConfig config = new DefaultClientConfig();
 
         Client client = Client.create(config);
-        WebResource webResource = client.resource(UriBuilder.fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
+        WebResource webResource = client.resource(UriBuilder
+                .fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
         // Passing parameters
         // {"studentId": "246810","paperId": "COMP101","status": "present"}
 
@@ -52,11 +53,15 @@ public class AttendanceRegister {
         jsonPayLoad.addProperty("paperId", "COMP101");
         jsonPayLoad.addProperty("status", "present");
 
-        //ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
-        ClientResponse response = webResource.header("Authorization", token).post(ClientResponse.class, jsonPayLoad.toString());
-        //
+        // ClientResponse response =
+        // webResource.accept(MediaType.APPLICATION_JSON).header("Authorization",
+        // token).post(ClientResponse.class, jsonPayLoad.toString());
+        ClientResponse response = webResource.header("Authorization", token).post(ClientResponse.class,
+                jsonPayLoad.toString());
         replyFromMS = response.getEntity(String.class);
-        //String replyFromMS = webResource.path("addAttendance").accept(MediaType.APPLICATION_JSON).header("Authorization", token).post(String.class, jsonPayLoad.toString());
+        // String replyFromMS =
+        // webResource.path("addAttendance").accept(MediaType.APPLICATION_JSON).header("Authorization",
+        // token).post(String.class, jsonPayLoad.toString());
 
         System.out.println("AttendanceRegisterResponse:" + response);
 
