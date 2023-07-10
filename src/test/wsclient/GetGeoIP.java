@@ -1,7 +1,7 @@
-   /**
-    * Class GetGeoIP imported from WSDL with java tool 
-    * replicates WSDL to invoke External Web service
-    */
+/**
+ * Class GetGeoIP imported from WSDL with java tool 
+ * replicates WSDL to invoke External Web service
+ */
 
 package wsclient;
 
@@ -11,11 +11,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -34,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ipAddress"
+        "ipAddress"
 })
 @XmlRootElement(name = "GetGeoIP")
 public class GetGeoIP {
@@ -46,9 +48,9 @@ public class GetGeoIP {
      * Gets the value of the ipAddress property.
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *         possible object is
+     *         {@link String }
+     * 
      */
     public String getIPAddress() {
         return ipAddress;
@@ -58,9 +60,9 @@ public class GetGeoIP {
      * Sets the value of the ipAddress property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *              allowed object is
+     *              {@link String }
+     * 
      */
     public void setIPAddress(String value) {
         this.ipAddress = value;

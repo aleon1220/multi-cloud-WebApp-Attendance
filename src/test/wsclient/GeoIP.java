@@ -1,7 +1,7 @@
-   /**
-    * Class GeoIP imported from WSDL with java tool 
-    * replicates WSDL to invoke External Web service
-    */
+/**
+ * Class GeoIP imported from WSDL with java tool 
+ * replicates WSDL to invoke External Web service
+ */
 
 package wsclient;
 
@@ -10,11 +10,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for GeoIP complex type.
+ * <p>
+ * Java class for GeoIP complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="GeoIP">
@@ -36,11 +38,11 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "GeoIP", propOrder = {
-    "returnCode",
-    "ip",
-    "returnCodeDetails",
-    "countryName",
-    "countryCode"
+        "returnCode",
+        "ip",
+        "returnCodeDetails",
+        "countryName",
+        "countryCode"
 })
 public class GeoIP {
 
@@ -75,9 +77,9 @@ public class GeoIP {
      * Gets the value of the ip property.
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *         possible object is
+     *         {@link String }
+     * 
      */
     public String getIP() {
         return ip;
@@ -87,9 +89,9 @@ public class GeoIP {
      * Sets the value of the ip property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *              allowed object is
+     *              {@link String }
+     * 
      */
     public void setIP(String value) {
         this.ip = value;
@@ -99,9 +101,9 @@ public class GeoIP {
      * Gets the value of the returnCodeDetails property.
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *         possible object is
+     *         {@link String }
+     * 
      */
     public String getReturnCodeDetails() {
         return returnCodeDetails;
@@ -111,9 +113,9 @@ public class GeoIP {
      * Sets the value of the returnCodeDetails property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *              allowed object is
+     *              {@link String }
+     * 
      */
     public void setReturnCodeDetails(String value) {
         this.returnCodeDetails = value;
@@ -123,9 +125,9 @@ public class GeoIP {
      * Gets the value of the countryName property.
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *         possible object is
+     *         {@link String }
+     * 
      */
     public String getCountryName() {
         return countryName;
@@ -135,9 +137,9 @@ public class GeoIP {
      * Sets the value of the countryName property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *              allowed object is
+     *              {@link String }
+     * 
      */
     public void setCountryName(String value) {
         this.countryName = value;
@@ -147,9 +149,9 @@ public class GeoIP {
      * Gets the value of the countryCode property.
      * 
      * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *         possible object is
+     *         {@link String }
+     * 
      */
     public String getCountryCode() {
         return countryCode;
@@ -159,9 +161,9 @@ public class GeoIP {
      * Sets the value of the countryCode property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *              allowed object is
+     *              {@link String }
+     * 
      */
     public void setCountryCode(String value) {
         this.countryCode = value;

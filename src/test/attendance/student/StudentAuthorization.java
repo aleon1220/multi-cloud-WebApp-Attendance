@@ -1,6 +1,4 @@
-/*---------------------------------- com.leo.json.Authorization.java ---------------------------------- */
-
-package attendance.gson;
+package test.student;
 
 import com.google.gson.annotations.SerializedName;
 

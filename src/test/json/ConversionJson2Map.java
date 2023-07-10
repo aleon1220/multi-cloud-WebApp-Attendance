@@ -22,8 +22,9 @@ public class ConversionJson2Map {
         Map<String, Object> retMap = new Gson().fromJson(jsonFromMS, new TypeToken<HashMap<String, Object>>() {
         }.getType());
 
-        Map<String, Object> map = new Gson().fromJson(jsonFromMS, new TypeToken<HashMap<String, StudentAuthorization>>() {
-        }.getType());
+        Map<String, Object> map = new Gson().fromJson(jsonFromMS,
+                new TypeToken<HashMap<String, StudentAuthorization>>() {
+                }.getType());
 
         System.out.println("Printing Map object: " + authorizationMap.values().toString());
 

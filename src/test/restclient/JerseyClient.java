@@ -19,8 +19,7 @@ public class JerseyClient {
 
     public void obtainJSONResponse() throws ClientProtocolException, IOException {
 
-        // invoking REST service with GET Method
-
+        // Invoke REST service with GET Method
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
 

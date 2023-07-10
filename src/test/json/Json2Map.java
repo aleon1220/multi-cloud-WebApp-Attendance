@@ -15,7 +15,6 @@ public class Json2Map {
 
         Type authorization = new TypeToken<Map<String, Authorization>>() {
         }.getType();
-        // TODO Auto-generated method stub
 
         Map<String, Authorization> authorizationMap = gson.fromJson(jsonFromMS, authorization);
 

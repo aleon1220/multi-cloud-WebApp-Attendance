@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class StudentAuthenticationResult {
 
-    public StudentAuthenticationResult(String accessToken, Integer expiresIn, String tokenType, String refreshToken, String idToken) {
+    public StudentAuthenticationResult(String accessToken, Integer expiresIn, String tokenType, String refreshToken,
+            String idToken) {
         this.accessToken = accessToken;
         this.expiresIn = expiresIn;
         this.tokenType = tokenType;
@@ -14,19 +15,19 @@ public class StudentAuthenticationResult {
 
     @SerializedName("AccessToken")
     private String accessToken;
-    
+
     @SerializedName("ExpiresIn")
     private Integer expiresIn;
-    
+
     @SerializedName("TokenType")
     private String tokenType;
-    
+
     @SerializedName("RefreshToken")
     private String refreshToken;
-    
+
     @SerializedName("IdToken")
     private String idToken;
-    
+
     // Setters and getters
 
     public String getAccessToken() {

@@ -5,9 +5,8 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class JerseyJsonResponse {
-    
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         try {
             String baseuri = "https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login/";
             Client client = Client.create();
@@ -17,11 +16,12 @@ public class JerseyJsonResponse {
             String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
 
             // POST method
-            ClientResponse response = webResource.accept("application/json").type("application/json").post(ClientResponse.class, input);
+            ClientResponse response = webResource.accept("application/json").type("type:application/json")
+                    .post(ClientResponse.class, input);
 
             // check response status code
             if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "+ response.getStatus());
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
             }
 
             // display response
@@ -32,8 +32,5 @@ public class JerseyJsonResponse {
             e.printStackTrace();
         }
 
-    }
-
+    } // main()
 }
-
-

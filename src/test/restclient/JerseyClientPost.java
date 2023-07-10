@@ -9,10 +9,8 @@ public class JerseyClientPost {
     public static void main(String[] args) {
 
         try {
-
             Client client = Client.create();
-            WebResource webResource = client
-                    .resource("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
+            WebResource webResource = client.resource("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
             String input = "{\"id\":\"10295765\",\"password\":\"Value!12\"}";
             ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
 

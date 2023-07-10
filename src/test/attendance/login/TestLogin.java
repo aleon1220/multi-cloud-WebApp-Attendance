@@ -10,7 +10,7 @@ public class TestLogin {
 
     @Test
     public void GetToken() {
-        //fail("Not yet implemented");
+        // fail("Not yet implemented");
     }
 
     @Test
@@ -18,8 +18,8 @@ public class TestLogin {
         UserBean user = new UserBean();
         user.setId("10295765");
         user.setPassword("Value!12");
-        //System.out.println("assert result"+user.login());
-        assertTrue(user.login()=="main");
+        // System.out.println("assert result"+user.login());
+        assertTrue(user.login() == "main");
     }
 
     public void loginGeneralUserNOK() {

@@ -5,9 +5,9 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class TestRestClient {
-  string AWS_URL="https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login";
+  string AWS_URL = "https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login";
 
-  public void cheackServerAvailable(){
+  public void checkServiceAvailability() {
 
   }
 
@@ -16,7 +16,7 @@ public class TestRestClient {
     try {
 
       Client client = Client.create();
-      WebResource webResource = client.resource(+ AWS_URL);
+      WebResource webResource = client.resource(+AWS_URL);
       String input = "{\"id\":\"10295765\",\"password\":\"TestPassword!12\"}";
       ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
 

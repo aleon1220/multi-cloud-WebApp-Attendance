@@ -10,6 +10,5 @@ public class AttendanceGenerateTest {
     public void testRandomCode() {
         AttendanceBean at = new AttendanceBean();
         assertNotNull("data", at.generateAttendanceCode());
-    }
-
+    } // testRandomCode()
 }

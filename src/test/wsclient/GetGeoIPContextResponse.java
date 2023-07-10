@@ -1,7 +1,7 @@
-   /**
-    * Class getGeoIPContextResult imported from WSDL with java tool 
-    * replicates WSDL to invoke External Web service
-    */
+/**
+ * Class getGeoIPContextResult imported from WSDL with java tool 
+ * replicates WSDL to invoke External Web service
+ */
 
 package wsclient;
 
@@ -11,11 +11,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -28,12 +30,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getGeoIPContextResult"
+        "getGeoIPContextResult"
 })
 @XmlRootElement(name = "GetGeoIPContextResponse")
 public class GetGeoIPContextResponse {
@@ -45,9 +46,9 @@ public class GetGeoIPContextResponse {
      * Gets the value of the getGeoIPContextResult property.
      * 
      * @return
-     *     possible object is
-     *     {@link GeoIP }
-     *     
+     *         possible object is
+     *         {@link GeoIP }
+     * 
      */
     public GeoIP getGetGeoIPContextResult() {
         return getGeoIPContextResult;
@@ -57,9 +58,9 @@ public class GetGeoIPContextResponse {
      * Sets the value of the getGeoIPContextResult property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link GeoIP }
-     *     
+     *              allowed object is
+     *              {@link GeoIP }
+     * 
      */
     public void setGetGeoIPContextResult(GeoIP value) {
         this.getGeoIPContextResult = value;
