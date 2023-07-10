@@ -5,10 +5,12 @@
     - [Attendance WebApp UI](#attendance-webapp-ui)
   - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
 - [Project general guidelines](#project-general-guidelines)
-- [Build and Test](#build-and-test)
-  - [Maven](#maven)
+  - [Locally Build and Test](#locally-build-and-test)
+  - [Maven Stages](#maven-stages)
     - [Run the maven build Locally](#run-the-maven-build-locally)
-  - [Build using maven docker container](#build-using-maven-docker-container)
+  - [Docker](#docker)
+    - [Run and test the container webapp](#run-and-test-the-container-webapp)
+    - [Build using maven docker container](#build-using-maven-docker-container)
   - [GitHub Vulnerability report](#github-vulnerability-report)
 
 # Attendance WebApp
@@ -59,41 +61,24 @@ To find out more, visit:
 3. Latest releases by using git tags
 4. API references. API docs
 
-# Build and Test
-
+## Locally Build and Test
+> Tested in Win11 with WSL
+- Clone git repo
 ```bash
 git clone repo
-# import in IDE Eclipse suggested or use online IDE
-# execute some of the unit tests
-# Generate the .WAR file
+```
+
+- open in IDE Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
+
+- Pack the WebArchive file using maven. Generate the .WAR file
+``` bash
 mvn package
-# Deploy WebArchive file in tomcat. Docker apps info below
-deploy .WAR in tomcat
 ```
 
-## Maven
-
-### Run the maven build Locally
-
-- build the project locally with a locally installed maven client
-
-> Tested in Win11 with WSL
-
-```bash
-mvn verify
-```
-
-- Use a docker tag to select a target JDK
-
-> 8-jdk8-corretto
-
+- Build the app image with Docker. Deploy .WAR file in Tomcat
+refer to https://hub.docker.com/_/tomcat
 ```bash
 TOMCAT_DOCKER_TAG="8-jdk8-corretto"
-```
-
-- build the container to the latest version tag
-
-```bash
 docker build --tag aleon1220/soa:latest .
 ```
 
@@ -101,22 +86,45 @@ docker build --tag aleon1220/soa:latest .
   Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
 
 ```bash
-docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run -itd --publish 8888:8080 aleon1220/soa:latest
+```
+- get the name of the running container in port 8888
+``` bash
+CONTAINER_NAME=$(docker container ls --all --filter publish=8888 --format "{{.Names}}")
 ```
 
-refer to https://hub.docker.com/_/tomcat
-
-- Access container
+- Access the Docker container via CLI
 
 ```bash
-docker container exec -it aleon1220/soa /bin/bash
+docker container exec -it $CONTAINER_NAME /bin/bash
 ```
 
-- The URl is localhost:8888/AttendanceWebApp | [AttendanceWebApp](http://localhost:8888/AttendanceWebApp)
+- The URl is URL:8888/AttendanceWebApp [AttendanceWebApp](http://localhost:8888/AttendanceWebApp)
 
+
+- clean up docker container environment
+``` bash
+docker stop $(docker ps --quiet)
+docker rm $(docker container ls --all --quiet)
+```
+## Maven Stages
+
+### Run the maven build Locally
+
+- build the project locally with a locally installed maven client
+
+```bash
+mvn verify
+```
 ---
 
-## Build using maven docker container
+## Docker
+### Run and test the container webapp
+```bash
+docker build --tag aleon1220/soa:latest .
+docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
+```
+### Build using maven docker container
 
 Refer to maven docker official image https://hub.docker.com/_/maven
 is best to have maven locally installed
