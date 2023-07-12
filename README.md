@@ -56,35 +56,46 @@ To find out more, visit:
 
 # Project general guidelines
 
-1. Installation process: project is Maven java project. Import in any IDE with the POM File.
+1. Installation process: project a Java project JEE. Import in any IDE and build with gradle or maven. Build docker image and run
 2. Software dependencies: dependencies are described in pom.xml file
 3. Latest releases by using git tags
 4. API references. API docs
 
-## Locally Build and Test
-> Tested in Win11 with WSL
-- Clone git repo
+## Setup
+> Tested in Win11 with WSL, Github codespaces and Ubuntu22
+
+- Clone repo
 ```bash
 git clone repo
 ```
 
-- open in IDE Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
+- open repo in chosen IDE
+IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
 
-- Pack the WebArchive file using maven. Generate the .WAR file
+## Build Web Package
+- Pack the WebArchive file. Generate the .WAR file
 ``` bash
-mvn package
+gradle clean build --console plain --warning-mode all
 ```
 
+### Maven Build
+> maven has been deprecated and moved to [maven](./maven)
+if you still want to build with maven run `mvn package`
+
+## Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
 ```bash
-TOMCAT_DOCKER_TAG="8-jdk8-corretto"
 docker build --tag aleon1220/soa:latest .
 ```
 
-- Run the tomcat server with the pre-built WAR web Archive file
-  Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
+### Available Tomcat versions
+Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
+- 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
+- 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
+## Docker execution
+Run the tomcat server with the pre-built WAR web Archive file
 ```bash
 docker run -itd --publish 8888:8080 aleon1220/soa:latest
 ```
@@ -99,7 +110,7 @@ CONTAINER_NAME=$(docker container ls --all --filter publish=8888 --format "{{.Na
 docker container exec -it $CONTAINER_NAME /bin/bash
 ```
 
-- The URl is URL:8888/AttendanceWebApp [AttendanceWebApp](http://localhost:8888/AttendanceWebApp)
+- The URl is URL:8888/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8888/Attendance-0.0.1)
 
 
 - clean up docker container environment

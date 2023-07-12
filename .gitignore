@@ -1,10 +1,26 @@
+# Gradle
+**/build/
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache of project
+.gradletasknamecache
+
 #.config file for eclipse projects
 .settings
 /.classpath
 /bin/
 /.project
 
-#target with generated objects
+# Maven build files
 /target
 
 # Compiled class file
