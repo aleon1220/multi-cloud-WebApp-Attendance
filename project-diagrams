@@ -1,0 +1,103 @@
+<mxfile host="app.diagrams.net" modified="2023-07-15T06:29:48.313Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="WKXvZBWj4jnS38bwXDXo" version="21.5.2" type="device" pages="4">
+  <diagram name="Azure-Deployment" id="eSbzcvupVUCK_2xmQOYe">
+    <mxGraphModel dx="2261" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-5" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="20" width="1200" height="890" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-4" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="50" y="207" width="1070" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-6" value="" style="group" vertex="1" connectable="0" parent="S_Xt7m4VqsSDsq-ubhUU-4">
+          <mxGeometry x="-5" width="510" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-2" value="Azure Virtual Machine Linux Ubuntu" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=bottom;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-6">
+          <mxGeometry width="510" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-1" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/compute/Virtual_Machine.svg;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-6">
+          <mxGeometry x="10.99714285714282" y="9.997142857142848" width="45.589285714285715" height="42.285714285714285" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-3" value="" style="group" vertex="1" connectable="0" parent="S_Xt7m4VqsSDsq-ubhUU-6">
+          <mxGeometry x="19.999999999999943" y="95" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dT0OVqGVHo6oMH2JQYfz-5" value="TomEE or Servlet Container" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=bottom;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-3">
+          <mxGeometry width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dT0OVqGVHo6oMH2JQYfz-4" value="JEE Attendance WebApp" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.webicons.java;gradientColor=#DFDEDE" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-3">
+          <mxGeometry x="50.26969632768361" y="20.00333333333333" width="79.46666666666668" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-8" value="" style="group" vertex="1" connectable="0" parent="S_Xt7m4VqsSDsq-ubhUU-6">
+          <mxGeometry x="270" y="95" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-9" value="LDAP" style="whiteSpace=wrap;html=1;aspect=fixed;verticalAlign=bottom;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-8">
+          <mxGeometry width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-11" value="User Directory" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.users;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-8">
+          <mxGeometry x="47.5" y="35" width="85" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="dT0OVqGVHo6oMH2JQYfz-1" value="Azure DevOps Pipeline" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/devops/Azure_DevOps.svg;" vertex="1" parent="S_Xt7m4VqsSDsq-ubhUU-4">
+          <mxGeometry x="-50" y="-142" width="64" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dT0OVqGVHo6oMH2JQYfz-1" target="S_Xt7m4VqsSDsq-ubhUU-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S_Xt7m4VqsSDsq-ubhUU-13" value="&lt;h1&gt;pipeline&lt;/h1&gt;&lt;p&gt;Deploy infrastructure, build App from GitHub, deploy to artifacts, run the app and expose the endpoints&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="224" y="20" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dT0OVqGVHo6oMH2JQYfz-2" value="Azure API" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/app_services/API_Management_Services.svg;" vertex="1" parent="1">
+          <mxGeometry x="710" y="140" width="65" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="YLxNJIX8G6RIQyDWdXH2" name="Development-Env">
+    <mxGraphModel dx="1434" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="EVTMu_T97W3kmLd45Csc" name="Pipeline-CI/CD">
+    <mxGraphModel dx="1434" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="g4d9sbueeUkrl4XEJHn1-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="g4d9sbueeUkrl4XEJHn1-1" target="g4d9sbueeUkrl4XEJHn1-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g4d9sbueeUkrl4XEJHn1-1" value="Azure DevOps Pipeline" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/devops/Azure_DevOps.svg;" vertex="1" parent="1">
+          <mxGeometry x="130" y="229.2" width="64" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="g4d9sbueeUkrl4XEJHn1-2" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.webicons.github;gradientColor=#DFDEDE" vertex="1" parent="1">
+          <mxGeometry x="310" y="210" width="102.4" height="102.4" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="JzK9EswWRlvsoTGxEEtV" name="JEE Attendance WebApp">
+    <mxGraphModel dx="1434" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GYQrIWJhH8fxJ1BSXLsU-1" value="&lt;h1&gt;JEE app&lt;/h1&gt;&lt;p&gt;Java Jakarta EE using latest JDK 8 with primefaces&lt;/p&gt;&lt;p&gt;Allows registering attendance&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Generate QR code for attendance registration&lt;/li&gt;&lt;li&gt;Generate random Numbers&lt;/li&gt;&lt;/ul&gt;Main page fetches 4 items from exposed services&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Mock SOAP WSDL WS&lt;/li&gt;&lt;li&gt;Mocked REST API&lt;/li&gt;&lt;li&gt;Invoke an online WSDL&lt;/li&gt;&lt;li&gt;Invoke an online REST API&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="245" y="20" width="190" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="GYQrIWJhH8fxJ1BSXLsU-2" value="&lt;h1&gt;Mock SOAP WS&lt;/h1&gt;&lt;p&gt;mocking a WebService that brings a random bible verse on home page login&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="360" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="GYQrIWJhH8fxJ1BSXLsU-3" value="&lt;h1&gt;Mock API Rest&lt;/h1&gt;&lt;p&gt;Mocking a Rest API endpoint with some Java Library to fetch the latest commit comment.&amp;nbsp;&lt;/p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Use the Java WebApp GitHub repo&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="525" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="qYepKLnE2vn30xx2kMJB-1" value="internet Web Service&lt;br&gt;&amp;lt;WSDL&amp;gt;" style="image;html=1;image=img/lib/clip_art/networking/Cloud_Computer_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="720" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qYepKLnE2vn30xx2kMJB-2" value="Internet API&lt;br&gt;&amp;lt;REST&amp;gt;" style="image;html=1;image=img/lib/clip_art/networking/Cloud_Server_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="720" y="400" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
