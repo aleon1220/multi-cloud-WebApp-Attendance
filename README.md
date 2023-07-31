@@ -5,12 +5,18 @@
     - [Attendance WebApp UI](#attendance-webapp-ui)
   - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
 - [Project general guidelines](#project-general-guidelines)
-  - [Locally Build and Test](#locally-build-and-test)
+  - [Setup](#setup)
+  - [Build Web Package](#build-web-package)
+    - [Maven Build](#maven-build)
+  - [Docker Image Build](#docker-image-build)
+    - [Available Tomcat versions](#available-tomcat-versions)
+  - [Docker execution](#docker-execution)
   - [Maven Stages](#maven-stages)
     - [Run the maven build Locally](#run-the-maven-build-locally)
   - [Docker](#docker)
     - [Run and test the container webapp](#run-and-test-the-container-webapp)
     - [Build using maven docker container](#build-using-maven-docker-container)
+  - [Editing project diagrams](#editing-project-diagrams)
   - [GitHub Vulnerability report](#github-vulnerability-report)
 
 # Attendance WebApp
@@ -164,6 +170,10 @@ docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr
 docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
 ```
 
+## Editing project diagrams
+- go to [diagrams.net](https://app.diagrams.net/?src=about)
+- open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
+- Explore > export images to convinience and update this README
 ## GitHub Vulnerability report
 
 https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
