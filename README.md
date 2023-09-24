@@ -26,6 +26,11 @@
 Attendance WebApp is a proof of concept to improve the way attendance is managed at AUT university.
 
 The application uses maven, J2EE, primefaces, gson.
+```kotlin
+    maven {
+         url = uri("https://repository.primefaces.org")
+    }
+```
 The idea is that you have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
 
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
