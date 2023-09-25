@@ -12,11 +12,13 @@ plugins {
     // https://docs.gradle.org/7.3/dsl/org.gradle.api.tasks.bundling.War.html
     war
     //wsdl 
-    id("org.apache.cxf.cxf") version "1.0.0"
+    id("io.mateo.cxf-codegen") version "1.0.1"
 }
 
 repositories {
-    mavenCentral()
+  gradlePluginPortal()
+  google()
+  mavenCentral()
 }
 
 dependencies {
@@ -88,11 +90,11 @@ tasks.register<Test>("singleTest") {
 //         dependsOn("appRun")
 //     }
 // }
-cxf {
-    wsdl2java {
-        // wsdl info about countries
-        wsdl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL"
-        packageName = "org.example.countryinfo"
-        outputDir = file("src/main/java")
-    }
-}
+// cxf {
+//     wsdl2java {
+//         // wsdl info about countries
+//         wsdl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL"
+//         packageName = "org.example.countryinfo"
+//         outputDir = file("src/main/java")
+//     }
+// }
