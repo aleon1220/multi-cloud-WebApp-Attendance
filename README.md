@@ -5,6 +5,8 @@
     - [Attendance WebApp UI](#attendance-webapp-ui)
   - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
 - [Project general guidelines](#project-general-guidelines)
+  - [API/Services Architectures](#apiservices-architectures)
+  - [Extra mermaid diagram](#extra-mermaid-diagram)
   - [Setup](#setup)
   - [Build Web Package](#build-web-package)
     - [Maven Build](#maven-build)
@@ -71,6 +73,28 @@ To find out more, visit:
 2. Software dependencies: dependencies are described in pom.xml file
 3. Latest releases by using git tags
 4. API references. API docs
+
+## API/Services Architectures
+```mermaid
+graph LR
+    REST --> JSON
+    REST --> XML
+    REST --> Webhooks
+    REST --> gRPC
+    REST --> GraphQL
+    REST --> WebSockets
+    gRPC --> Protobuf
+    GraphQL --> Queries
+    GraphQL --> Mutations
+    WebSockets --> Full-duplex-communication
+    WebSockets --> Real-time-updates
+    Webhooks --> HTTP-callbacks
+    Webhooks --> Event-driven-architecture
+```
+## Extra mermaid diagram
+circular references
+
+[![](https://mermaid.ink/img/pako:eNptksEOgjAQRH-F7Fl-gIMXNV4wUTDx0kulKxCEklIOhvDvtmAoXeypfTOdySY7QCYFQgS54m0RxAlrAnOSU3oPwnAf5Mn1QNDZOm8xoQ98pjKrUHdboZCyMngWbOIkWAdBXvRCafRa8KJ_30n6mrpx1pQWEM3rcF5SQwTXRARvRqL9KZve2yqHvSKHaY1TXCfsoEZV81KYBRislYEusEYGkbkKrioGrBmNj_dapp8mg-jF3x3uoG8F13gsuVmceqEoSi3VZV6pabPGL4act8s?type=png)](https://mermaid.live/edit#pako:eNptksEOgjAQRH-F7Fl-gIMXNV4wUTDx0kulKxCEklIOhvDvtmAoXeypfTOdySY7QCYFQgS54m0RxAlrAnOSU3oPwnAf5Mn1QNDZOm8xoQ98pjKrUHdboZCyMngWbOIkWAdBXvRCafRa8KJ_30n6mrpx1pQWEM3rcF5SQwTXRARvRqL9KZve2yqHvSKHaY1TXCfsoEZV81KYBRislYEusEYGkbkKrioGrBmNj_dapp8mg-jF3x3uoG8F13gsuVmceqEoSi3VZV6pabPGL4act8s)
 
 ## Setup
 > Tested in Win11 with WSL, Github codespaces and Ubuntu22
