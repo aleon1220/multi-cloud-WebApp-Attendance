@@ -1,0 +1,13 @@
+<bindings xmlns="https://jakarta.ee/xml/ns/jaxb"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+          version="3.0"
+          extensionBindingPrefixes="xjc">
+  <globalBindings>
+    <xjc:javaType name="java.time.LocalDate" xmlType="xs:date" adapter="io.github.threetenjaxb.core.LocalDateXmlAdapter"/>
+    <xjc:javaType name="java.time.LocalDateTime" xmlType="xs:dateTime" adapter="io.github.threetenjaxb.core.LocalDateTimeXmlAdapter"/>
+    <xjc:javaType name="java.time.YearMonth" xmlType="xs:gYearMonth" adapter="io.github.threetenjaxb.core.YearMonthXmlAdapter"/>
+    <xjc:javaType name="java.time.Duration" xmlType="xs:duration" adapter="io.github.threetenjaxb.core.DurationXmlAdapter"/>
+    <xjc:javaType name="java.time.OffsetDate" xmlType="xs:date" adapter="io.github.threetenjaxb.core.OffsetTimeXmlAdapter"/>
+    <xjc:javaType name="java.time.OffsetDateTime" xmlType="xs:dateTime" adapter="io.github.threetenjaxb.core.OffsetDateTimeXmlAdapter"/>
+  </globalBindings>
+</bindings>
