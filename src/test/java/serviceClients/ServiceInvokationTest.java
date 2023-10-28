@@ -1,4 +1,4 @@
-package attendance.wsdl;
+package wsdl;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -15,7 +15,6 @@ public class ServiceInvokationTest {
 
     @Test
     public void testWSDLSuccess() {
-
         assertTrue(testService.invokeWSDLForIP().length() > 2);
         // System.out.println(testService.invokeWSDLForIP());
     }
