@@ -1,5 +1,5 @@
 
-package https.www_w3schools_com.xml;
+package clients.wsdl.temperatureConvert;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -7,7 +7,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
-
+// Service at https://www.w3schools.com/xml/tempconvert.asmx?WSDL
 /**
  * <p>Java class for anonymous complex type.
  * 

@@ -1,5 +1,5 @@
 
-package https.www_w3schools_com.xml;
+package clients.wsdl.temperatureConvert;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

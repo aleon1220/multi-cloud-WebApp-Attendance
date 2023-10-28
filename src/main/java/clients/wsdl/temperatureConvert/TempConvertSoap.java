@@ -1,4 +1,4 @@
-package https.www_w3schools_com.xml;
+package clients.wsdl.temperatureConvert;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
