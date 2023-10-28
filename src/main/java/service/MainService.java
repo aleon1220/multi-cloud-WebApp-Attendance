@@ -17,20 +17,16 @@ public class MainService {
     public String invokeWSDLForIP() {
         // GeoIPService service = new GeoIPService();
         // GeoIP ipService = service.getGeoIPServiceSoap().getGeoIPContext();
-        String result = "WSDL and SOAP being deprecated";
-        //String result = ipService.getCountryCode().concat(": ")+ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat(" the return code details are: ")+ipService.getReturnCodeDetails();
+        //String result = ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat("code details are: ")+ipService.getReturnCodeDetails();
         // String wsdlResult = ipService.getCountryCode().concat(": ")+ipService.getCountryName().concat(", IP is: ")+ipService.getIP().concat(" the return code details are: ")+ipService.getReturnCodeDetails();
-        return result;
+        return "GeoIP Web Service No longer functions";
     }
     
-    
     public String invokeRestForBibleVerse() {
-        
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
 
         WebResource service = client.resource(UriBuilder.fromUri("http://labs.bible.org/api/?passage=random").build());
-        
         return service.get(String.class);
     }
 

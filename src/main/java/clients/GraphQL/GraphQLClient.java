@@ -1,3 +1,5 @@
+package clients.GraphQL;
+
 import com.graphql.java.client.GraphQLClient;
 import com.graphql.java.client.GraphQLClientBuilder;
 import com.graphql.java.client.GraphQLRequest;
@@ -7,7 +9,11 @@ public class GraphQLClient {
 
     private final GraphQLClient graphQLClient;
 
-    public GraphQLClientExample(String graphQLAPIEndpointURL) {
+    public GraphQLClient() {
+        graphQLClient = new GraphQLClient();
+    }
+
+    public void GraphQLClientExample(String graphQLAPIEndpointURL) {
         graphQLClient = GraphQLClientBuilder.newClient(graphQLAPIEndpointURL).build();
     }
 

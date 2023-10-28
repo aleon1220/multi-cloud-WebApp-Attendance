@@ -25,15 +25,10 @@ public class Json2Map {
         }.getType());
 
         System.out.println("Printing Map object: " + authorizationMap.values().toString());
-
         authorizationMap.keySet().iterator().forEachRemaining(System.out::println);
-
         System.out.println("Printing ret Map object this is bringing the values: " + retMap.values().toString());
-
         map.keySet().iterator().forEachRemaining(System.out::println);
-
         System.out.println(retMap.get("IdToken"));
 
     }
-
 }
