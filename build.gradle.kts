@@ -33,9 +33,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.zxing/javase
     implementation("com.google.zxing:javase:3.5.1")
     implementation("com.google.zxing:core:3.5.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testImplementation("io.jsonwebtoken:jjwt:0.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation("io.jsonwebtoken:jjwt:0.9.1")
     // dependency below only needed if using the Java 8 version of @Generated (through "jdk8") on Java 9 or later
     implementation("javax.annotation:javax.annotation-api:1.3.2")
     implementation("io.github.threeten-jaxb:threeten-jaxb-core:2.1.0") // Use Java Date/Time API instead of clunky GregorianCalendar class
@@ -44,7 +44,7 @@ dependencies {
 group = "soa.nz.aut"
 version = "0.0.1"
 description = "Student Attendance WebApp"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 tasks.war {
     archiveBaseName.set("Attendance")
@@ -77,7 +77,7 @@ tasks.register<Test>("singleTest") {
 // https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
 // https://www.w3schools.com/xml/tempconvert.asmx?WSDL
 wsdl2java {
-    wsdlDir.set(layout.projectDirectory.dir("src/main/resources/wsdl"))
+    // wsdlDir.set(layout.projectDirectory.dir("src/main/resources/wsdl"))
     bindingFile.set(layout.projectDirectory.file("src/main/bindings/bindings.xjb"))
 
     includes.set(
