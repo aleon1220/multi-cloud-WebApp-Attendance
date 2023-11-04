@@ -43,13 +43,11 @@ public class Paper {
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public Paper() {
     }
 
     /**
-     * 
      * @param id
      * @param updatedAt
      * @param stream
@@ -192,7 +190,6 @@ public class Paper {
     }
 
     public String obtainLectureName() {
-
         return "Lecturers Name String";
     }
 }

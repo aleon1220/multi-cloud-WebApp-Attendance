@@ -39,6 +39,9 @@ dependencies {
     // dependency below only needed if using the Java 8 version of @Generated (through "jdk8") on Java 9 or later
     implementation("javax.annotation:javax.annotation-api:1.3.2")
     implementation("io.github.threeten-jaxb:threeten-jaxb-core:2.1.0") // Use Java Date/Time API instead of clunky GregorianCalendar class
+    implementation("com.graphql-java-kickstart:graphql-webclient-spring-boot-starter:2.0.1")
+    implementation("com.graphql-java:graphql-java:20.7")
+    implementation("com.graphql-java-generator:graphql-java-runtime:1.18")
 }
 
 group = "soa.nz.aut"

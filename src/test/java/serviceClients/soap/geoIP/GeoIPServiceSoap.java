@@ -3,7 +3,7 @@
  * replicates WSDL to invoke External Web service
  */
 
-package external.services.wsclient;
+package serviceClients.soap.geoIP;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

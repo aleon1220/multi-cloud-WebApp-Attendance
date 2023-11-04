@@ -1,6 +1,6 @@
    /**
     * Class MainMenu and controls main menu navigation
-    * links to mainMenu bean and .xhtml file.
+    * links to mainMenu bean and .xhtml file
     */
 
 package bean;

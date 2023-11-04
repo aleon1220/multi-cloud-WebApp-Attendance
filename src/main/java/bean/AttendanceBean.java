@@ -28,7 +28,7 @@ public class AttendanceBean {
     public void init() {
         // invokes service class to populate classes
         classes = new ArrayList<String>();
-        classes.add("SOA");
+        classes.add("Micro Services Architecture");
         classes.add("Service Science");
         classes.add("Service Based Design");
         classes.add("Cloud Computing");
@@ -97,6 +97,5 @@ public class AttendanceBean {
         this.randomCode = randomCode;
     }
 }
-/*
- * End of AttendanceBean.java
- */
+// End of AttendanceBean.java
+

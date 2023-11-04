@@ -1,6 +1,6 @@
 package wsdl;
-import clients.wsdl.temperatureConvert.TempConvertSoap;
-import clients.wsdl.temperatureConvert.TempConvert;
+import service.clients.wsdl.temperatureConvert.TempConvertSoap;
+import service.clients.wsdl.temperatureConvert.TempConvert;
 import org.junit.Assert;
 import org.junit.Test;
 
