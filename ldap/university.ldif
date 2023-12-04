@@ -1,0 +1,11 @@
+dn: ou=lecturers,dc=university,dc=nz,dc=andres
+objectClass: organizationalUnit
+ou: lecturers
+
+dn: ou=staff,dc=university,dc=nz,dc=andres
+objectClass: organizationalUnit
+ou: staff
+
+dn: ou=students,dc=university,dc=nz,dc=andres
+objectClass: organizationalUnit
+ou: students

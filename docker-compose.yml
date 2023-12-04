@@ -1,0 +1,18 @@
+version: '3'
+services:
+  openldap:
+    image: osixia/openldap:1.2.4
+    environment:
+      LDAP_ORGANISATION: "IT Latinos NZ"
+      LDAP_DOMAIN: "latintech.org"
+      LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASS}
+    ports:
+      - 389:389
+      - 636:636
+    volumes:
+      - ./ldap:/var/lib/ldap
+      - ./ldap:/etc/ldap/slapd.d
+  webapp:
+    image: aleon1220/soa:latest
+    ports:
+      - 8080:8080
