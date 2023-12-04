@@ -8,16 +8,16 @@
   - [API/Services Architectures](#apiservices-architectures)
   - [Extra mermaid diagram](#extra-mermaid-diagram)
   - [Setup](#setup)
-  - [Build Web Package](#build-web-package)
-    - [Maven Build](#maven-build)
+- [Build WebApp](#build-webapp)
+  - [Gradle Build Web Package](#gradle-build-web-package)
+  - [Maven Build](#maven-build)
+- [Package WebApp](#package-webapp)
   - [Docker Image Build](#docker-image-build)
     - [Available Tomcat versions](#available-tomcat-versions)
+- [Run WebApp](#run-webapp)
   - [Docker execution](#docker-execution)
-  - [Maven Stages](#maven-stages)
-    - [Run the maven build Locally](#run-the-maven-build-locally)
   - [Docker](#docker)
     - [Run and test the container webapp](#run-and-test-the-container-webapp)
-    - [Build using maven docker container](#build-using-maven-docker-container)
   - [Editing project diagrams](#editing-project-diagrams)
   - [GitHub Vulnerability report](#github-vulnerability-report)
   - [Web services client](#web-services-client)
@@ -108,17 +108,17 @@ git clone repo
 
 - open repo in chosen IDE
 IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
-
-## Build Web Package
+# Build WebApp
+## Gradle Build Web Package
 - Pack the WebArchive file. Generate the .WAR file
 ``` bash
 gradle clean build --console plain --warning-mode all
 ```
 
-### Maven Build
+## Maven Build
 > maven has been deprecated and moved to [maven](./maven)
-if you still want to build with maven run `mvn package`
 
+# Package WebApp
 ## Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
@@ -131,6 +131,7 @@ Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/so
 - 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
 - 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
+# Run WebApp
 ## Docker execution
 Run the tomcat server with the pre-built WAR web Archive file
 ```bash
@@ -149,56 +150,17 @@ docker container exec -it $CONTAINER_NAME /bin/bash
 
 - The URl is URL:8888/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8888/Attendance-0.0.1)
 
-
 - clean up docker container environment
 ``` bash
 docker stop $(docker ps --quiet)
 docker rm $(docker container ls --all --quiet)
 ```
-## Maven Stages
-
-### Run the maven build Locally
-
-- build the project locally with a locally installed maven client
-
-```bash
-mvn verify
-```
----
 
 ## Docker
 ### Run and test the container webapp
 ```bash
 docker build --tag aleon1220/soa:latest .
 docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
-```
-### Build using maven docker container
-
-Refer to maven docker official image https://hub.docker.com/_/maven
-is best to have maven locally installed
-
-- Create a volume
-
-```bash
-docker volume create --name maven-repo-volume
-```
-
-- Docker container build using the volume above
-
-```bash
-docker run -it -v maven-repo-volume:/root/.m2 maven mvn archetype:generate # will download artifacts
-```
-
-- Docker container run and build using the maven image
-
-```bash
-docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-```
-
-- docker run build using bind volume mount
-
-```bash
-docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
 ```
 
 ## Editing project diagrams
@@ -217,11 +179,12 @@ wsdl2java is a command-line tool from Apache CXF used to generate Java code from
 
 Download the WSDL file: You need to have the WSDL document saved on your local machine2.
 
-Run the wsdl2java command: The basic syntax of the command is as follows1:
-
+Run the wsdl2java command: The basic syntax of the command is as follows:
+```bash
 wsdl2java -fe <front-end-name> -db <data-binding-name> -wv <wsdl-version> -p <[wsdl-namespace =]package-name>* -sn <service-name> -d <output-directory> <path-to-wsdl-file>
+```
 
-Here’s what some of the options mean1:
+Here’s what some of the options mean:
 
 -fe frontend-name: Specifies the frontend. Default is JAXWS.
 -db databinding-name: Specifies the databinding. Default is JAXB.
@@ -237,10 +200,9 @@ Remember to replace <front-end-name>, <data-binding-name>, <wsdl-version>, <[wsd
 For more advanced usage and options, please refer to the official Apache CXF documentation. https://cxf.apache.org/docs/wsdl-to-java.html
 
 2023-10-28
-after some serious struggle trying to get wdl2java to work for a simple WSDL file i found online i have found a solution
+after some serious struggle trying to get wdl2java to work for a simple WSDL file I found online i have found a solution
 - i tried using multiple plugins in gradle kotlin DSL. fail
 - i tried switching to maven and using the official CXF. Fail several times
 - in maven upgraded to java17 and ajdusted simple settings OK
 - I followed docs https://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html and https://cxf.apache.org/docs/wsdl-to-java.html
 - wsdl is ready
-
