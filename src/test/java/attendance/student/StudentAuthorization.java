@@ -1,4 +1,4 @@
-package test.student;
+package attendance.student;
 
 import com.google.gson.annotations.SerializedName;
 

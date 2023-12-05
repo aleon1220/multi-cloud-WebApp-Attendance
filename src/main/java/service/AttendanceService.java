@@ -5,7 +5,6 @@
 
 package service;
 
-
 //Class is used to show invokations to entities MS
 
 public class AttendanceService {

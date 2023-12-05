@@ -42,6 +42,17 @@ dependencies {
     implementation("com.graphql-java-kickstart:graphql-webclient-spring-boot-starter:2.0.1")
     implementation("com.graphql-java:graphql-java:20.7")
     implementation("com.graphql-java-generator:graphql-java-runtime:1.18")
+    // JUnit 4 framework for unit testing
+    testImplementation("junit:junit:4.13.2")
+    // JUnit Jupiter API and Engine for unit testing
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    // Mockito for mocking in tests
+    testImplementation("org.mockito:mockito-core:4.5.1")
+    // https://central.sonatype.com/artifact/com.unboundid/unboundid-ldapsdk
+    implementation("com.unboundid:unboundid-ldapsdk:6.0.11")
+    // https://github.com/google/gson library JSON serialization/deserialization
+    implementation("com.google.code.gson:gson:2.10.1")    
 }
 
 group = "soa.nz.aut"
@@ -77,6 +88,14 @@ tasks.register<Test>("singleTest") {
         includeTestsMatching("utilities.TestQRFunctions.createQRCodeLocally")
     }
 }
+
+tasks.register<Test>("openLDAP") {
+    description = "Runs openLDAP authentication testing"
+    filter {
+        includeTestsMatching("TestLDAPAuthentication.testMockOpenLDAPAdminSearch") 
+    }
+}
+
 // https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
 // https://www.w3schools.com/xml/tempconvert.asmx?WSDL
 wsdl2java {

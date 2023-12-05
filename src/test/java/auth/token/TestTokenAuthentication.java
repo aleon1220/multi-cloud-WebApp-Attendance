@@ -1,10 +1,10 @@
-package attendance.student;
+package auth.token;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StudentAuthenticationResult {
+public class TestTokenAuthentication {
 
-    public StudentAuthenticationResult(String accessToken, Integer expiresIn, String tokenType, String refreshToken,
+    public TestTokenAuthentication(String accessToken, Integer expiresIn, String tokenType, String refreshToken,
             String idToken) {
         this.accessToken = accessToken;
         this.expiresIn = expiresIn;
