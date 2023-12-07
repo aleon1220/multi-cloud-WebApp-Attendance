@@ -1,10 +1,15 @@
 package auth.ldap;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.mockito.Mockito;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.LDAPSearchException;
 import com.unboundid.ldap.sdk.SearchRequest;
 import com.unboundid.ldap.sdk.SearchResult;
 import com.unboundid.ldap.sdk.SearchResultEntry;
@@ -20,7 +25,7 @@ public class TestLDAPAuthentication {
     // - Verifies expected methods are called on the mocks
 
     @Test
-    public void testMockOpenLDAPAdminSearch() {
+    public void testMockOpenLDAPAdminSearch() throws LDAPSearchException {
         // Mock LDAPConnection
         LDAPConnection connectionMock = Mockito.mock(LDAPConnection.class);
 
@@ -32,16 +37,21 @@ public class TestLDAPAuthentication {
         // Mock search result entries
         SearchResultEntry entry1 = Mockito.mock(SearchResultEntry.class);
         SearchResultEntry entry2 = Mockito.mock(SearchResultEntry.class);
-
+        SearchResultEntry[] ldapResult = new SearchResultEntry[] { entry1, entry2 };
+        List<SearchResultEntry> resultList = Arrays.asList(ldapResult);
         // Stub searchEntries to return mocked entries
-        Mockito.when(searchResultMock.getSearchEntries()).thenReturn(new SearchResultEntry[] { entry1, entry2 });
+        Mockito.when(searchResultMock.getSearchEntries()).thenReturn(resultList);
 
         // Test the method
         AuthenticateOpenLDAP ldapAuth = new AuthenticateOpenLDAP();
         ldapAuth.openLDAPAdminSearch();
 
         // Verify search was called
-        Mockito.verify(connectionMock).search(Mockito.anyString(), Mockito.any(), Mockito.anyString());
+        try {
+            Mockito.verify(connectionMock).search(Mockito.anyString(), Mockito.any(), Mockito.anyString());
+        } catch (LDAPSearchException e) {
+            e.printStackTrace();
+        }
 
         // Verify entry processing
         Mockito.verify(entry1).toLDIFString();
@@ -53,7 +63,6 @@ public class TestLDAPAuthentication {
 
     @Test
     public void testOpenLDAPAdminSearch_withOpenLDAP() {
-
         // Test parameters
         String ldapURL = "ldap://localhost";
         String ldapHost = "localhost";
@@ -61,7 +70,7 @@ public class TestLDAPAuthentication {
         String bindDN = "cn=admin,dc=my-company,dc=com";
         var bindPassword = "adminpassword";
         String baseDN = "dc=my-company,dc=com";
-        String searchFilter = "(objectClass=*)";      
+        String searchFilter = "(objectClass=*)";
 
         // Connect to OpenLDAP
         // Establishing a connection to the LDAP server

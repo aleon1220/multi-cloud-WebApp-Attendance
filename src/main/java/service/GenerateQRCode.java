@@ -10,12 +10,11 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 
 public class GenerateQRCode {
+  public boolean validateQR = false;
 
   public void createWebsiteQRCode() throws WriterException, IOException {
     String qrData = "www.andres.nz";
     String localPath = "/home/aleonrangel";
-    boolean validateQR = false;
-
     BitMatrix matrix = new MultiFormatWriter().encode(qrData, BarcodeFormat.QR_CODE, 500, 500, null);
     MatrixToImageWriter.writeToPath(matrix, "png", Paths.get(localPath), null);
     System.out.println("QR code created");

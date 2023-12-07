@@ -35,6 +35,6 @@ public class LoginReply {
   public String toString() {
     // return getClass()+"challenge"+challengeParameters+"data in
     // authent"+authenticationResult.getIdToken();
-    return getClass() + " Not obtaining really much";
+    return getClass() + "JSON Overriding functionality";
   }
 }
