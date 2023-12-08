@@ -118,18 +118,18 @@ Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/so
 ##### Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
 Test the immutable webapp from Docker
 ```bash
-docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 
 ##### local build & Run 
 Test the container webapp after building the image locally
 ```bash
 docker build --tag aleon1220/soa:latest .
-docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 Run the tomcat server with the pre-built WAR web Archive file
 ```bash
-docker run -itd --publish 8888:8080 aleon1220/soa:latest
+docker run -itd --publish 8080:8080 aleon1220/soa:latest
 ```
 - get the name of the running container in port 8888
 ``` bash
