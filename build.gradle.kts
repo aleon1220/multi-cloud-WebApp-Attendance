@@ -81,7 +81,7 @@ tasks {
     }
 }
 
-tasks.register<Test>("singleTest") {
+tasks.register<Test>("singleTestQRFunctionality") {
     group = "Verification"
     description = "Runs a test to create a local QR code"
     filter {
@@ -89,13 +89,21 @@ tasks.register<Test>("singleTest") {
     }
 }
 
-tasks.register<Test>("openLDAP") {
-    description = "Runs openLDAP authentication testing"
+tasks.register<Test>("mockOpenLDAP") {
+    description = "Runs openLDAP mock authentication testing"
+    group = "LDAP_Testing"
     filter {
         includeTestsMatching("TestLDAPAuthentication.testMockOpenLDAPAdminSearch") 
     }
 }
 
+tasks.register<Test>("searchOpenLDAP") {
+    description = "Runs openLDAP search"
+    group = "LDAP_Testing"
+    filter {
+        includeTestsMatching("TestLDAPAuthentication.testOpenLDAPAdminSearch_withOpenLDAP")
+    }
+}
 // https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
 // https://www.w3schools.com/xml/tempconvert.asmx?WSDL
 wsdl2java {

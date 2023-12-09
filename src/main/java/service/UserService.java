@@ -82,13 +82,9 @@ public class UserService {
             conn.disconnect();
 
         } catch (MalformedURLException e) {
-
             e.printStackTrace();
 
         } catch (IOException e) {
-            
-            //System.out.println("UserService: inside 2nd catch");
-
             e.printStackTrace();
         }
         
