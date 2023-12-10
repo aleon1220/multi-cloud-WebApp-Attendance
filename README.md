@@ -1,6 +1,8 @@
 - [Attendance WebApp](#attendance-webapp)
   - [Introduction](#introduction)
-  - [Security warnings](#security-warnings)
+  - [GitHub Reports](#github-reports)
+    - [Security warnings](#security-warnings)
+    - [GitHub Vulnerability report](#github-vulnerability-report)
   - [Attendance WebApp Architecture (re-architected)](#attendance-webapp-architecture-re-architected)
     - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
     - [Attendance WebApp UI](#attendance-webapp-ui)
@@ -10,15 +12,16 @@
   - [Build WebApp](#build-webapp)
     - [Gradle Build Web Package](#gradle-build-web-package)
     - [Maven Build](#maven-build)
-  - [Package WebApp](#package-webapp)
+    - [Gradle Test suite](#gradle-test-suite)
+      - [Use 1Password CLI to inject the secrets](#use-1password-cli-to-inject-the-secrets)
+  - [Package/Run WebApp](#packagerun-webapp)
     - [Docker Image Build](#docker-image-build)
       - [Available Tomcat versions](#available-tomcat-versions)
-  - [Run WebApp](#run-webapp)
+  - [Execute WebApp](#execute-webapp)
     - [Container Execution](#container-execution)
       - [Docker execution](#docker-execution)
       - [Docker-compose](#docker-compose)
   - [Editing project diagrams](#editing-project-diagrams)
-  - [GitHub Vulnerability report](#github-vulnerability-report)
 
 # Attendance WebApp
 
@@ -36,11 +39,14 @@ The idea is that you have a short timeframe to submit a random generated code by
 
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
 
-## Security warnings
+## GitHub Reports
+### Security warnings
 > Security Warnings to check
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+### GitHub Vulnerability report
+https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
 ## Attendance WebApp Architecture (re-architected)
 
@@ -98,7 +104,30 @@ gradle clean build --console plain --warning-mode all
 ### Maven Build
 > maven has been deprecated and moved to [maven](./maven)
 
-## Package WebApp
+### Gradle Test suite
+#### Use 1Password CLI to inject the secrets
+- as a pre-requisite you must have access to the shared vault
+- login in the CLI
+```bash
+# Linux Ubuntu tested 2023-12-10
+op signin
+```
+- inject the secrets for testing Authentication property file
+```bash
+op inject -i token_auth.properties.tpl -o token_auth.properties
+```
+
+- inject the secrets for Testing property file
+```bash
+op inject -i secrets.env.tpl -o secrets.env
+```
+
+- inject the secrets for Testing docker-compose
+```bash
+op inject -i .env.tpl -o .env
+```
+
+## Package/Run WebApp
 ### Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
@@ -111,7 +140,7 @@ Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/so
 - 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
 - 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
-## Run WebApp
+## Execute WebApp
 ### Container Execution
 #### Docker execution
 
@@ -131,15 +160,15 @@ Run the tomcat server with the pre-built WAR web Archive file
 ```bash
 docker run -itd --publish 8080:8080 aleon1220/soa:latest
 ```
-- get the name of the running container in port 8888
+- get the name of the running container
 ``` bash
-CONTAINER_NAME=$(docker container ls --all --filter publish=8888 --format "{{.Names}}")
+CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
 ```
 - Access the Docker container via CLI
 ```bash
 docker container exec -it $CONTAINER_NAME /bin/bash
 ```
-- The URl is URL:8888/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8888/Attendance-0.0.1)
+- The URl is URL:8080/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8080/AttendanceWebApp)
 - clean up docker container environment
 ``` bash
 docker stop $(docker ps --quiet)
@@ -147,7 +176,11 @@ docker rm $(docker container ls --all --quiet)
 ```
 
 #### Docker-compose
-
+- inject the secrets for Testing docker-compose
+```bash
+op inject -i .env.tpl -o .env
+```
+- single variable
 ```bash
 export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7delckucvidqhi/password")
 ```
@@ -156,6 +189,3 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 - go to [diagrams.net](https://app.diagrams.net/?src=about)
 - open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
-## GitHub Vulnerability report
-
-https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot

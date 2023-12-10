@@ -33,10 +33,9 @@ public class LoginReply {
     this.authenticationResult = authenticationResult;
     }
     
-    
     @Override
       public String toString() {
         //return getClass()+"challenge"+challengeParameters+"data in authent"+authenticationResult.getIdToken();
-        return getClass()+" Not obtaining really much";
+        return getClass()+" Overriding method";
       }
 }
