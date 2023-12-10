@@ -1,14 +1,16 @@
 package util;
 
-import com.unboundid.ldap.sdk.*;
-import com.unboundid.util.ssl.SSLUtil;
-import com.unboundid.util.ssl.TrustAllTrustManager;
-import javax.net.ssl.SSLSocketFactory;
+import com.unboundid.ldap.sdk.LDAPConnection;
+import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.SearchResult;
+import com.unboundid.ldap.sdk.SearchResultEntry;
+import com.unboundid.ldap.sdk.SearchScope;
 
 public class AuthenticateOpenLDAP {
     public void openLDAPAdminSearch() {
         // LDAP connection parameters
         String ldapURL = "ldap://localhost";
+        String ldapHost = "localhost";
         String bindDN = "cn=admin,dc=my-company,dc=com";
         String bindPassword = System.getenv("LDAP_ADMIN_PASS");
         String baseDN = "dc=my-company,dc=com";
@@ -23,7 +25,7 @@ public class AuthenticateOpenLDAP {
             // connection = new LDAPConnection(socketFactory, "localhost", 636);
 
             // For non-SSL connection
-            connection = new LDAPConnection("localhost", 389);
+            connection = new LDAPConnection(ldapHost, 389);
             connection.bind(bindDN, bindPassword);
 
             // Perform the search

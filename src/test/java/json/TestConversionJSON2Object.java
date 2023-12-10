@@ -55,7 +55,6 @@ public class TestConversionJSON2Object {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         return jwtToken;
     }
 }

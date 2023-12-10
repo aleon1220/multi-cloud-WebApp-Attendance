@@ -64,16 +64,17 @@ public class TestLDAPAuthentication {
     @Test
     public void testOpenLDAPAdminSearch_withOpenLDAP() {
         // Test parameters
-        String ldapURL = "ldap://localhost";
+        String ldapURL = "ldap://localhost:389";
         String ldapHost = "localhost";
         int ldapPort = 389;
         String bindDN = "cn=admin,dc=my-company,dc=com";
-        var bindPassword = "adminpassword";
+        String bindPassword = System.getenv("LDAP_ADMIN_PASS");
+        // var bindPassword = "adminpassword";
         String baseDN = "dc=my-company,dc=com";
         String searchFilter = "(objectClass=*)";
 
-        // Connect to OpenLDAP
-        // Establishing a connection to the LDAP server
+        // Establish connection to OpenLDAP server
+        System.out.println("My variable value: " + bindPassword);
         try (LDAPConnection connection = new LDAPConnection(ldapHost, ldapPort, bindDN, bindPassword)) {
             System.out.println("Connected to the LDAP server.");
 
@@ -96,7 +97,7 @@ public class TestLDAPAuthentication {
             // Close connection
             connection.close();
         } catch (LDAPException e) {
-            System.err.println("Error connecting to the LDAP server: " + e.getMessage());
+            System.err.println("LDAP Error connecting: " + e.getMessage());
             e.printStackTrace();
         }
 
