@@ -1,108 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns="http://www.w3.org/1999/xhtml">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns="http://www.w3.org/1999/xhtml"
->
-  <h:head>
-    <title>Error registering attendance</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </h:head>
+<h:head>
+    <title>Error Registering Attendance</title>
+</h:head>
 
   <h:body>
-    <div id="main_container">
-      <div id="header">
-        <div id="logo">
-          <img
-            src="images/logo.png"
-            alt=""
-            border="0"
-            width="237"
-            height="140"
-          />
-        </div>
-      </div>
-      <div id="main_content">
-        <div id="menu_tab">
-          <div class="left_menu_corner"></div>
-          <ul class="menu">
-            <li>
-              <a href="/Buffet_Abogados/index.xhtml" class="nav1"> Home</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <div class="nav1">
-                <h3>
-                  Se presento un error al publicar el Aviso. Intente de Nuevo...
-                </h3>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!--  end of menu tab -->
+    <p:layout fullPage="true">
+      <p:layoutUnit
+        position="north"
+        size="100"
+        header="Top"
+        resizable="true"
+        closable="true"
+        collapsible="true"
+      >
+        <h:outputText value="North unit content." />
+      </p:layoutUnit>
 
-        <!--  end of left content -->
-        <div class="center_content" style="width: 654px; height: 262px">
-          <p
-            style="
-              border-right-style: solid;
-              border-left-style: solid;
-              border-bottom-style: solid;
-              border-top-style: solid;
-              border-top-width: thin;
-              border-right-width: thin;
-              border-bottom-width: thin;
-              border-left-width: thin;
-              font-size: 18px;
-              color: Red;
-            "
-          >
-            Se ha presentado un Error al publicar el aviso. Contacte a soporte
-            IT.
-          </p>
-          <br /> <br />
-          <div class="center_prod_box" style="width: 348px; height: 275px">
-            <div class="product_title">
-              <p>
-                Suba el archivo en formato xlsx de los horarios de los abogados
-                para las distintas semanas.
-              </p>
-            </div>
-            <div class="product_img">
-              <a>
-                <img
-                  src="images/avisoErr.gif"
-                  alt=""
-                  border="0"
-                  style="width: 300px; height: 200px"
-                />
-              </a>
-            </div>
+      <p:layoutUnit
+        position="west"
+        size="200"
+        header="Left"
+        resizable="true"
+        closable="true"
+        collapsible="true"
+      >
+        <h:outputText value="West unit content." />
+      </p:layoutUnit>
+
+      <p:layoutUnit
+        position="east"
+        size="200"
+        header="Right"
+        resizable="true"
+        closable="true"
+        collapsible="true"
+        effect="drop"
+      >
+        <h:outputText value="Right unit content." />
+      </p:layoutUnit>
+      <p:layoutUnit
+        position="south"
+        size="20%"
+        header="Bottom"
+        resizable="true"
+        closable="true"
+        collapsible="true"
+      >
+        <h:outputText value="South unit content." />
+      </p:layoutUnit>
+      <p:layoutUnit position="center">
+        <div id="main_content">
+          <div id="menu_tab">
+            <div class="left_menu_corner"></div>
+            <ul class="menu">
+              <li>
+                <h:link value="Home" outcome="/" />
+              </li>
+              <li class="divider"></li>
+              <li>
+                <h:outputLink value="/" >
+                  <h:outputText value="Home"/>
+                </h:outputLink>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#{request.contextPath}/">Home</a>
+              </li>
+            </ul>
           </div>
-          <!--  end of center content -->
-          <!--  end of right content -->
+          <!--  end of menu tab -->
+          <!--  end of left content -->
+          <div class="center_content" style="width: 654px; height: 262px">
+            <p
+              style="
+                border-right-style: solid;
+                border-left-style: solid;
+                border-bottom-style: solid;
+                border-top-style: solid;
+                border-top-width: thin;
+                border-right-width: thin;
+                border-bottom-width: thin;
+                border-left-width: thin;
+                font-size: 18px;
+                color: Red;
+              "
+            >
+              Error registering action
+            </p>
+            <br />
+          </div>
         </div>
         <!--  end of main content -->
-        <div class="footer">
-          <div class="left_footer">
-            <img src="images/footer_logo.png" alt="" width="170" height="49" />
-          </div>
-          <div class="right_footer">
-            <a href="index.xhtml">Inicio</a>
-            <a href="siteMap.html">Mapa Sitio</a>
-            <a href="contact.xhtml">contactenos</a>
+      </p:layoutUnit>
+      <div id="main_container">
+        <div id="header">
+          <div id="logo">
+            <img
+              src="images/appLogo.png"
+              alt=""
+              border="0"
+              width="237"
+              height="140"
+            />
           </div>
         </div>
       </div>
-    </div>
-    <!--  end of main_container -->
-    <div align="center">
-      This template downloaded from
-      <a href="http://all-free-download.com/free-website-templates/"
-        >free website templates</a
-      >
-    </div>
+      <!--  end of main_container -->
+    </p:layout>
   </h:body>
 </html>
