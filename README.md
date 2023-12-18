@@ -7,21 +7,22 @@
     - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
     - [Attendance WebApp UI](#attendance-webapp-ui)
   - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
-- [Project general guidelines](#project-general-guidelines)
-- [Setup](#setup)
-  - [Build WebApp](#build-webapp)
-    - [Gradle Build Web Package](#gradle-build-web-package)
+- [Quickstart](#quickstart)
+- [Local Setup](#local-setup)
+  - [Project general guidelines](#project-general-guidelines)
     - [Maven Build](#maven-build)
+    - [Perform local testing](#perform-local-testing)
     - [Gradle Test suite](#gradle-test-suite)
       - [Use 1Password CLI to inject the secrets](#use-1password-cli-to-inject-the-secrets)
-  - [Package/Run WebApp](#packagerun-webapp)
-    - [Docker Image Build](#docker-image-build)
+      - [Execute the Gradle commands](#execute-the-gradle-commands)
+      - [Set the variables](#set-the-variables)
+      - [Docker Image Build](#docker-image-build)
       - [Available Tomcat versions](#available-tomcat-versions)
-  - [Execute WebApp](#execute-webapp)
-    - [Container Execution](#container-execution)
-      - [Docker execution](#docker-execution)
+    - [Execute WebApp Container Execution](#execute-webapp-container-execution)
+      - [Docker execution by image version](#docker-execution-by-image-version)
       - [Docker-compose](#docker-compose)
   - [Editing project diagrams](#editing-project-diagrams)
+- [References](#references)
 
 # Attendance WebApp
 
@@ -73,16 +74,32 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
   [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
 
-# Project general guidelines
+# Quickstart
+- Gradle Build Web Package
+build and test the WebArchive file. Generates the .WAR file in `build/libs/*.war`
+``` bash
+gradle clean build --console plain --warning-mode all
+```
+- Gradle Check the generated version from the build.gradle.kts
+```bash
+gradle getAppversion
+```
+- Run WebApp
+Run the tomcat server with the latest pre-built WAR web Archive file
+Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+```bash
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+```
+
+# Local Setup
+> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
+
+## Project general guidelines
 
 1. Installation process: project a Java project JEE. Import in any IDE and build with gradle or maven. Build docker image and run
 2. Software dependencies: dependencies are described in pom.xml file
 3. Latest releases by using git tags
 4. API references. API docs
-
-# Setup
-> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
-
 - Clone repo HTTPS
 ```bash
 git clone https://github.com/aleon1220/multi-cloud-WebApp-Attendance.git
@@ -94,16 +111,10 @@ git clone git@github.com:aleon1220/multi-cloud-WebApp-Attendance.git
 - open repo in chosen IDE
 IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
 
-## Build WebApp
-### Gradle Build Web Package
-- Pack the WebArchive file. Generate the .WAR file
-``` bash
-gradle clean build --console plain --warning-mode all
-```
-
 ### Maven Build
 > maven has been deprecated and moved to [maven](./maven)
 
+### Perform local testing
 ### Gradle Test suite
 #### Use 1Password CLI to inject the secrets
 - as a pre-requisite you must have access to the shared vault
@@ -126,49 +137,52 @@ op inject -i secrets.env.tpl -o secrets.env
 ```bash
 op inject -i .env.tpl -o .env
 ```
+#### Execute the Gradle commands
+Should do validations
+```bash
+gradle check --warning-mode all
+```
+#### Set the variables
 
-## Package/Run WebApp
-### Docker Image Build
+#### Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
 ```bash
-docker build --tag aleon1220/soa:latest .
+docker build --build-arg APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION --tag aleon1220/soa:$APP_WAR_FILE_VERSION .
 ```
 
 #### Available Tomcat versions
-Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
+if you need to edit the Dockerfile and upgrade the servlet container Tomcat version
 - 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
 - 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
-## Execute WebApp
-### Container Execution
-#### Docker execution
+> for particular versions check the image in Docker hub
 
-##### Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+### Execute WebApp Container Execution
+#### Docker execution by image version
 Test the immutable webapp from Docker
 ```bash
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run -itd --publish 8080:8080 aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 
-##### local build & Run 
+##### local development & executions
 Test the container webapp after building the image locally
 ```bash
-docker build --tag aleon1220/soa:latest .
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
-Run the tomcat server with the pre-built WAR web Archive file
-```bash
-docker run -itd --publish 8080:8080 aleon1220/soa:latest
-```
-- get the name of the running container
+- Get the name of the running container
 ``` bash
 CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
+```
+- The URl is hostname:8080/$CONTEXT
+- Get the context of the webapp
+```bash
+TOMCAT_URL="http://$(hostname):8080/Attendance-$APP_WAR_FILE_VERSION"
 ```
 - Access the Docker container via CLI
 ```bash
 docker container exec -it $CONTAINER_NAME /bin/bash
 ```
-- The URl is URL:8080/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8080/AttendanceWebApp)
 - clean up docker container environment
 ``` bash
 docker stop $(docker ps --quiet)
@@ -189,3 +203,6 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 - go to [diagrams.net](https://app.diagrams.net/?src=about)
 - open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
+
+# References
+- [free website templates](http://all-free-download.com/free-website-templates)

@@ -51,7 +51,7 @@ dependencies {
 }
 
 group = "soa.nz.aut"
-version = "0.7.2"
+version = "0.7.3"
 description = "Student Attendance WebApp"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -63,6 +63,15 @@ fun setWarVersion() {
         println("For local testing do APP_WAR_FILE_VERSION=" + version.toString() )
         println("Append to the .env file \n")
         println("printf \"\$APP_WAR_FILE_VERSION \\n\" >> .env")
+    }
+}
+
+fun getWarpackageVersion() {
+  // function body
+    project.version?.let { version ->
+        println("WAR Version is $version")
+        println("set variable with")
+        println("export APP_WAR_FILE_VERSION=" + version.toString())
     }
 }
 
@@ -118,6 +127,11 @@ tasks.register<Test>("searchOpenLDAP") {
     filter {
         includeTestsMatching("TestLDAPAuthentication.testOpenLDAPAdminSearch_withOpenLDAP")
     }
+}
+
+tasks.register<DefaultTask>("getAppversion") {
+    description = "Obtains WAR version from Gradle file"
+    getWarpackageVersion()
 }
 
 wsdl2java {
