@@ -1,23 +1,57 @@
+- [Attendance WebApp](#attendance-webapp)
+  - [Introduction](#introduction)
+  - [GitHub Reports](#github-reports)
+    - [Security warnings](#security-warnings)
+    - [GitHub Vulnerability report](#github-vulnerability-report)
+  - [Attendance WebApp Architecture (re-architected)](#attendance-webapp-architecture-re-architected)
+    - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
+    - [Attendance WebApp UI](#attendance-webapp-ui)
+  - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
+- [Quickstart](#quickstart)
+- [Local Setup](#local-setup)
+  - [Project general guidelines](#project-general-guidelines)
+    - [Maven Build](#maven-build)
+    - [Perform local testing](#perform-local-testing)
+    - [Gradle Test suite](#gradle-test-suite)
+      - [Use 1Password CLI to inject the secrets](#use-1password-cli-to-inject-the-secrets)
+      - [Execute the Gradle commands](#execute-the-gradle-commands)
+      - [Set the variables](#set-the-variables)
+      - [Docker Image Build](#docker-image-build)
+      - [Available Tomcat versions](#available-tomcat-versions)
+    - [Execute WebApp Container Execution](#execute-webapp-container-execution)
+      - [Docker execution by image version](#docker-execution-by-image-version)
+      - [Docker-compose](#docker-compose)
+  - [Editing project diagrams](#editing-project-diagrams)
+- [References](#references)
+
 # Attendance WebApp
 
-# Introduction
+## Introduction
 
 Attendance WebApp is a proof of concept to improve the way attendance is managed at AUT university.
 
 The application uses maven, J2EE, primefaces, gson.
+```kotlin
+    maven {
+         url = uri("https://repository.primefaces.org")
+    }
+```
 The idea is that you have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
 
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
 
-> ## Security Warning
-
+## GitHub Reports
+### Security warnings
+> Security Warnings to check
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+### GitHub Vulnerability report
+https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
 ## Attendance WebApp Architecture (re-architected)
 
-since this is a 2018 project a lot of things need to change
+2018 project with a lot of things to change
 
 * Simplification of used services
 * Streamline app to use 100% rest and deprecate SOAP and WSDL
@@ -40,99 +74,135 @@ since this is a 2018 project a lot of things need to change
 
   [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
 
-# Project general guidelines
+# Quickstart
+- Gradle Build Web Package
+build and test the WebArchive file. Generates the .WAR file in `build/libs/*.war`
+``` bash
+gradle clean build --console plain --warning-mode all
+```
+- Gradle Check the generated version from the build.gradle.kts
+```bash
+gradle getAppversion
+```
+- Run WebApp
+Run the tomcat server with the latest pre-built WAR web Archive file
+Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+```bash
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+```
 
-1. Installation process: project is Maven java project. Import in any IDE with the POM File.
+# Local Setup
+> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
+
+## Project general guidelines
+
+1. Installation process: project a Java project JEE. Import in any IDE and build with gradle or maven. Build docker image and run
 2. Software dependencies: dependencies are described in pom.xml file
 3. Latest releases by using git tags
 4. API references. API docs
-
-# Build and Test
-
+- Clone repo HTTPS
 ```bash
-git clone repo
-# import in IDE Eclipse suggested or use online IDE
-# execute some of the unit tests
-# Generate the .WAR file
-mvn package
-# Deploy WebArchive file in tomcat. Docker apps info below
-deploy .WAR in tomcat
+git clone https://github.com/aleon1220/multi-cloud-WebApp-Attendance.git
+```
+- Clone Repo SSH
+```bash
+git clone git@github.com:aleon1220/multi-cloud-WebApp-Attendance.git
+```
+- open repo in chosen IDE
+IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
+
+### Maven Build
+> maven has been deprecated and moved to [maven](./maven)
+
+### Perform local testing
+### Gradle Test suite
+#### Use 1Password CLI to inject the secrets
+- as a pre-requisite you must have access to the shared vault
+- login in the CLI
+```bash
+# Linux Ubuntu tested 2023-12-10
+op signin
+```
+- inject the secrets for testing Authentication property file
+```bash
+op inject -i token_auth.properties.tpl -o token_auth.properties
 ```
 
-## Maven
-
-### Run the maven build Locally
-
-- build the project locally with a locally installed maven client
-
-> Tested in Win11 with WSL
-
+- inject the secrets for Testing property file
 ```bash
-mvn verify
+op inject -i secrets.env.tpl -o secrets.env
 ```
 
-- Use a docker tag to select a target JDK
-
-> 8-jdk8-corretto
-
+- inject the secrets for Testing docker-compose
 ```bash
-TOMCAT_DOCKER_TAG="8-jdk8-corretto"
+op inject -i .env.tpl -o .env
 ```
-
-- build the container to the latest version tag
-
+#### Execute the Gradle commands
+Should do validations
 ```bash
-docker build --tag aleon1220/soa:latest .
+gradle check --warning-mode all
 ```
+#### Set the variables
 
-- Run the tomcat server with the pre-built WAR web Archive file
-  Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
-
-```bash
-docker run -itd --publish 8888:8080 --name attendance_webapp_container aleon1220/soa:latest
-```
-
+#### Docker Image Build
+- Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
-
-- Access container
-
 ```bash
-docker container exec -it aleon1220/soa /bin/bash
+docker build --build-arg APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION --tag aleon1220/soa:$APP_WAR_FILE_VERSION .
 ```
 
-- The URl is localhost:8888/AttendanceWebApp | [AttendanceWebApp](http://localhost:8888/AttendanceWebApp)
+#### Available Tomcat versions
+if you need to edit the Dockerfile and upgrade the servlet container Tomcat version
+- 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
+- 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
----
+> for particular versions check the image in Docker hub
 
-## Build using maven docker container
-
-Refer to maven docker official image https://hub.docker.com/_/maven
-is best to have maven locally installed
-
-- Create a volume
-
+### Execute WebApp Container Execution
+#### Docker execution by image version
+Test the immutable webapp from Docker
 ```bash
-docker volume create --name maven-repo-volume
+docker run -itd --publish 8080:8080 aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 
-- Docker container build using the volume above
-
+##### local development & executions
+Test the container webapp after building the image locally
 ```bash
-docker run -it -v maven-repo-volume:/root/.m2 maven mvn archetype:generate # will download artifacts
+docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
+```
+- Get the name of the running container
+``` bash
+CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
+```
+- The URl is hostname:8080/$CONTEXT
+- Get the context of the webapp
+```bash
+TOMCAT_URL="http://$(hostname):8080/Attendance-$APP_WAR_FILE_VERSION"
+```
+- Access the Docker container via CLI
+```bash
+docker container exec -it $CONTAINER_NAME /bin/bash
+```
+- clean up docker container environment
+``` bash
+docker stop $(docker ps --quiet)
+docker rm $(docker container ls --all --quiet)
 ```
 
-- Docker container run and build using the maven image
-
+#### Docker-compose
+- inject the secrets for Testing docker-compose
 ```bash
-docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+op inject -i .env.tpl -o .env
+```
+- single variable
+```bash
+export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7delckucvidqhi/password")
 ```
 
-- docker run build using bind volume mount
+## Editing project diagrams
+- go to [diagrams.net](https://app.diagrams.net/?src=about)
+- open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
+- Explore > export images to convinience and update this README
 
-```bash
-docker run -it --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-```
-
-## GitHub Vulnerability report
-
-https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
+# References
+- [free website templates](http://all-free-download.com/free-website-templates)
