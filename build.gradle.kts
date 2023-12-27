@@ -16,21 +16,24 @@ repositories {
 }
 
 dependencies {
-    implementation("org.primefaces.extensions:primefaces-extensions:6.0.0")
-    implementation("org.primefaces:primefaces:6.0")
-    implementation("com.sun.faces:jsf-api:2.2.12")
-    implementation("com.sun.faces:jsf-impl:2.2.12")
+    // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
+    implementation("org.primefaces.extensions:primefaces-extensions:7.0.3")
+    // https://mvnrepository.com/artifact/org.primefaces/primefaces
+    implementation("org.primefaces:primefaces:7.0")
+    // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
+    implementation("com.sun.faces:jsf-api:2.2.20")
+    implementation("com.sun.faces:jsf-impl:2.2.20")
     implementation("javax.json:javax.json-api:1.1")
     implementation("javax.ws.rs:javax.ws.rs-api:2.1")
     implementation("com.sun.jersey:jersey-client:1.19.4")
+    implementation("org.apache.httpcomponents:httpclient:4.5.13")
+    implementation("org.glassfish.jersey.core:jersey-common:2.22.2")
+    implementation("javax.servlet:javax.servlet-api:3.1.0")
     // https://github.com/google/gson library JSON serialization/deserialization
     implementation("com.google.code.gson:gson:2.10.1")
     // https://bitbucket.org/snakeyaml/snakeyaml/wiki/Documentation
     // https://mavenlibs.com/maven/dependency/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.1")
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
-    implementation("org.glassfish.jersey.core:jersey-common:2.22.2")
-    implementation("javax.servlet:javax.servlet-api:3.1.0")
     // QRFunctions
     implementation("com.google.zxing:javase:3.5.1")
     implementation("com.google.zxing:core:3.5.1")
@@ -51,7 +54,7 @@ dependencies {
 }
 
 group = "soa.nz.aut"
-version = "0.7.3"
+version = "0.7.4"
 description = "Student Attendance WebApp"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -67,11 +70,15 @@ fun setWarVersion() {
 }
 
 fun getWarpackageVersion() {
+    val hostname = System.getenv("HOSTNAME") ?: "localhost"
+
   // function body
     project.version?.let { version ->
         println("WAR Version is $version")
         println("set variable with")
         println("export APP_WAR_FILE_VERSION=" + version.toString())
+        println ("Hostname is: " + System.getenv("HOSTNAME"))
+        println("http://" + hostname + ":8080/Attendance-"+ version.toString())
     }
 }
 
