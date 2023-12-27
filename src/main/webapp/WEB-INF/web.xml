@@ -6,7 +6,7 @@
 
   <display-name>AttendanceWebApp</display-name>
   <welcome-file-list>
-    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>01-login.xhtml</welcome-file>
   </welcome-file-list>
   <!-- JSF mapping -->
   <servlet>
@@ -28,7 +28,15 @@
     <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
     <param-value>resources.application</param-value>
   </context-param>
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>luna-green</param-value>
+  </context-param>
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/student</url-pattern>
+  </servlet-mapping>
 </web-app>

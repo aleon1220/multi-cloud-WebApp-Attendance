@@ -88,7 +88,7 @@ gradle getAppversion
 Run the tomcat server with the latest pre-built WAR web Archive file
 Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
 ```bash
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 
 # Local Setup
@@ -162,13 +162,13 @@ if you need to edit the Dockerfile and upgrade the servlet container Tomcat vers
 #### Docker execution by image version
 Test the immutable webapp from Docker
 ```bash
-docker run -itd --publish 8080:8080 aleon1220/soa:$APP_WAR_FILE_VERSION
+docker run --interactive --tty --detach --publish 8080:8080 --name $APP_WAR_FILE_VERSION aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 
 ##### local development & executions
 Test the container webapp after building the image locally
 ```bash
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
+docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 - Get the name of the running container
 ``` bash
