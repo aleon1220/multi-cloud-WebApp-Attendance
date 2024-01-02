@@ -54,7 +54,7 @@ dependencies {
 }
 
 group = "soa.nz.aut"
-version = "0.7.4"
+version = "0.7.5"
 description = "Student Attendance WebApp"
 java.sourceCompatibility = JavaVersion.VERSION_17
 

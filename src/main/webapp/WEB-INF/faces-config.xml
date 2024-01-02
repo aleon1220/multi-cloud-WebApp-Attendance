@@ -1,0 +1,5 @@
+<managed-bean>
+  <managed-bean-name>userBean</managed-bean-name>
+  <managed-bean-class>bean.UserBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope> <!-- If using session scope -->
+</managed-bean>
