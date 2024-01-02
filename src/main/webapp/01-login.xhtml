@@ -1,11 +1,13 @@
-<!DOCTYPE composition
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
     <title>Login Attendance System</title>
-    <!-- https://primefaces.github.io/primefaces/7_0/#/components/button -->
 </h:head>
 
 <body>
@@ -15,35 +17,31 @@
                 <p:panel>
                     <f:facet name="header">Login</f:facet>
                     <p>Training Session Attendance System</p>
+                    <h:graphicImage name="img/logo.jpeg" />
 
-                    <img src="img/logo.jpeg" alt="Attendance"
-                        style="width: 400px; height: 270px;" />
+                    <img src="img/logo.jpeg" alt="Attendance" 
+                         style="width: 400px; height: 270px;"/>
 
                     <div class="dialog">
                         <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                            <h:outputLabel for="username Id">Username ID</h:outputLabel>
-                            <h:inputText id="username" value="#{userBean.id}" />
-                            <p:watermark for="username" value="Pre-provided User name" />
-                            <h:outputLabel for="password">Passcode</h:outputLabel>
+                            <h:outputLabel for="username">Username ID</h:outputLabel>
+                            <h:inputText id="username" value="#{userBean.id}" 
+                                         placeholder="Pre-provided Username" />
+                            <h:outputLabel for="password">Password</h:outputLabel>
                             <h:inputSecret id="password" value="#{userBean.password}" />
                         </h:panelGrid>
                     </div>
 
                     <div class="actionButtons">
-                        <center>
-                            <h:commandButton id="submit" value="Login" action="#{userBean.login}"
-                                style="height: 40px; width: 85px; background:#287DF9; color:white;" />
-                        </center>
+                        <h:commandButton id="submit" value="Login" action="#{userBean.login}" 
+                                         styleClass="login-button"/>
                     </div>
-                    <br />
-                    <br />
                 </p:panel>
                 <p>
-                    <i>Information</i> Enter Username and password provided to you
+                    <i>Information:</i> Enter the username and password provided to you.
                 </p>
             </h:form>
         </p:layoutUnit>
     </p:layout>
 </body>
-
 </html>
