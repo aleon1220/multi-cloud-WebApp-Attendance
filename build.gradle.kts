@@ -16,19 +16,32 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    implementation("org.primefaces.extensions:primefaces-extensions:7.0.3")
+    // https://primefaces.github.io/primefaces/7_0/#/gettingstarted/dependencies
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
     implementation("org.primefaces:primefaces:7.0")
+    // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
+    implementation("org.primefaces.extensions:primefaces-extensions:7.0.3")
     // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
-    implementation("com.sun.faces:jsf-api:2.2.20")
-    implementation("com.sun.faces:jsf-impl:2.2.20")
-    implementation("javax.json:javax.json-api:1.1")
+    // https://myfaces.apache.org/#/core23
+    implementation("org.apache.myfaces.core:myfaces-api:2.3.10") // JSF runtime
+    implementation("org.apache.myfaces.core:myfaces-impl:2.3.10")
+    implementation("com.lowagie:itext:2.1.7") // itext DataExporter (PDF)
+    implementation("org.apache.poi:poi:3.17") // apache poi DataExporter (Excel or XML)
+    implementation("com.rometools:rome:1.9.0") // rome FeedReader
+    implementation("org.apache.tika:tika-core:1.22") // apache tika FileUpload
+    implementation("commons-fileupload:commons-fileupload:1.3.3") // commons-fileupload FileUpload
+    implementation("commons-io:commons-io:2.4") // commons-io FileUpload
+    // implementation("net.sf.barcode4j:barcode4j-light:2.3.0") // barcode4j-light
+    // implementation("net.glxn.qrgen:qrgen:1.4") // qrgen QR Code support for Barcode
+    implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20181114.1")
+    implementation("org.apache.httpcomponents:httpclient:4.5.13")
     implementation("javax.ws.rs:javax.ws.rs-api:2.1")
     implementation("com.sun.jersey:jersey-client:1.19.4")
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
     implementation("org.glassfish.jersey.core:jersey-common:2.22.2")
-    implementation("javax.servlet:javax.servlet-api:3.1.0")
+    // https://mvnrepository.com/artifact/javax.servlet/servlet-api
+    compileOnly("javax.servlet:servlet-api:2.5")
+    // implementation("javax.servlet:javax.servlet-api:3.1.0")
+    implementation("javax.json:javax.json-api:1.1")
     // https://github.com/google/gson library JSON serialization/deserialization
     implementation("com.google.code.gson:gson:2.10.1")
     // https://bitbucket.org/snakeyaml/snakeyaml/wiki/Documentation
@@ -45,16 +58,16 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    // Mockito for mocking in tests
+    // Mocking in tests
     testImplementation("org.mockito:mockito-core:4.5.1")
-    // Authentication
+    // JWT Authentication
     testImplementation("io.jsonwebtoken:jjwt:0.9.1")
     // https://central.sonatype.com/artifact/com.unboundid/unboundid-ldapsdk
     implementation("com.unboundid:unboundid-ldapsdk:6.0.11")
 }
 
 group = "soa.nz.aut"
-version = "0.7.6"
+version = "0.7.7"
 description = "Student Attendance WebApp"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -63,8 +76,8 @@ fun setWarVersion() {
     project.version?.let { version ->
         println("WAR Version is $version")
         System.setProperty("APP_WAR_FILE_VERSION", version.toString())
-        println("For local testing do APP_WAR_FILE_VERSION=" + version.toString() )
-        println("Append to the .env file \n")
+        println("For local testing do \n APP_WAR_FILE_VERSION=" + version)
+        println("Append to the .env file with \n")
         println("printf \"\$APP_WAR_FILE_VERSION \\n\" >> .env")
     }
 }
@@ -97,7 +110,6 @@ tasks.war {
     // webXml = file("src/someWeb.xml") // copies a file to WEB-INF/web.xml
     doLast{
         setWarVersion()
-        println("WAR file version set")
     }
 }
 
