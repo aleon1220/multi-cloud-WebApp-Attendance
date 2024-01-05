@@ -46,6 +46,7 @@ The application is a proof of concept for Service orientation and Service intero
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+
 ### GitHub Vulnerability report
 https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
@@ -60,9 +61,7 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 * Host the backend functionality in AWS
 * use diagrams.net for the diagrams
 
-### 2018-Attendance WebApp high level Architecture
-
-![Multi Cloud architecture](https://imgur.com/LDVqx71.jpg)
+![Attendance App Architecture](https://private-user-images.githubusercontent.com/2084646/294421150-a020470e-9154-4528-a57f-ed7b1b2bc405.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDQ0Mzk1MzUsIm5iZiI6MTcwNDQzOTIzNSwicGF0aCI6Ii8yMDg0NjQ2LzI5NDQyMTE1MC1hMDIwNDcwZS05MTU0LTQ1MjgtYTU3Zi1lZDdiMWIyYmM0MDUucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI0MDEwNSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNDAxMDVUMDcyMDM1WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NWIzOGE0M2UyNDQyNWNkZTM2ODRkZDM5NTM5YTQyYzZjYTAwNDE2MjVjYjdiNTE5YWU4MzM4NWM2YTg4MzZjOCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.dYNFplE-dfT6wfGaV9NAzRTDoQPQunCBbcOyM0ooJLM)
 
 ### Attendance WebApp UI
 
