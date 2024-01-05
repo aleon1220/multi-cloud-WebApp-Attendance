@@ -16,18 +16,19 @@ repositories {
 }
 
 dependencies {
-    // https://primefaces.github.io/primefaces/7_0/#/gettingstarted/dependencies
+    // https://www.primefaces.org
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
-    implementation("org.primefaces:primefaces:7.0")
+    implementation("org.primefaces:primefaces:8.0")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    implementation("org.primefaces.extensions:primefaces-extensions:7.0.3")
-    // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
-    // https://myfaces.apache.org/#/core23
+    implementation("org.primefaces.extensions:primefaces-extensions:8.0.5")
+    // https://myfaces.apache.org
+    // https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api
     implementation("org.apache.myfaces.core:myfaces-api:2.3.10") // JSF runtime
     implementation("org.apache.myfaces.core:myfaces-impl:2.3.10")
+    // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
     implementation("com.lowagie:itext:2.1.7") // itext DataExporter (PDF)
     implementation("org.apache.poi:poi:3.17") // apache poi DataExporter (Excel or XML)
-    implementation("com.rometools:rome:1.9.0") // rome FeedReader
+    implementation("com.rometools:rome:1.9.0") // FeedReader
     implementation("org.apache.tika:tika-core:1.22") // apache tika FileUpload
     implementation("commons-fileupload:commons-fileupload:1.3.3") // commons-fileupload FileUpload
     implementation("commons-io:commons-io:2.4") // commons-io FileUpload
@@ -69,7 +70,7 @@ dependencies {
 group = "soa.nz.aut"
 version = "0.7.7"
 description = "Student Attendance WebApp"
-java.sourceCompatibility = JavaVersion.VERSION_17
+// java.sourceCompatibility = JavaVersion.VERSION_17
 
 fun setWarVersion() {
   // function body
