@@ -68,10 +68,7 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 ![Attendance Web App](https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/images/2018/05/random-code-generation.png)
 
 ## Refer to the Wiki for details on the project
-
-[Detailed Project Wiki][95f44386]
-
-  [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
+[Detailed Project Wiki](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/wiki/2018%E2%80%9001-Introduction)
 
 # Quickstart
 - Gradle Build Web Package
