@@ -1,47 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-<html xmlns:f="http://java.sun.com/jsf/core" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui" 
-      xmlns="http://www.w3.org/1999/xhtml">
-
-<h:head>
+  <h:head>
     <title>Login Attendance System</title>
-</h:head>
+  </h:head>
 
-<body>
-    <p:layout fullPage="true">
-        <p:layoutUnit position="center">
-            <h:form id="loginForm">
-                <p:panel>
-                    <f:facet name="header">Login</f:facet>
-                    <p>Training Session Attendance System</p>
-                    <h:graphicImage name="img/logo.jpeg" />
+  <h:body>
+    <h:graphicImage name="img/logo.jpeg" />
+    <p>Training Session Attendance System</p>
+    <img src="img/logo.jpeg" alt="Attendance" style="width: 400px; height: 270px"/>
+    
+    <h:form>
+      <p:panel header="Login">
+        <!-- https://primefaces.github.io/primefaces/8_0/#/components/panelgrid -->
+        <h:panelGrid columns="2">
+          <h:outputLabel for="username" value="Username ID" />
+          <p:inputText id="username" value="#{userBean.id}" required="true" />
 
-                    <img src="img/logo.jpeg" alt="Attendance" 
-                         style="width: 400px; height: 270px;"/>
-
-                    <div class="dialog">
-                        <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                            <h:outputLabel for="username">Username ID</h:outputLabel>
-                            <h:inputText id="username" value="#{userBean.id}" 
-                                         placeholder="Pre-provided Username" />
-                            <h:outputLabel for="password">Password</h:outputLabel>
-                            <h:inputSecret id="password" value="#{userBean.password}" />
-                        </h:panelGrid>
-                    </div>
-
-                    <div class="actionButtons">
-                        <h:commandButton id="submit" value="Login" action="#{userBean.login}" 
-                                         styleClass="login-button"/>
-                    </div>
-                </p:panel>
-                <p>
-                    <i>Information:</i> Enter the username and password provided to you.
-                </p>
-            </h:form>
-        </p:layoutUnit>
-    </p:layout>
-</body>
+          <h:outputLabel for="password" value="Password" />
+          <p:password id="password" required="true" />
+          <!-- <p:inputText id="password" value="#{userBean.password}" label="Password" /> -->
+          
+          <p:commandButton value="Login" action="#{userBean.login}" />
+        </h:panelGrid>
+      </p:panel>
+      <p>
+        <i>Information:</i> Enter the username and password provided to you.
+      </p>
+    </h:form>
+  </h:body>
 </html>
