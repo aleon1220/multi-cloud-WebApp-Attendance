@@ -1,4 +1,5 @@
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import java.net.InetAddress
 
 plugins {
     java
@@ -65,6 +66,7 @@ dependencies {
     testImplementation("io.jsonwebtoken:jjwt:0.9.1")
     // https://central.sonatype.com/artifact/com.unboundid/unboundid-ldapsdk
     implementation("com.unboundid:unboundid-ldapsdk:6.0.11")
+    implementation("com.kstruct:gethostname4j:1.0.0")
 }
 
 group = "soa.nz.aut"
@@ -84,21 +86,41 @@ fun setWarVersion() {
 }
 
 fun getWarpackageVersion() {
-    val hostname = System.getenv("HOSTNAME") ?: "localhost"
-
+    val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
+    val hostname = InetAddress.getLocalHost().getHostName()
+    
+    // Define the page names
+    val pages = listOf(
+        "01-login.xhtml",
+        "03-attendanceOK.xhtml",
+        "04-lecturerHome.xhtml",
+        "05-universityStaff.xhtml",
+        "06-Reports.xhtml",
+        "07-StudentManagement.xhtml",
+        "08-ClassManagement.xhtml",
+        "09-UserManagement.xhtml",
+        "10-components.xhtml",
+        "home.xhtml",
+        "404-attendanceError.xhtml",
+        "404-loginError.xhtml",
+        "error.xhtml"
+    )    
   // function body
     project.version?.let { version ->
         println("WAR Version is $version")
-        println("set variable with")
+        println("Set env variable with")
         println("export APP_WAR_FILE_VERSION=" + version.toString())
-        println ("Hostname is: " + System.getenv("HOSTNAME"))
         println("http://" + hostname + ":8080/Attendance-"+ version.toString())
+    }
+    // Print URLs for each page
+    pages.forEach { page ->
+        println("http://$hostname:8080/Attendance-$version/$page")
     }
 }
 
 tasks.register<DefaultTask>("getProjectInfo") {
     description = "Obtains detailed info about the java web project"
-    setWarVersion()
+    getWarpackageVersion()
 }
 
 tasks.war {
