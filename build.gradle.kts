@@ -85,6 +85,10 @@ fun setWarVersion() {
     }
 }
 
+fun getAppVersion() {
+    println(version)
+}
+
 fun getWarpackageVersion() {
     val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
     val hostname = InetAddress.getLocalHost().getHostName()
@@ -171,9 +175,9 @@ tasks.register<Test>("searchOpenLDAP") {
     }
 }
 
-tasks.register<DefaultTask>("getAppversion") {
+tasks.register<DefaultTask>("getAppVersion") {
     description = "Obtains WAR version from Gradle file"
-    getWarpackageVersion()
+    getAppVersion()
 }
 
 wsdl2java {
