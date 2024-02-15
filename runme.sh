@@ -1,43 +1,25 @@
 #!/bin/bash
 set -e
 
-# Available commands
-COMMANDS="build run clean test help"
+# Array  avoids word splitting issues
+COMMANDS=(build run clean test help)
+export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
+command=$1
 
 print_usage() {
-  echo "Usage: $0 <command> [options]"
-  echo "Available commands:"
-  printf "\t %s " $COMMANDS
-  printf "\n\n script tested in Linux Bash 5.1.16 \n\n"
-  printf "This OS bash version is: \n" 
+  printf "Usage: %s <command> [options] Available commands: \n\n" $0
+  printf "\t %s " "${COMMANDS[@]}"
+  printf "\n\n Script tested in Linux Bash 5.1.16 \n\n"
+  printf "This OS bash version is: \n\n" 
   bash --version || true  
 }
 
 # Function to handle invalid command
 invalid_command() {
-  echo "Invalid command: '$1'"
+  printf "Invalid command: %s \n\n" $1
   print_usage
   exit 1
 }
-
-# Main script logic
-if [[ $# -eq 0 ]]; then
-  print_usage
-  exit 1
-fi
-
-command="$1"
-shift
-
-case "$command" in
-  $COMMANDS)
-    # Call specific function based on the command
-    "$command" "$@" || true
-    ;;
-  *)
-    invalid_command "$command"
-    ;;
-esac
 
 # build
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
@@ -46,13 +28,27 @@ build() {
 gradle clean war --warn || true
 docker build --build-arg APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION --tag aleon1220/soa:$APP_WAR_FILE_VERSION .
 }
-# run
 
-# clean
+run() {
+  printf "Executing webapp Locally \n\n"
+}
 
-# test
+clean() {
+  printf "Executing CLEAN-UP\n\n"
+  gradle clean || true
+}
 
-# help
+test() {
+printf "Executing TESTING \n\n"
+}
+
 help() {
+  printf "Help Function Java WebApp Attendance Class \n\n"
   print_usage
 }
+
+if [[ " ${COMMANDS[@]} " = *" $command "* ]]; then
+  "$command" "$@" || true
+else
+  invalid_command "$command"
+fi
