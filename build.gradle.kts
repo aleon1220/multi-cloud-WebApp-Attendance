@@ -96,18 +96,19 @@ fun getWarpackageVersion() {
     // Define the page names
     val pages = listOf(
         "01-login.xhtml",
+        "02-attendance.xhtml",
         "03-attendanceOK.xhtml",
         "04-lecturerHome.xhtml",
-        "05-universityStaff.xhtml",
+        "05-adminStaff.xhtml",
         "06-Reports.xhtml",
         "07-StudentManagement.xhtml",
         "08-ClassManagement.xhtml",
         "09-UserManagement.xhtml",
-        "10-components.xhtml",
         "home.xhtml",
         "404-attendanceError.xhtml",
         "404-loginError.xhtml",
-        "error.xhtml"
+        "home.xhtml",
+        "index.xhtml"
     )    
   // function body
     project.version?.let { version ->

@@ -23,23 +23,31 @@ invalid_command() {
 
 # build
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
+version="$APP_WAR_FILE_VERSION"
 
 build() {
-gradle clean war --warn || true
-docker build --build-arg APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION --tag aleon1220/soa:$APP_WAR_FILE_VERSION .
+  gradle clean war --warn || true
+  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/soa:$version .
 }
 
 run() {
   printf "Executing webapp Locally \n\n"
+  docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/soa:$version
+  printf "Executing Java Webapp version %s\n" $version
 }
 
 clean() {
-  printf "Executing CLEAN-UP\n\n"
+  printf "Executing local CLEAN-UP\n\n"
   gradle clean || true
+  docker kill $version
+  docker rm $version
+  docker image rm aleon1220/soa:$version
+  printf "docker clean up completed \n\n"
 }
 
 test() {
-printf "Executing TESTING \n\n"
+  printf "Executing TESTING \n\n"
+  gradle test || true
 }
 
 help() {
