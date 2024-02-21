@@ -4,18 +4,21 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-
-import javax.naming.*;
+import java.util.Hashtable;
+import java.util.Properties;
 import java.util.regex.*;
-import javax.naming.directory.*;
-import javax.naming.ldap.InitialLdapContext;
-import javax.naming.ldap.LdapContext;
+
+import com.unboundid.ldap.sdk.LDAPConnection;
+import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.ResultCode;
+import com.unboundid.ldap.sdk.SearchRequest;
+import com.unboundid.ldap.sdk.SearchResult;
+import com.unboundid.ldap.sdk.SearchResultEntry;
+import com.unboundid.ldap.sdk.SearchScope;
 
 public class AuthenticateAD {
     /*
-     * you could use a secure connection such as LDAPS (LDAP over SSL/TLS) or
-     * StartTLS (LDAP over TLS)
+     * Use secure connection LDAPS (LDAP over SSL/TLS) or StartTLS (LDAP over TLS)
      * Use a secure password storage mechanism: Consider using a secure password
      * storage mechanism such as a password hash or a secure encryption algorithm
      * Handle errors and exceptions more robustly: The code currently catches and
@@ -32,7 +35,8 @@ public class AuthenticateAD {
      * Use a more secure algorithm for searching the AD: The code currently uses the
      * `objectClass=*` search filter, which can be inefficient and may return a
      * large number of results. You could consider using a more specific search
-     * filter such as `(&(objectClass=user)(sAMAccountName=*))`, which only return user objects
+     * filter such as `(&(objectClass=user)(sAMAccountName=*))`, which only return
+     * user objects
      * reduce the amount of data transferred over the network
      * Use a more secure algorithm for binding to the AD: The code currently uses
      * the `bind` method to authenticate the user, which can be vulnerable to replay
@@ -54,7 +58,8 @@ public class AuthenticateAD {
     private static String[] requiredAttributes;
     private static String[] ADSearchPaths;
     private static String accountSuffex;
-    private final static String contextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
+    private static final String LDAP_SERVER_HOST = "server.example.com";
+    private static final int LDAP_SERVER_PORT = 389;
     // private final static String ldapURI =
     // "ldap://52.40.50.72:389/DC=corp,DC=local";
     // private static String[] requiredAttributes = {
@@ -85,14 +90,10 @@ public class AuthenticateAD {
     private static void authenticateUserAndGetInfo(String user, String password) throws Exception {
         try {
             Hashtable<String, String> env = new Hashtable<String, String>();
-            env.put(Context.INITIAL_CONTEXT_FACTORY, contextFactory);
-            env.put(Context.PROVIDER_URL, ldapURI);
-            env.put(Context.SECURITY_AUTHENTICATION, "simple");
-            env.put(Context.SECURITY_PRINCIPAL, user);
-            env.put(Context.SECURITY_CREDENTIALS, password);
-
-            DirContext ctx = new InitialDirContext(env);
-
+            env.put("PROVIDER_URL", ldapURI);
+            env.put("SECURITY_AUTHENTICATION", "simple");
+            env.put("SECURITY_PRINCIPAL", user);
+            env.put("SECURITY_CREDENTIALS", password);
             String filter = "(sAMAccountName=" + user + ")"; // default for search filter username
 
             if (user.contains("@")) // if user name is a email then
@@ -102,34 +103,50 @@ public class AuthenticateAD {
                 filter = "(userPrincipalName=" + user + ")";
             }
 
-            SearchControls ctrl = new SearchControls();
-            ctrl.setSearchScope(SearchControls.SUBTREE_SCOPE);
-            ctrl.setReturningAttributes(requiredAttributes);
+            // add a filter to scan in the AD
 
-            NamingEnumeration userInfo = null;
-
-            Integer i = 0;
-            do {
-                userInfo = ctx.search(ADSearchPaths[i], filter, ctrl);
-                i++;
-
-            } while (!userInfo.hasMore() && i < ADSearchPaths.length);
-
-            if (userInfo.hasMore()) {
-
-                SearchResult UserDetails = (SearchResult) userInfo.next();
-                Attributes userAttr = UserDetails.getAttributes();
-                System.out.println("adEmail = " + userAttr.get("userPrincipalName").get(0).toString());
-                System.out.println("adFirstName = " + userAttr.get("givenName").get(0).toString());
-                System.out.println("adLastName = " + userAttr.get("sn").get(0).toString());
-                System.out.println("name = " + userAttr.get("cn").get(0).toString());
-                System.out.println("AdFullName = " + userAttr.get("cn").get(0).toString());
+            var userInfo = Object.class;
+            if (userInfo.equals("ListUsers")) {
+                System.out.println("Print Attributes found in AD for filter per user");
             }
 
-            userInfo.close();
+        } catch (Exception e) {
 
-        } catch (javax.naming.AuthenticationException e) {
+        }
+    }
 
+    public static void main(String[] args) {
+        String username = "uid=john.doe,ou=People,dc=example,dc=com";
+        String password = "your_password_here";
+
+        try {
+            // Create an LDAP connection
+            LDAPConnection connection = new LDAPConnection();
+            connection.connect(LDAP_SERVER_HOST, LDAP_SERVER_PORT);
+
+            // Bind with the user's DN and password
+            connection.bind(username, password);
+
+            // If successful, perform additional operations (e.g., retrieve user info)
+            // For example:
+            // SearchResultEntry entry = getUserInfo(connection, username);
+            // System.out.println("User DN: " + entry.getDN());
+
+            // Close the connection
+            connection.close();
+        } catch (LDAPException e) {
+            System.err.println("LDAP authentication failed: " + e.getMessage());
+        }
+    }
+
+    // Example method to retrieve user info (you can customize this)
+    private static SearchResultEntry getUserInfo(LDAPConnection connection, String userDN) throws LDAPException {
+        SearchRequest searchRequest = new SearchRequest(userDN, SearchScope.BASE, "(objectClass=*)");
+        SearchResult searchResult = connection.search(searchRequest);
+        if (searchResult.getEntryCount() == 1) {
+            return searchResult.getSearchEntries().get(0);
+        } else {
+            throw new LDAPException(ResultCode.NO_SUCH_OBJECT, "User not found or multiple entries matched.");
         }
     }
 }

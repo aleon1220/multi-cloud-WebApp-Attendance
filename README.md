@@ -79,6 +79,13 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
   [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
 
 # Quickstart
+- A Bash script has `runme.sh` been created to automate the local development.
+Cleans, builds and executes the docker-compose stack locally. Provides a version number for the app found in the build.gradle file
+
+```bash
+./runme.sh clean ; ./runme.sh build ; ./runme.sh run
+```
+
 - Gradle Build Web Package
 build and test the WebArchive file. Generates the .WAR file in `build/libs/*.war`
 ``` bash

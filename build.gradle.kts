@@ -18,34 +18,35 @@ repositories {
 
 dependencies {
     // https://www.primefaces.org
+    // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
-    implementation("org.primefaces:primefaces:8.0")
+    implementation("org.primefaces:primefaces:14.0.0-RC1")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    implementation("org.primefaces.extensions:primefaces-extensions:8.0.5")
-    // https://myfaces.apache.org
+    implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC1")
+    
+    // JSF runtime
     // https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api
-    implementation("org.apache.myfaces.core:myfaces-api:2.3.10") // JSF runtime
-    implementation("org.apache.myfaces.core:myfaces-impl:2.3.10")
-    // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
-    implementation("com.lowagie:itext:2.1.7") // itext DataExporter (PDF)
-    implementation("org.apache.poi:poi:3.17") // apache poi DataExporter (Excel or XML)
-    implementation("com.rometools:rome:1.9.0") // FeedReader
-    implementation("org.apache.tika:tika-core:1.22") // apache tika FileUpload
-    implementation("commons-fileupload:commons-fileupload:1.3.3") // commons-fileupload FileUpload
-    implementation("commons-io:commons-io:2.4") // commons-io FileUpload
+    // implementation("org.apache.myfaces.core:myfaces-api:4.0.1")  // API https://myfaces.apache.org
+    // implementation("org.apache.myfaces.core:myfaces-impl:4.0.1") // Faces Implementation
+    // implementation("org.apache.poi:poi:3.17") // apache POI DataExporter (Excel or XML)
+    // implementation("com.rometools:rome:1.9.0") // FeedReader
     // implementation("net.sf.barcode4j:barcode4j-light:2.3.0") // barcode4j-light
     // implementation("net.glxn.qrgen:qrgen:1.4") // qrgen QR Code support for Barcode
-    implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20181114.1")
+    // implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20220608.1")
+    
+    // Jakarta EE
+    // https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api
+    // implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
+    // implementation("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
-    implementation("javax.ws.rs:javax.ws.rs-api:2.1")
-    implementation("com.sun.jersey:jersey-client:1.19.4")
-    implementation("org.glassfish.jersey.core:jersey-common:2.22.2")
-    // https://mvnrepository.com/artifact/javax.servlet/servlet-api
-    compileOnly("javax.servlet:servlet-api:2.5")
-    // implementation("javax.servlet:javax.servlet-api:3.1.0")
-    implementation("javax.json:javax.json-api:1.1")
+    // https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
+    // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client
+    implementation("org.glassfish.jersey.core:jersey-client:3.1.5")
+    // implementation("org.glassfish.jersey.core:jersey-common:2.22.2")
     // https://github.com/google/gson library JSON serialization/deserialization
     implementation("com.google.code.gson:gson:2.10.1")
+    // https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api    
+    implementation("jakarta.json:jakarta.json-api:2.1.3")
     // https://bitbucket.org/snakeyaml/snakeyaml/wiki/Documentation
     // https://mavenlibs.com/maven/dependency/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.1")
@@ -53,8 +54,8 @@ dependencies {
     implementation("com.google.zxing:javase:3.5.1")
     implementation("com.google.zxing:core:3.5.1")
     // dependency below only needed if using the Java 8 version of @Generated (through "jdk8") on Java 9 or later
-    implementation("javax.annotation:javax.annotation-api:1.3.2")
-    implementation("io.github.threeten-jaxb:threeten-jaxb-core:2.1.0") // Use Java Date/Time API. Clunky GregorianCalendar class
+    // implementation("io.github.threeten-jaxb:threeten-jaxb-core:2.1.0") // Use Java Date/Time API. Clunky GregorianCalendar class
+    // TESTING
     // JUnit Jupiter API and Engine for unit testing
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")

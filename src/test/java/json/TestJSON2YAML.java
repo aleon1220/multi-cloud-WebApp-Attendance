@@ -1,9 +1,13 @@
 package json;
 
 import com.google.gson.Gson;
+
+import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Map;
 
@@ -24,7 +28,7 @@ public class TestJSON2YAML {
 
         // Assert that YAML output is not null or empty
         assertNotNull("YAML output should not be null", yamlOutput);
-        assertFalse("YAML output should not be empty", yamlOutput.isEmpty());
+        assertFalse(yamlOutput.isBlank(), "YAML output should not be empty");
     }
 
     // Test method to convert YAML to JSON
@@ -42,7 +46,7 @@ public class TestJSON2YAML {
 
         // Assert that JSON output is not null or empty
         assertNotNull("JSON output should not be null", jsonOutput);
-        assertFalse("JSON output should not be empty", jsonOutput.isEmpty());
+        assertFalse(jsonOutput.isEmpty(), "JSON output should not be empty");
     }
 
     // Test method to check if YAML output matches expected structure
@@ -59,9 +63,9 @@ public class TestJSON2YAML {
         String yamlOutput = yaml.dump(map);
 
         // Expected YAML structure
-        String expectedYaml = "name: John\nage: 30\n";
+        String expectedYaml = "name:John\nage:30\n";
 
         // Assert that the YAML output matches the expected structure
-        assertEquals("YAML output should match the expected structure", expectedYaml, yamlOutput);
+        assertEquals(expectedYaml, yamlOutput, "YAML output should match the expected structure");
     }
 }

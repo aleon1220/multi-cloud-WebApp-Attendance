@@ -1,8 +1,8 @@
 package json;
 
-import javax.json.Json;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
+import jakarta.json.Json;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
 import com.google.gson.Gson;
 import auth.login.LoginReply;
 

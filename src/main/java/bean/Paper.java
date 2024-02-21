@@ -1,16 +1,12 @@
 /**
  * Class Paper reflects paper management UI
- * class template
  */
 
 package bean;
 
-import javax.faces.bean.ManagedBean;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@ManagedBean(name = "paper")
 public class Paper {
 
     @SerializedName("lecturerId")

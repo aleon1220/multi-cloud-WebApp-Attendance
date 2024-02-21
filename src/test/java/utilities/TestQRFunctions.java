@@ -1,11 +1,8 @@
 package utilities;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
-
-import org.junit.Test;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 import com.google.zxing.WriterException;
 
 import service.GenerateQRCode;

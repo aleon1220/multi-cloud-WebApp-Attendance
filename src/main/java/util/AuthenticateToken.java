@@ -5,73 +5,60 @@
 
 package util;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriBuilder;
-
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.UriBuilderException;
 import com.google.gson.JsonObject;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import service.UserService;
 
-@ManagedBean
 public class AuthenticateToken {
 
     private String inputCode;
     private Integer progress;
 
+    /**
+     * @return XHTML page
+     */
     public String confirmAttendance() {
-
-        String replyFromMS = null;
-
+        var replyFromMS = "03-attendanceOK";
         UserService tok = new UserService();
         String token = tok.obtainIdToken("10295765", "Value!12");
         // 1-open connection and send user and password as a POST method
-        ClientConfig config = new DefaultClientConfig();
+        try {
+            Client config = ClientBuilder.newClient();
+            // call microservice functionality to register attendance
+            // Client client = Client.create(config);
+            // WebResult webResource =
+            // client.resource(UriBuilder.fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
+            // Params {"studentId": "246810","paperId": "COMP101","status": "present"}
 
-        Client client = Client.create(config);
-        WebResource webResource = client.resource(UriBuilder
-                .fromUri("https://xgdeevdwh1.execute-api.us-east-1.amazonaws.com").path("addAttendance").build());
-        // Passing parameters
-        // {"studentId": "246810","paperId": "COMP101","status": "present"}
+            MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
+            formData.add("studentId", "246810");
+            formData.add("paperId", "COMP101");
+            formData.add("status", "present");
 
-        MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
-        formData.add("studentId", "246810");
-        formData.add("paperId", "COMP101");
-        formData.add("status", "present");
+            JsonObject jsonPayLoad = new JsonObject();
+            jsonPayLoad.addProperty("studentId", "246810");
+            jsonPayLoad.addProperty("paperId", "COMP101");
+            jsonPayLoad.addProperty("status", "present");
 
-        JsonObject jsonPayLoad = new JsonObject();
-        jsonPayLoad.addProperty("studentId", "246810");
-        jsonPayLoad.addProperty("paperId", "COMP101");
-        jsonPayLoad.addProperty("status", "present");
+            // send JSON Payload to MicroService
 
-        // ClientResponse response =
-        // webResource.accept(MediaType.APPLICATION_JSON).header("Authorization",
-        // token).post(ClientResponse.class, jsonPayLoad.toString());
-        ClientResponse response = webResource.header("Authorization", token).post(ClientResponse.class,
-                jsonPayLoad.toString());
-        replyFromMS = response.getEntity(String.class);
-        // webResource.path("addAttendance").accept(MediaType.APPLICATION_JSON).header("Authorization",
-        // token).post(String.class, jsonPayLoad.toString());
-
-        System.out.println("AttendanceRegisterResponse:" + response);
+            System.out.println("Attendance Register Response");
+        } catch (IllegalArgumentException | UriBuilderException e) {
+            e.printStackTrace();
+        }
 
         // invoke WS to confirm Attendance and validate
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "CORRECT", "Attendance Registered!!!"));
+        System.out.println("Java Faces display message in the browser Attendance Registered!!!");
 
         if (replyFromMS.isEmpty()) {
-            return "attendanceNOK.xhtml";
+            return "404-attendanceError";
         } else {
-            return "attendanceOK.xhtml";
+            return "03-attendanceOK";
         }
     }
 
@@ -92,12 +79,12 @@ public class AuthenticateToken {
     }
 
     public void onComplete() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Ended"));
+        System.out.println("Time out!!!");
     }
 
     public String onTimeout() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Time Out"));
-        return "main.xhtml";
+        System.out.println("Timeout Try again!!");
+        return "index";
     }
 
     public void cancel() {
