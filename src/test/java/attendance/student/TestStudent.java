@@ -1,7 +1,5 @@
 package attendance.student;
 
-import javax.faces.bean.ManagedBean;
-
 import org.junit.jupiter.api.Test;
 
 public class TestStudent {
