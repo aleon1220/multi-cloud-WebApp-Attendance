@@ -1,4 +1,4 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:h="http://java.sun.com/jsf/html"
@@ -6,7 +6,7 @@
   xmlns="http://www.w3.org/1999/xhtml"
 >
   <h:head>
-    <title>Generate Attendance System</title>
+    <title>Attendance System</title>
   </h:head>
 
   <body>
@@ -14,18 +14,12 @@
       <p:layoutUnit position="center">
         <p:panel>
           <f:facet name="header">Generate Attendance Code</f:facet>
-
           <h:form id="attendance">
             <p>Attendance System Date</p>
             <h4>Time and Date</h4>
             <p:clock pattern="HH:mm:ss dd/MM/yyyy" mode="server" />
           </h:form>
-          <br />
-          <br />
-          <br />
-
           <p:outputLabel for="class" value="Select Class: " />
-
           <p:selectOneMenu
             id="class"
             value="#{attendanceGenerate.className}"
@@ -43,11 +37,9 @@
             <p:outputLabel value="#{Room.obtainSessionNumber}" />
             for Lecture.
             <p:outputLabel value="#{paper.lecturerId}" />
-
-            <br />Generate a code to register attendance for this session.
+            Generate a code to register attendance for this session.
             Remember each student in the class has a time frame for 1 minute.
           </p>
-          <br />
 
           <table>
             <tr>
@@ -85,20 +77,11 @@
               </th>
             </tr>
           </table>
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <center>
-            <p:button
-              icon="ui-icon-circle-arrow-w"
-              title="Go back"
-              outcome="main"
-            />
-          </center>
+          <p:button
+            icon="ui-icon-circle-arrow-w"
+            title="Go back"
+            outcome="main"
+          />
         </p:panel>
       </p:layoutUnit>
     </p:layout>
