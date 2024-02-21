@@ -27,12 +27,12 @@ version="$APP_WAR_FILE_VERSION"
 
 build() {
   gradle clean war --warn || true
-  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/soa:$version .
+  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/soa:$version . || true
 }
 
 run() {
-  printf "Executing webapp Locally \n\n"
-  docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/soa:$version
+  printf "Executing webapp Locally \n\n" || true
+  docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/soa:$version || true
   printf "Executing Java Webapp version %s\n" $version
 }
 
