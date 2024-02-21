@@ -8,18 +8,11 @@ package service;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
- 
-@ManagedBean
-@ViewScoped
+import jakarta.annotation.PostConstruct;
 public class ClassDropDownView implements Serializable {
      
     /**
-     * 
+     * Populates values
      */
     private static final long serialVersionUID = 1L;
     private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
@@ -90,12 +83,6 @@ public class ClassDropDownView implements Serializable {
     }
      
     public void displayLocation() {
-        FacesMessage msg;
-        if(city != null && country != null)
-            msg = new FacesMessage("Selected", city + " of " + country);
-        else
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected."); 
-             
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
+        System.out.println("Java Faces display message in the browser");
     }
 }

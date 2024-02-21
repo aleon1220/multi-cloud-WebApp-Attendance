@@ -13,22 +13,18 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import org.apache.http.client.ClientProtocolException;
-import com.sun.jersey.api.client.ClientResponse;
+import jakarta.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import bean.UserBean;
-import entity.*;
-
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Response;
 public class UserService {
     UserBean user = new UserBean();
     private String accessToken;
@@ -43,7 +39,6 @@ public class UserService {
 
         try {
             // 1-open connection and send user and password as a POST method
-
             URL url = new URL("https://ctpoixww04.execute-api.us-east-1.amazonaws.com/dev/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
@@ -94,50 +89,37 @@ public class UserService {
     }
     
     public String DeserializeJSON2Object(String receivedJSON) {
-
         // 2-transform the JSON Response to Object, adding JSON Response to a Java Object
-        String replyJson = receivedJSON;
-
-        Gson gson = new Gson();
-        LoginReply loginReplyObject = gson.fromJson(replyJson, LoginReply.class);
-
-        String extractedIdToken = loginReplyObject.getAuthenticationResult().getIdToken();
-
-        user.setToken(extractedIdToken);
-        setAccessToken(loginReplyObject.getAuthenticationResult().getAccessToken());
-        setExpiresIn(loginReplyObject.getAuthenticationResult().getExpiresIn().toString());
-        setIdToken(loginReplyObject.getAuthenticationResult().getIdToken());
-        setRefreshToken(loginReplyObject.getAuthenticationResult().getRefreshToken());
-        setTokenType(loginReplyObject.getAuthenticationResult().getTokenType());
-        
-        return extractedIdToken;
+        System.out.println(receivedJSON);
+        System.out.println((this.getUserBeanAsJson(user)));
+        return receivedJSON;
     }
     
     public String createSession(String token) {
         //Create session method is a GET Rest invocation
-        //System.out.println("UserServ: creating session method");
-        ClientConfig config = new DefaultClientConfig();
-        //System.out.println("UserServ: creating client config");
-        Client client = Client.create(config);
-        
-        //System.out.println("UserServ: creating session");
+        var json_token = token;
+        Client configClient = ClientBuilder.newClient();
+        var aws_api_uri = "https://ctpoixww04.execute-api.us-east-1.amazonaws.com";
+        WebTarget webTarget = configClient.target(aws_api_uri);
+        // WebResource service = client.resource(UriBuilder.fromUri().build());
+        // webTarget.path("dev").path("session").accept(MediaType.APPLICATION_JSON).header("Authorization", json_token);
+        Invocation.Builder request = webTarget
+        .request(MediaType.APPLICATION_JSON)
+        .header("Authorization", json_token);
 
-        WebResource service = client.resource(UriBuilder.fromUri("https://ctpoixww04.execute-api.us-east-1.amazonaws.com").build());
-        
+        Response response = request.get();
         // getting JSON data
-        System.out.println("User Service Create Session With JSON" + 
-        service.path("dev").path("session").accept(MediaType.APPLICATION_JSON).header("Authorization", token).get(String.class));
-        
+        System.out.println("Created Session With JSON token" + response);
         //validate if the result is {"username":"10295765","groups":"administrator"} then return OK otherwise return failed
-
         String sessionResult = "ok";
         return sessionResult;
     }
 
-    private String getJsonString(UserBean userBean) {
+    private String getUserBeanAsJson(UserBean userBean) {
         // Before converting to GSON check value of id
         Gson gson = null;
         gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        userBean.toString();
         return gson.toJson(userBean);
     }
 

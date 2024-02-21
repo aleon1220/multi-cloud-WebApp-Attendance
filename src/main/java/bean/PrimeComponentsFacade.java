@@ -5,9 +5,6 @@
 
 package bean;
 
-import javax.inject.Named;
-
-@Named
 public class PrimeComponentsFacade{
     
     private String linkedPage;
