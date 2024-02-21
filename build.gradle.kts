@@ -175,12 +175,8 @@ tasks.register<Test>("searchOpenLDAP") {
         includeTestsMatching("TestLDAPAuthentication.testOpenLDAPAdminSearch_withOpenLDAP")
     }
 }
-
-tasks.register<DefaultTask>("getAppVersion") {
-    description = "Obtains WAR version from Gradle file"
-    getAppVersion()
-}
-
+// https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
+// https://www.w3schools.com/xml/tempconvert.asmx?WSDL
 wsdl2java {
     // https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
     bindingFile.set(layout.projectDirectory.file("src/main/bindings/bindings.xjb"))

@@ -1,7 +1,9 @@
 - [Attendance WebApp](#attendance-webapp)
   - [Introduction](#introduction)
   - [GitHub Reports](#github-reports)
+    - [GitHub Reports](#github-reports)
     - [Security warnings](#security-warnings)
+    - [GitHub Vulnerability report](#github-vulnerability-report)
     - [GitHub Vulnerability report](#github-vulnerability-report)
   - [Attendance WebApp Architecture (re-architected)](#attendance-webapp-architecture-re-architected)
     - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
@@ -11,15 +13,14 @@
 - [Local Setup](#local-setup)
   - [Project general guidelines](#project-general-guidelines)
     - [Maven Build](#maven-build)
-    - [Perform local testing](#perform-local-testing)
     - [Gradle Test suite](#gradle-test-suite)
       - [Use 1Password CLI to inject the secrets](#use-1password-cli-to-inject-the-secrets)
-      - [Execute the Gradle commands](#execute-the-gradle-commands)
-      - [Set the variables](#set-the-variables)
-      - [Docker Image Build](#docker-image-build)
+  - [Package/Run WebApp](#packagerun-webapp)
+    - [Docker Image Build](#docker-image-build)
       - [Available Tomcat versions](#available-tomcat-versions)
-    - [Execute WebApp Container Execution](#execute-webapp-container-execution)
-      - [Docker execution by image version](#docker-execution-by-image-version)
+  - [Execute WebApp](#execute-webapp)
+    - [Container Execution](#container-execution)
+      - [Docker execution](#docker-execution)
       - [Docker-compose](#docker-compose)
   - [Editing project diagrams](#editing-project-diagrams)
 - [References](#references)
@@ -41,11 +42,14 @@ The idea is that you have a short timeframe to submit a random generated code by
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
 
 ## GitHub Reports
+### GitHub Reports
 ### Security warnings
 > Security Warnings to check
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+### GitHub Vulnerability report
+https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 ### GitHub Vulnerability report
 https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
@@ -114,7 +118,6 @@ IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
 ### Maven Build
 > maven has been deprecated and moved to [maven](./maven)
 
-### Perform local testing
 ### Gradle Test suite
 #### Use 1Password CLI to inject the secrets
 - as a pre-requisite you must have access to the shared vault
@@ -137,14 +140,9 @@ op inject -i secrets.env.tpl -o secrets.env
 ```bash
 op inject -i .env.tpl -o .env
 ```
-#### Execute the Gradle commands
-Should do validations
-```bash
-gradle check --warning-mode all
-```
-#### Set the variables
 
-#### Docker Image Build
+## Package/Run WebApp
+### Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
 ```bash
@@ -156,7 +154,9 @@ if you need to edit the Dockerfile and upgrade the servlet container Tomcat vers
 - 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
 - 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
-> for particular versions check the image in Docker hub
+## Execute WebApp
+### Container Execution
+#### Docker execution
 
 ### Execute WebApp Container Execution
 #### Docker execution by image version
@@ -171,18 +171,15 @@ Test the container webapp after building the image locally
 docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 - Get the name of the running container
+- get the name of the running container
 ``` bash
 CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
-```
-- The URl is hostname:8080/$CONTEXT
-- Get the context of the webapp
-```bash
-TOMCAT_URL="http://$(hostname):8080/Attendance-$APP_WAR_FILE_VERSION"
 ```
 - Access the Docker container via CLI
 ```bash
 docker container exec -it $CONTAINER_NAME /bin/bash
 ```
+- The URl is URL:8080/Attendance-0.0.1 [AttendanceWebApp](http://localhost:8080/AttendanceWebApp)
 - clean up docker container environment
 ``` bash
 docker stop $(docker ps --quiet)
@@ -191,6 +188,10 @@ docker rm $(docker container ls --all --quiet)
 
 #### Docker-compose
 - inject the secrets for Testing docker-compose
+```bash
+op inject -i .env.tpl -o .env
+```
+- single variable- inject the secrets for Testing docker-compose
 ```bash
 op inject -i .env.tpl -o .env
 ```
@@ -203,6 +204,3 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 - go to [diagrams.net](https://app.diagrams.net/?src=about)
 - open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
-
-# References
-- [free website templates](http://all-free-download.com/free-website-templates)
