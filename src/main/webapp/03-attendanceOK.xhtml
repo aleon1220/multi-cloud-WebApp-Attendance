@@ -1,39 +1,37 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
-
-<h:head>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3c.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+>
+  <h:head>
     <title>Attendance Successfully Registered</title>
-</h:head>
-<body>
-
+  </h:head>
+  <h:body>
     <p:layout fullPage="true">
-
-
-        <p:layoutUnit position="center">
-
-            <h:form id="mainMenu" target="_blank">
-
-                <p:panel>
-
-                    <img src="https://i.imgur.com/pjAIJBp.jpg" alt="attendance OK" style="width: 304px; height: 228px;"/> 
-
-                </p:panel>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-
-                    <center>
-                        <p:button icon="ui-icon-circle-arrow-w" title="Go back"	outcome="main" />
-                    </center>
-
-            </h:form>
+        <p:layoutUnit
+          position="north"
+          size="100"
+          header="Attendance System Header"
+          collapsible="false"
+        >
+          <h:outputText value="App Attendance System Main Menu" />
+          <p:inputText value="#{primeComponentsFacade.value}" pt:placeholder="Watermark here" />
         </p:layoutUnit>
+      
+      <p:layoutUnit position="center">
+          <img
+            src="https://i.imgur.com/pjAIJBp.jpg"
+            alt="attendance OK"
+            style="width: 304px; height: 228px"
+          />
+          <p:button
+            icon="ui-icon-circle-arrow-w"
+            title="Go back"
+            outcome="index"
+          />
+      </p:layoutUnit>
     </p:layout>
-
-</body>
+  </h:body>
 </html>

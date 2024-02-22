@@ -5,20 +5,10 @@
 
 package bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-import com.google.gson.annotations.Expose;
-
 import service.UserService;
 
-@ManagedBean(name = "userBean")
-@SessionScoped
 public class UserBean {
-
-    @Expose
     private String id;
-    @Expose
     private String password;
     private String firstName;
     private String lastName;
@@ -31,8 +21,19 @@ public class UserBean {
     private String refreshToken;
     private String tokenType;
 
-    // Login Method
     public String login() {
+        // LdapAuthenticator ldapAuthenticator = new LdapAuthenticator();
+        // boolean isAuthenticated = ldapAuthenticator.authenticate(username, password);
+        boolean isAuthenticated = true;
+
+        if (isAuthenticated) {
+            return "home"; // navigate to home page
+        } else {
+            return "404-loginError"; // stay on login page
+        }
+    }
+
+    public String loginToken() {
         try {
             UserService userService = new UserService();
             // System.out.println("userBean: print the name to see if it got it: "+getId());
@@ -41,24 +42,21 @@ public class UserBean {
             // System.out.println("UserBean checking value of response before if");
 
             if (userService.createSession(IdToken).equals("ok")) {
-
                 setAccessToken(userService.getAccessToken());
                 setExpiresIn(userService.getExpiresIn().toString());
                 setIdToken(userService.getIdToken());
                 setRefreshToken(userService.getRefreshToken());
                 setTokenType(userService.getTokenType());
-
-                return "main";
-
+                return "06-Reports";
             } else {
 
-                return "loginError";
+                return "404-loginError";
             }
 
         } catch (Exception e) {
             this.setReturnMsg(e.getMessage());
             e.printStackTrace();
-            System.out.println("UserBean. inside exception catch.");
+            System.out.println("UserBean. inside exception catch");
             return "loginError";
         }
     }// end of login method

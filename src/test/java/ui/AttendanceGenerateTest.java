@@ -1,14 +1,14 @@
-import static org.junit.Assert.assertNotNull;
+package ui;
 
-import org.junit.Test;
-
-import bean.AttendanceBean;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+import service.AttendanceService;
 
 public class AttendanceGenerateTest {
 
     @Test
     public void testRandomCode() {
-        AttendanceBean at = new AttendanceBean();
-        assertNotNull("data", at.generateAttendanceCode());
+        AttendanceService attendanceSvc = new AttendanceService();
+        assertNotNull("data", attendanceSvc.generateAttendanceCode());
     } // testRandomCode()
 }

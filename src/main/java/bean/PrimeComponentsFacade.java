@@ -5,14 +5,23 @@
 
 package bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
- 
-@ManagedBean(name = "mainMenu")
-@SessionScoped
-public class MainMenu{
+public class PrimeComponentsFacade{
     
     private String linkedPage;
+    private String valuedId;
+
+    public PrimeComponentsFacade() {
+        String value = "some text";
+    }
+    
+    public String getValuedId() {
+        String valuable = "extra text";
+        return valuedId.concat(valuable);
+    }
+
+    public void setValuedId(String valuedId) {
+        this.valuedId = valuedId;
+    }
     
     public void setLinkedPage(String linkedPage) {
         this.linkedPage = linkedPage;

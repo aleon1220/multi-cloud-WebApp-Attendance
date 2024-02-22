@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Class Attendances System</title>
+    </h:head>
+
+    <h:body>
+        <div>
+          <h:graphicImage library="img" name="logo.jpeg" alt="Logo"/>
+
+            <h:form>
+                <p:panel header="Class Attendances System">
+                  <div>
+                    <p:outputLabel value="Welcome to the Class Attendances System application."/>
+                    <p>
+                      Manage and track class attendances with ease.
+
+                      The system allows the class to generate a random code to be entered.
+                      the trainees have 30 seconds from the moment they login to register the attendance.
+                    </p>                    
+                    <p:outputLabel value=""/>
+                  </div>
+                  <div>
+                    <p:outputLabel value="Login to the Class Attendance Web App"/>
+                    <!-- Button to navigate to the login page -->
+                    <p:button outcome="01-login" value="Login" icon="pi pi-sign-in"/>
+                  </div>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>

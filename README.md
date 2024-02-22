@@ -1,16 +1,17 @@
 - [Attendance WebApp](#attendance-webapp)
   - [Introduction](#introduction)
   - [GitHub Reports](#github-reports)
+    - [GitHub Reports](#github-reports)
     - [Security warnings](#security-warnings)
+    - [GitHub Vulnerability report](#github-vulnerability-report)
     - [GitHub Vulnerability report](#github-vulnerability-report)
   - [Attendance WebApp Architecture (re-architected)](#attendance-webapp-architecture-re-architected)
     - [2018-Attendance WebApp high level Architecture](#2018-attendance-webapp-high-level-architecture)
     - [Attendance WebApp UI](#attendance-webapp-ui)
   - [Refer to the Wiki for details on the project](#refer-to-the-wiki-for-details-on-the-project)
-- [Project general guidelines](#project-general-guidelines)
-- [Setup](#setup)
-  - [Build WebApp](#build-webapp)
-    - [Gradle Build Web Package](#gradle-build-web-package)
+- [Quickstart](#quickstart)
+- [Local Setup](#local-setup)
+  - [Project general guidelines](#project-general-guidelines)
     - [Maven Build](#maven-build)
     - [Gradle Test suite](#gradle-test-suite)
       - [Use 1Password CLI to inject the secrets](#use-1password-cli-to-inject-the-secrets)
@@ -22,6 +23,7 @@
       - [Docker execution](#docker-execution)
       - [Docker-compose](#docker-compose)
   - [Editing project diagrams](#editing-project-diagrams)
+- [References](#references)
 
 # Attendance WebApp
 
@@ -40,11 +42,14 @@ The idea is that you have a short timeframe to submit a random generated code by
 The application is a proof of concept for Service orientation and Service interoperability in the cloud
 
 ## GitHub Reports
+### GitHub Reports
 ### Security warnings
 > Security Warnings to check
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+### GitHub Vulnerability report
+https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 ### GitHub Vulnerability report
 https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
@@ -73,16 +78,39 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
   [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
 
-# Project general guidelines
+# Quickstart
+- A Bash script has `runme.sh` been created to automate the local development.
+Cleans, builds and executes the docker-compose stack locally. Provides a version number for the app found in the build.gradle file
+
+```bash
+./runme.sh clean ; ./runme.sh build ; ./runme.sh run
+```
+
+- Gradle Build Web Package
+build and test the WebArchive file. Generates the .WAR file in `build/libs/*.war`
+``` bash
+gradle clean build --console plain --warning-mode all
+```
+- Gradle Check the generated version from the build.gradle.kts
+```bash
+gradle getAppversion
+```
+- Run WebApp
+Run the tomcat server with the latest pre-built WAR web Archive file
+Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+```bash
+docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+```
+
+# Local Setup
+> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
+
+## Project general guidelines
 
 1. Installation process: project a Java project JEE. Import in any IDE and build with gradle or maven. Build docker image and run
 2. Software dependencies: dependencies are described in pom.xml file
 3. Latest releases by using git tags
 4. API references. API docs
-
-# Setup
-> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
-
 - Clone repo HTTPS
 ```bash
 git clone https://github.com/aleon1220/multi-cloud-WebApp-Attendance.git
@@ -93,13 +121,6 @@ git clone git@github.com:aleon1220/multi-cloud-WebApp-Attendance.git
 ```
 - open repo in chosen IDE
 IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
-
-## Build WebApp
-### Gradle Build Web Package
-- Pack the WebArchive file. Generate the .WAR file
-``` bash
-gradle clean build --console plain --warning-mode all
-```
 
 ### Maven Build
 > maven has been deprecated and moved to [maven](./maven)
@@ -132,11 +153,11 @@ op inject -i .env.tpl -o .env
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
 ```bash
-docker build --tag aleon1220/soa:latest .
+docker build --build-arg APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION --tag aleon1220/soa:$APP_WAR_FILE_VERSION .
 ```
 
 #### Available Tomcat versions
-Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/soa:latest
+if you need to edit the Dockerfile and upgrade the servlet container Tomcat version
 - 7.0.109 = `TOMCAT_VERSION_DOCKER_TAG="7.0.109-jdk8-openjdk"`
 - 9.0.78  = `TOMCAT_VERSION_DOCKER_TAG="9.0.78-jre8"`
 
@@ -144,22 +165,19 @@ Use the tag latest or a particular version e.g. aleon1220/soa:v2 or aleon1220/so
 ### Container Execution
 #### Docker execution
 
-##### Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+### Execute WebApp Container Execution
+#### Docker execution by image version
 Test the immutable webapp from Docker
 ```bash
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run --interactive --tty --detach --publish 8080:8080 --name $APP_WAR_FILE_VERSION aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
 
-##### local build & Run 
+##### local development & executions
 Test the container webapp after building the image locally
 ```bash
-docker build --tag aleon1220/soa:latest .
-docker run -itd --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
+docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
-Run the tomcat server with the pre-built WAR web Archive file
-```bash
-docker run -itd --publish 8080:8080 aleon1220/soa:latest
-```
+- Get the name of the running container
 - get the name of the running container
 ``` bash
 CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
@@ -177,6 +195,10 @@ docker rm $(docker container ls --all --quiet)
 
 #### Docker-compose
 - inject the secrets for Testing docker-compose
+```bash
+op inject -i .env.tpl -o .env
+```
+- single variable- inject the secrets for Testing docker-compose
 ```bash
 op inject -i .env.tpl -o .env
 ```

@@ -22,7 +22,7 @@ gradle-app.setting
 /.project
 
 # Maven build files
-/target
+target/
 
 # Compiled class file
 *.class

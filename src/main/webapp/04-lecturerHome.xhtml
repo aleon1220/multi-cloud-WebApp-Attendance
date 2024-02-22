@@ -1,21 +1,18 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:pe="http://primefaces.org/ui/extensions">
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3c.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+>
 
 <h:head>
-    <title>Login Attendance System</title>
+    <title>Attendance System Lecturer Trainer</title>
 </h:head>
-<h:body onload="start()" > 
-    <f:facet name="header">Register Attendance 
-        <h:outputStylesheet library="default" name="resources/attendance.css" />
-    </f:facet>
-    <p:layout fullPage="true"  >
 
+<h:body> 
+    <p:layout fullPage="true"  >
         <p:layoutUnit position="center">
-            <h:form id="attendanceRegister">
                 <p:panel>
                     <p>
                         Welcome studentId 
@@ -44,13 +41,12 @@
                         
                         <tr>
                             <th class="tg-yw4l"> 
-                                <h:outputText value="          " />
+                                <h:outputText value="SomeValue" />
                             </th>						
                             <th class="tg-yw4l">
                                 <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px" />
                             </th>						
                         </tr>
-                        <tr/>
 
                         <tr>
                             <th class="tg-yw4l"> 
@@ -62,49 +58,10 @@
                         </tr>
                     </table>
                     <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-
                     <p:commandButton value="Confirm Class attendance" id="submitCode" action="#{attendanceRegister.confirmAttendance}" icon="ui-icon-transferthick-e-w" />
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    
-                    <center>
-                    <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="main" />
-                    </center>
-
+                    <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
                 </p:panel>
-            </h:form>
-
-            <style type ="text/css">
-                .animated .ui-progressbar-value {
-                    background-image:
-                        url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml");
-                }
-            </style>
-
-            <script type="text/javascript">
-                function start() {
-                    
-                    window['progress'] = setInterval(function() {
-                        var pbClient = PF('pbClient'), oldValue = pbClient
-                                .getValue(), newValue = oldValue + 1;
-
-                        pbClient.setValue(pbClient.getValue() + 1);
-
-                        if (newValue === 60) {
-                            clearInterval(window['progress']);
-                        }
-
-                    }, 200);
-                }
-            </script>
-
         </p:layoutUnit>
     </p:layout>
 </h:body>

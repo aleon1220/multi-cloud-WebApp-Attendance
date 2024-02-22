@@ -5,17 +5,9 @@
 
 package bean;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.event.ActionEvent;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@ManagedBean(name = "attendanceGenerate")
-@SessionScoped
 public class AttendanceBean {
 
     private String attendanceCode;
@@ -24,7 +16,6 @@ public class AttendanceBean {
     private List<String> classes;
     private String randomCode;
 
-    @PostConstruct
     public void init() {
         // invokes service class to populate classes
         classes = new ArrayList<String>();
@@ -37,20 +28,6 @@ public class AttendanceBean {
         // for(int i = 0; i < 10; i++) {
         // classes.add("Class " + i);
         // }
-    }
-
-    public String generateAttendanceCode() {
-
-        int[] numbers = new int[6];
-        // Generates 10 Random Numbers in the range 1 - 20
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = (int) (Math.random() * 9);
-        } // end for loop
-        System.out.println("Numbers Generated: " + Arrays.toString(numbers).replace(",", " -"));
-        setRandomCode(Arrays.toString(numbers));
-        // Arrays.toString(numbers).replace(",", "");
-
-        return Arrays.toString(numbers).replace(",", " -");
     }
 
     public String getClassName() {
@@ -67,10 +44,6 @@ public class AttendanceBean {
 
     public void setClasses(List<String> classes) {
         this.classes = classes;
-    }
-
-    public void buttonAction(ActionEvent actionEvent) {
-
     }
 
     public String getSelectedUser() {
@@ -98,4 +71,3 @@ public class AttendanceBean {
     }
 }
 // End of AttendanceBean.java
-
