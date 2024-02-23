@@ -1,6 +1,11 @@
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
 
+group = "soa.nz.aut"
+version = "0.7.8"
+description = "Student Attendance WebApp"
+// java.sourceCompatibility = JavaVersion.VERSION_17
+
 plugins {
     java
     // id ("com.adarshr.test-logger") version "3.0.0"
@@ -70,19 +75,15 @@ dependencies {
     implementation("com.kstruct:gethostname4j:1.0.0")
 }
 
-group = "soa.nz.aut"
-version = "0.7.7"
-description = "Student Attendance WebApp"
-// java.sourceCompatibility = JavaVersion.VERSION_17
-
 fun setWarVersion() {
   // function body
     project.version?.let { version ->
         println("WAR Version is $version")
         System.setProperty("APP_WAR_FILE_VERSION", version.toString())
-        println("For local testing do \n APP_WAR_FILE_VERSION=" + version)
-        println("Append to the .env file with \n")
-        println("printf \"\$APP_WAR_FILE_VERSION \\n\" >> .env")
+        println("Local testing \n\n")
+        println("export APP_WAR_FILE_VERSION=" + version.toString())
+        println("Using .env file \n\n")
+        println("printf export\"\$APP_WAR_FILE_VERSION \\n\" >> .env")
     }
 }
 
@@ -111,7 +112,6 @@ fun getWarpackageVersion() {
         "home.xhtml",
         "index.xhtml"
     )    
-  // function body
     project.version?.let { version ->
         println("WAR Version is $version")
         println("Set env variable with")
@@ -127,6 +127,11 @@ fun getWarpackageVersion() {
 tasks.register<DefaultTask>("getProjectInfo") {
     description = "Obtains detailed info about the java web project"
     getWarpackageVersion()
+}
+
+tasks.register<DefaultTask>("getAppVersion") {
+    description = "Get current App version"
+    getAppVersion()
 }
 
 tasks.war {

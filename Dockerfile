@@ -1,11 +1,10 @@
 # install Linux https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Docker desktop https://docs.docker.com/desktop/install/ubuntu/
 # https://hub.docker.com/_/tomcat/tags
-FROM tomcat:9.0-jdk11-corretto-al2
+FROM tomcat:jdk17
+# FROM tomcat:9.0.85-jdk17-corretto-al2
+# FROM tomcat:9.0-jdk17-corretto-al2
 # FROM tomcat:8.5.97-jdk17-corretto-al2
-# FROM tomcat:8.5.97-jdk11-corretto-al2
-# FROM tomcat:8.5.97-jdk8-corretto-al2
-# FROM tomcat:8-jdk8-corretto
 
 # https://hub.docker.com/layers/library/tomcat/7.0.109-jdk8-openjdk/images/sha256-489823486120d076cb576640c5819c6fa54948f470b46c54f02b48f462eb2c23
 
