@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-  <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-   <h:head>
+
+  <h:head>
     <title>Training Session Attendance</title>
   </h:head>
 
@@ -14,43 +13,21 @@
     <p:panel>
       <f:facet name="footer">
         <h:outputText value="Footer Text" />
-      </f:facet>      
+      </f:facet>
 
       <h:outputText value="App Attendance System Main Menu" />
-      <h:outputText value="Attendance System Main Menu Center" />
 
       <div id="countdownPanel">
         <h:outputText id="countdown" value="30" />
       </div>
-      
-      <p:commandButton value="Attend" action="#{attendanceBean.attend}" update="countdown" />
-      <p:commandButton value="Cancel" action="index" />
-      <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
     </p:panel>
-    <p:textEditor />
-    <script type="text/javascript">
-      var countdownValue = parseInt(30); //seconds
-      var countdownInterval = setInterval(function() {
-        // countdown logic
-      }, 1000);
-      
-      function startCountdown() {
-        var countdownElement = parseInt(document.getElementById("countdown"));
-        var countdownPanelElement = document.getElementById("countdownPanel");
-    
-        var countdownInterval = setInterval(function() {
-          countdownValue--;
-          countdownElement.innerHTML = countdownValue;
-          if (countdownValue <= 0) {
-            countdownPanelElement.style.display = "none";
-            timeUpElement.innerHTML = "Time is up!"; // Set the content of the new element
-            timeUpElement.style.color = "red"; // Set the color of the new element
-            countdownPanelElement.parentNode.appendChild(timeUpElement); // Append the new element to the parent of countdownPanelElement            
-          }
-        }, 1000);
-      }
-      startCountdown();
-      </script>    
-    </h:body>
-  </f:view>
+
+    <h:outputText value="Attendance System Main Menu Center" />
+    <div>
+      <p:button outcome="index" value="Go Back" icon="pi pi-sign-out"/>
+    </div>
+    <div>
+      <p:button outcome="index" value="Confirm Attendance" icon="pi pi-sign-in"/>
+    </div>
+  </h:body>
 </html>

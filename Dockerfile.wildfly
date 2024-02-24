@@ -1,0 +1,16 @@
+# https://quay.io/repository/wildfly/wildfly?tab=tags
+FROM quay.io/wildfly/wildfly:27.0.0.Final-jdk17
+
+ARG APP_WAR_FILE_VERSION
+ENV APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION
+ENV APP_WAR_FILE="Attendance"
+ENV APP_WAR_FILE_PATH="build/libs/$APP_WAR_FILE-${APP_WAR_FILE_VERSION}"
+
+LABEL org.nz.itlatinos.image.authors="aleonrangel@outlook.co.nz"
+LABEL maintainer="www.andres.nz"
+LABEL war.version="$APP_WAR_FILE_VERSION"
+LABEL docker.image.build.command="docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly ."
+
+RUN printf "WAR version is $APP_WAR_FILE-$APP_WAR_FILE_VERSION"
+RUN printf "Path to war file $APP_WAR_FILE_PATH"
+ADD ${APP_WAR_FILE_PATH}.war /opt/jboss/wildfly/standalone/deployments/

@@ -1,13 +1,17 @@
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
 
+group = "soa.nz.aut"
+version = "0.7.8"
+description = "Student Attendance WebApp"
+// java.sourceCompatibility = JavaVersion.VERSION_17
+
 plugins {
     java
     // id ("com.adarshr.test-logger") version "3.0.0"
     // https://docs.gradle.org/7.3/dsl/org.gradle.api.tasks.bundling.War.html
     war
     id ("jacoco")
-    id("com.github.bjornvester.wsdl2java") version "2.0.2"
 }
 
 repositories {
@@ -20,18 +24,25 @@ dependencies {
     // https://www.primefaces.org
     // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
-    implementation("org.primefaces:primefaces:14.0.0-RC1")
+    // implementation("org.primefaces:primefaces:primefaces-14.0.0-RC1")
+    implementation("org.primefaces:primefaces:14.0.0-RC1:jakarta")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC1")
-    
-    // JSF runtime
-    // https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api
-    // implementation("org.apache.myfaces.core:myfaces-api:4.0.1")  // API https://myfaces.apache.org
-    // implementation("org.apache.myfaces.core:myfaces-impl:4.0.1") // Faces Implementation
-    // implementation("org.apache.poi:poi:3.17") // apache POI DataExporter (Excel or XML)
-    // implementation("com.rometools:rome:1.9.0") // FeedReader
+    // implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC1:jakarta")
+    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/primefaces/14.0.0-RC1/primefaces-14.0.0-RC1-jakarta.jar"))
+    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/extensions/primefaces-extensions/14.0.0-RC1/primefaces-extensions-14.0.0-RC1-jakarta.jar"))
+    // PrimeFaces Dependencies
+    // https://primefaces.github.io/primefaces/14_0_0/#/gettingstarted/dependencies
+    // https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api Apache myFaces
+    // implementation("org.apache.myfaces.core:myfaces-api:4.0.2")  // API https://myfaces.apache.org
+    // implementation("org.apache.myfaces.core:myfaces-impl:4.0.2")
+    // https://mvnrepository.com/artifact/org.glassfish/jakarta.faces
+    implementation("org.glassfish:jakarta.faces:4.0.5")
+    // https://mvnrepository.com/artifact/org.apache.bval/bval-jsr
+    // implementation("org.apache.poi:poi:5.2.5") // apache POI DataExporter (Excel XML)
+    // implementation("com.rometools:rome:1.15.0") // FeedReader
+    // Apache Commons FileUpload 1.5
     // implementation("net.sf.barcode4j:barcode4j-light:2.3.0") // barcode4j-light
-    // implementation("net.glxn.qrgen:qrgen:1.4") // qrgen QR Code support for Barcode
+    // implementation("net.glxn.qrgen:qrgen:1.8.0") // qrgen QR Code support for Barcode
     // implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20220608.1")
     
     // Jakarta EE
@@ -50,12 +61,12 @@ dependencies {
     // https://bitbucket.org/snakeyaml/snakeyaml/wiki/Documentation
     // https://mavenlibs.com/maven/dependency/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.1")
+    
     // QRFunctions
     implementation("com.google.zxing:javase:3.5.1")
     implementation("com.google.zxing:core:3.5.1")
-    // dependency below only needed if using the Java 8 version of @Generated (through "jdk8") on Java 9 or later
-    // implementation("io.github.threeten-jaxb:threeten-jaxb-core:2.1.0") // Use Java Date/Time API. Clunky GregorianCalendar class
-    // TESTING
+    
+    // TEST
     // JUnit Jupiter API and Engine for unit testing
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
@@ -70,19 +81,15 @@ dependencies {
     implementation("com.kstruct:gethostname4j:1.0.0")
 }
 
-group = "soa.nz.aut"
-version = "0.7.7"
-description = "Student Attendance WebApp"
-// java.sourceCompatibility = JavaVersion.VERSION_17
-
 fun setWarVersion() {
   // function body
     project.version?.let { version ->
         println("WAR Version is $version")
         System.setProperty("APP_WAR_FILE_VERSION", version.toString())
-        println("For local testing do \n APP_WAR_FILE_VERSION=" + version)
-        println("Append to the .env file with \n")
-        println("printf \"\$APP_WAR_FILE_VERSION \\n\" >> .env")
+        println("Local testing \n\n")
+        println("export APP_WAR_FILE_VERSION=" + version.toString())
+        println("Using .env file \n\n")
+        println("printf export\"\$APP_WAR_FILE_VERSION \\n\" >> .env")
     }
 }
 
@@ -111,7 +118,6 @@ fun getWarpackageVersion() {
         "home.xhtml",
         "index.xhtml"
     )    
-  // function body
     project.version?.let { version ->
         println("WAR Version is $version")
         println("Set env variable with")
@@ -129,6 +135,12 @@ tasks.register<DefaultTask>("getProjectInfo") {
     getWarpackageVersion()
 }
 
+tasks.register<DefaultTask>("getAppVersion") {
+    description = "Get current App version"
+    getAppVersion()
+}
+
+
 tasks.war {
     archiveBaseName.set("Attendance")
     webAppDirectory.set(file("src/main/webapp"))
@@ -137,6 +149,7 @@ tasks.war {
     // classpath(fileTree("additionalLibs")) // adds a file-set to the WEB-INF/lib dir.
     // classpath(moreLibs) // adds a configuration to the WEB-INF/lib dir.
     // webXml = file("src/someWeb.xml") // copies a file to WEB-INF/web.xml
+
     doLast{
         setWarVersion()
     }
@@ -175,16 +188,4 @@ tasks.register<Test>("searchOpenLDAP") {
     filter {
         includeTestsMatching("TestLDAPAuthentication.testOpenLDAPAdminSearch_withOpenLDAP")
     }
-}
-// https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
-// https://www.w3schools.com/xml/tempconvert.asmx?WSDL
-wsdl2java {
-    // https://plugins.gradle.org/plugin/com.github.bjornvester.wsdl2java
-    bindingFile.set(layout.projectDirectory.file("src/main/bindings/bindings.xjb"))
-
-    includes.set(
-        listOf(
-        "src/main/resources/wsdl/NumberConversion.wsdl"
-        )
-    )
 }

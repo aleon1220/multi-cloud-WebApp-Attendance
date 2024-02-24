@@ -27,21 +27,21 @@ version="$APP_WAR_FILE_VERSION"
 
 build() {
   gradle clean war --warn || true
-  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/soa:$version . || true
+  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly . || true
 }
 
 run() {
   printf "Executing webapp Locally \n\n" || true
-  docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/soa:$version || true
-  printf "Executing Java Webapp version %s\n" $version
+  docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
+  printf "Executing Java Webapp Attendance version %s\n" $version
 }
 
 clean() {
-  printf "Executing local CLEAN-UP\n\n"
+  printf "Executing local CLEAN-UP \n\n"
   gradle clean || true
   docker kill $version
   docker rm $version
-  docker image rm aleon1220/soa:$version
+  docker image rm aleon1220/attendance-webapp:$version
   printf "docker clean up completed \n\n"
 }
 
