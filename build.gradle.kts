@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
 
 group = "soa.nz.aut"
-version = "0.7.8"
+version = "0.7.9"
 description = "Student Attendance WebApp"
 // java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -120,7 +120,7 @@ fun getWarpackageVersion() {
     )    
     project.version?.let { version ->
         println("WAR Version is $version")
-        println("Set env variable with")
+        println("Kotlin hostname variable value " + hostname_local)
         println("export APP_WAR_FILE_VERSION=" + version.toString())
         println("http://" + hostname + ":8080/Attendance-"+ version.toString())
     }
