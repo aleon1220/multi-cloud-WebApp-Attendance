@@ -5,10 +5,16 @@
 
 package bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttendanceBean {
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
+
+@Named
+@ViewScoped
+public class AttendanceBean implements Serializable{
 
     private String attendanceCode;
     private String selectedUser;
@@ -29,6 +35,16 @@ public class AttendanceBean {
         // classes.add("Class " + i);
         // }
     }
+
+    public void button1Action() {
+        // Implement logic for button 1
+        System.out.println("Button 1 has been clicked!");
+    }
+
+    public void button2Action() {
+        // Implement logic for button 2
+        System.out.println("Button 2 clicked!");
+    }    
 
     public String getClassName() {
         return className;
@@ -68,6 +84,55 @@ public class AttendanceBean {
 
     public void setRandomCode(String randomCode) {
         this.randomCode = randomCode;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((attendanceCode == null) ? 0 : attendanceCode.hashCode());
+        result = prime * result + ((selectedUser == null) ? 0 : selectedUser.hashCode());
+        result = prime * result + ((className == null) ? 0 : className.hashCode());
+        result = prime * result + ((classes == null) ? 0 : classes.hashCode());
+        result = prime * result + ((randomCode == null) ? 0 : randomCode.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AttendanceBean other = (AttendanceBean) obj;
+        if (attendanceCode == null) {
+            if (other.attendanceCode != null)
+                return false;
+        } else if (!attendanceCode.equals(other.attendanceCode))
+            return false;
+        if (selectedUser == null) {
+            if (other.selectedUser != null)
+                return false;
+        } else if (!selectedUser.equals(other.selectedUser))
+            return false;
+        if (className == null) {
+            if (other.className != null)
+                return false;
+        } else if (!className.equals(other.className))
+            return false;
+        if (classes == null) {
+            if (other.classes != null)
+                return false;
+        } else if (!classes.equals(other.classes))
+            return false;
+        if (randomCode == null) {
+            if (other.randomCode != null)
+                return false;
+        } else if (!randomCode.equals(other.randomCode))
+            return false;
+        return true;
     }
 }
 // End of AttendanceBean.java

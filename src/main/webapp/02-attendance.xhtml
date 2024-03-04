@@ -6,24 +6,38 @@
       xmlns:p="http://primefaces.org/ui">
 
   <h:head>
-    <title>Training Session Attendance</title>
+    <title>Attendance Training Session</title>
   </h:head>
 
   <h:body>
-   
     <p:panel>
       <h:outputText value="Attendance System Main Menu Center" />
-      <p:menu>
-        <p:menuitem value="Gmail" url="http://www.google.com" />
-        <p:menuitem value="Hotmail" url="http://www.hotmail.com" />
-        <p:menuitem value="Yahoo Mail" url="http://mail.yahoo.com" />
-        <p:menuitem value="Youtube" url="http://www.youtube.com" />
-        <p:menuitem value="Break" url="http://www.break.com" />
-        <p:menuitem value="Metacafe" url="http://www.metacafe.com" />
-        <p:menuitem value="Facebook" url="http://www.facebook.com" />
-        <p:menuitem value="MySpace" url="http://www.myspace.com" />
-      </p:menu>       
+      <!-- Menu on the left -->
+      <p:sidebar visible="true" position="left">
+          <h:form>
+              <p:menu>
+                  <p:submenu label="Menu">
+                      <p:menuitem value="Home" url="#" />
+                      <p:menuitem value="Reports" url="06-Reports.xhmtl" />
+                      <p:menuitem value="About" url="#" />
+                      <p:menuitem value="Contact" url="#" />
+                  </p:submenu>
+              </p:menu>
+          </h:form>
+      </p:sidebar>
+      <!-- Center area with buttons -->
+      <div style="margin-left: 250px; margin-top: 50px;">
+        <h:form>
+            <div style="text-align: center;">
+                <!-- Button with clock icon -->
+                <p:button icon="pi pi-clock" value="Clock" action="#{attendanceBean.button1Action}" />
 
+                <!-- Button with go-back icon -->
+                <p:button icon="pi pi-arrow-left" value="Go Back" action="#{attendanceBean.button2Action}" />
+            </div>
+        </h:form>
+      </div>
+        
       <div id="countdownPanel">
         <h:outputText id="countdown" value="30" />
         <p:clock />
@@ -34,10 +48,5 @@
         <p:button outcome="03-attendanceOK" value="Confirm Attendance" icon="pi pi-sign-in"/>
       </f:facet>
     </p:panel>
-
-    <div>
-      <p:linkButton outcome="index" value="Go Back" icon="pi pi-sign-out"/>
-    </div>
-    <span><h:outputText value="Text inside span" /></span>
   </h:body>
 </html>
