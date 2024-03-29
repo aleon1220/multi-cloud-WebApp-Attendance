@@ -29,20 +29,10 @@
 
 ## Introduction
 
-Attendance WebApp is a proof of concept to improve the way attendance is managed at AUT university.
-
-The application uses maven, J2EE, primefaces, gson.
-```kotlin
-    maven {
-         url = uri("https://repository.primefaces.org")
-    }
-```
-The idea is that you have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
-
-The application is a proof of concept for Service orientation and Service interoperability in the cloud
+Attendance WebApp is an app to improve the way attendance is managed at training and education institutions.
+The student will have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
 
 ## GitHub Reports
-### GitHub Reports
 ### Security warnings
 > Security Warnings to check
 GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
@@ -50,11 +40,16 @@ To find out more, visit:
 [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
 ### GitHub Vulnerability report
 https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
-### GitHub Vulnerability report
-https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 
 ## Attendance WebApp Architecture (re-architected)
 
+## Refer to the Wiki for details on the project
+
+[Detailed Project Wiki][95f44386]
+
+  [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
+
+### 2018-Attendance WebApp high level Architecture
 2018 project with a lot of things to change
 
 * Simplification of used services
@@ -64,30 +59,23 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 * Host the backend functionality in AWS
 * use diagrams.net for the diagrams
 
-### 2018-Attendance WebApp high level Architecture
-
 ![Multi Cloud architecture](https://imgur.com/LDVqx71.jpg)
 
 ### Attendance WebApp UI
 
 ![Attendance Web App](https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/images/2018/05/random-code-generation.png)
 
-## Refer to the Wiki for details on the project
-
-[Detailed Project Wiki][95f44386]
-
-  [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
-
 # Quickstart
-- A Bash script has `runme.sh` been created to automate the local development.
-Cleans, builds and executes the docker-compose stack locally. Provides a version number for the app found in the build.gradle file
+> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
+- A Bash script `runme.sh` created to automate the local development.
+Cleans, builds and executes the docker-compose stack locally. Provides a version number for the app found from the build.gradle file
 
 ```bash
 ./runme.sh clean ; ./runme.sh build ; ./runme.sh run
 ```
 
 - Gradle Build Web Package
-build and test the WebArchive file. Generates the .WAR file in `build/libs/*.war`
+build and test the .WAR WebArchive file. The .WAR file located at `build/libs/*.war`
 ``` bash
 gradle clean build --console plain --warning-mode all
 ```
@@ -95,22 +83,20 @@ gradle clean build --console plain --warning-mode all
 ```bash
 gradle getAppversion
 ```
-- Run WebApp
+- localDev Run the WebApp
 Run the tomcat server with the latest pre-built WAR web Archive file
 Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
 ```bash
 docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 
-# Local Setup
-> Tested in Win11 with WSL, Github codespaces and Linux Ubuntu 22
-
 ## Project general guidelines
 
 1. Installation process: project a Java project JEE. Import in any IDE and build with gradle or maven. Build docker image and run
-2. Software dependencies: dependencies are described in pom.xml file
+2. Software dependencies: dependencies are described in the gradle file
 3. Latest releases by using git tags
 4. API references. API docs
+
 - Clone repo HTTPS
 ```bash
 git clone https://github.com/aleon1220/multi-cloud-WebApp-Attendance.git
@@ -119,13 +105,12 @@ git clone https://github.com/aleon1220/multi-cloud-WebApp-Attendance.git
 ```bash
 git clone git@github.com:aleon1220/multi-cloud-WebApp-Attendance.git
 ```
-- open repo in chosen IDE
+- open repository in chosen IDE
 IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
 
 ### Maven Build
 > maven has been deprecated and moved to [maven](./maven)
 
-### Gradle Test suite
 #### Use 1Password CLI to inject the secrets
 - as a pre-requisite you must have access to the shared vault
 - login in the CLI
@@ -149,6 +134,8 @@ op inject -i .env.tpl -o .env
 ```
 
 ## Package/Run WebApp
+### Gradle tasks
+#### Build & Test suite
 ### Docker Image Build
 - Build the app image with Docker. Deploy .WAR file in Tomcat
 refer to https://hub.docker.com/_/tomcat
@@ -208,6 +195,6 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 ```
 
 ## Editing project diagrams
-- go to [diagrams.net](https://app.diagrams.net/?src=about)
-- open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
+- Go to [diagrams.net](https://app.diagrams.net/?src=about)
+- Open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
