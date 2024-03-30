@@ -8,23 +8,13 @@
 <h:head>
     Reporting
 </h:head>
-<body>
-
-<p:layout fullPage="true">
-
-    <p:layoutUnit position="north" size="100" header="Top" resizable="false" closable="true" collapsible="true">
-        <h:outputText value="North unit content."/>
-    </p:layoutUnit>
-
-    <p:layoutUnit position="center">
+<h:body>
         <h:form id="SignForm">
             <p:panel>
                 <f:facet name="header">Sign Up</f:facet>
                 <p>Attendance System Sign Up</p>
-
                 <div class="dialog">
                     <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                    
                         <h:outputLabel for="username">Username</h:outputLabel>
                         <h:inputText id="username" value="#{userBean.username}"/>
                         <h:outputLabel for="password">Password</h:outputLabel>
@@ -33,7 +23,6 @@
                         <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>                        
                         <h:outputLabel for="email">email</h:outputLabel>
                         <h:inputText id="email" value="#{userBean.email}"/>                        
-                        
                     </h:panelGrid>
                 </div>
 
@@ -44,13 +33,9 @@
                     </center>
                 </div>
                 <p>
-                    <i>Info: - </i> Sign Up to the attendance web App
+                    <i>Info: </i> Sign Up to the attendance web App
                 </p>
             </p:panel>
         </h:form>
-    </p:layoutUnit>
-
-</p:layout>
-
-</body>
+</h:body>
 </html>

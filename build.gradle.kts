@@ -25,9 +25,9 @@ dependencies {
     // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
     // implementation("org.primefaces:primefaces:primefaces-14.0.0-RC1")
-    implementation("org.primefaces:primefaces:14.0.0-RC1:jakarta")
+    implementation("org.primefaces:primefaces:14.0.0-RC2:jakarta")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    // implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC1:jakarta")
+    implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC2:jakarta")
     // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/primefaces/14.0.0-RC1/primefaces-14.0.0-RC1-jakarta.jar"))
     // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/extensions/primefaces-extensions/14.0.0-RC1/primefaces-extensions-14.0.0-RC1-jakarta.jar"))
     // PrimeFaces Dependencies
@@ -113,11 +113,9 @@ fun getWarpackageVersion() {
         "08-ClassManagement.xhtml",
         "09-UserManagement.xhtml",
         "home.xhtml",
-        "404-attendanceError.xhtml",
-        "404-loginError.xhtml",
-        "home.xhtml",
-        "index.xhtml"
-    )    
+        "index.xhtml",
+        "404-loginError.xhtml"
+    )
     project.version?.let { version ->
         println("WAR Version is $version")
         println("Kotlin hostname variable value " + hostname_local)
