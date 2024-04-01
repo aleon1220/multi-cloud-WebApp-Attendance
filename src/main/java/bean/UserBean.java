@@ -21,6 +21,11 @@ public class UserBean {
     private String refreshToken;
     private String tokenType;
 
+    public UserBean() {
+        super();
+        setId("userID123");
+    }
+
     public String login() {
         // LdapAuthenticator ldapAuthenticator = new LdapAuthenticator();
         // boolean isAuthenticated = ldapAuthenticator.authenticate(username, password);
@@ -101,9 +106,6 @@ public class UserBean {
         this.tokenType = tokenType;
     }
 
-    public UserBean() {
-    }
-
     public String getEmail() {
         return email;
     }
@@ -159,4 +161,5 @@ public class UserBean {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-}// End of UserBean.java
+}
+// End of Class UserBean.java

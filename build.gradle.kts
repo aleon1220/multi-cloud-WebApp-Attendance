@@ -47,9 +47,11 @@ dependencies {
     
     // Jakarta EE
     // https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api
-    // implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
+    implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
     // implementation("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
+    // https://mvnrepository.com/artifact/jakarta.platform/jakartaee-api-parent
+    implementation("jakarta.platform:jakartaee-api-parent:10.0.0")
     // https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
     // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client
     implementation("org.glassfish.jersey.core:jersey-client:3.1.5")

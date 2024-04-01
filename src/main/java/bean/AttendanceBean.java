@@ -9,11 +9,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.faces.view.ViewScoped;
+import jakarta.enterprise.context.RequestScoped;
+
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
-@Named
-@ViewScoped
+@Named("attendance")
+@RequestScoped
 public class AttendanceBean implements Serializable{
 
     private String attendanceCode;
@@ -21,6 +24,7 @@ public class AttendanceBean implements Serializable{
     private String className;
     private List<String> classes;
     private String randomCode;
+    private static final long serialVersionUID = 1L;
 
     public void init() {
         // invokes service class to populate classes
@@ -30,7 +34,6 @@ public class AttendanceBean implements Serializable{
         classes.add("Service Based Design");
         classes.add("Cloud Computing");
         classes.add("Service Deployment");
-
         // for(int i = 0; i < 10; i++) {
         // classes.add("Class " + i);
         // }
@@ -44,6 +47,11 @@ public class AttendanceBean implements Serializable{
     public void button2Action() {
         // Implement logic for button 2
         System.out.println("Button 2 clicked!");
+    }
+
+    public void onTimeout() {
+        System.out.println("TimingOut Attendance");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Time is Out. Talk to your trainer!", null));
     }    
 
     public String getClassName() {
