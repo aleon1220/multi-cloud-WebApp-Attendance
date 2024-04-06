@@ -2,7 +2,7 @@
 set -e
 
 # Array  avoids word splitting issues
-COMMANDS=(build run clean test help)
+COMMANDS=(help build clean run_stack test_stack)
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
 command=$1
 
@@ -45,9 +45,17 @@ clean() {
   printf "docker clean up completed \n\n"
 }
 
-test() {
+test_stack() {
   printf "Executing TESTING \n\n"
   gradle test || true
+}
+
+run_stack() {
+  clean
+  build
+  test_stack
+  run
+  printf "Executing webapp stack Locally \n\n" || true
 }
 
 help() {
