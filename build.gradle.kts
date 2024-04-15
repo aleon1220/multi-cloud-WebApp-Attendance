@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
 
 group = "soa.nz.aut"
-version = "0.7.9"
+version = "0.8.0"
 description = "Student Attendance WebApp"
 // java.sourceCompatibility = JavaVersion.VERSION_17
 
