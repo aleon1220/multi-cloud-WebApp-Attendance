@@ -2,7 +2,7 @@
 set -e
 
 # Array  avoids word splitting issues
-COMMANDS=(help build clean run_stack test_stack)
+COMMANDS=(help build clean run_smoke_test run_stack test_stack)
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
 command=$1
 
@@ -30,7 +30,9 @@ build() {
   docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly . || true
 }
 
-run() {
+run_smoke_test() {
+  clean
+  build
   printf "Executing webapp Locally \n\n" || true
   docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
   printf "Executing Java Webapp Attendance version %s\n" $version
