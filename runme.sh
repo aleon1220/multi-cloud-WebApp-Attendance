@@ -35,7 +35,11 @@ run_smoke_test() {
   build
   printf "Executing webapp Locally \n\n" || true
   docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
-  printf "Executing Java Webapp Attendance version %s\n" $version
+  source .env
+  gradle getProjectInfo
+  printf "\t\tLoaded .env variables file succesfully\n\n"
+  printf "\t\tExecuting Java Webapp Attendance version %s\n" $APP_WAR_FILE_VERSION || true
+  printf "\t\tExecuting Java Webapp Attendance version %s\n" $version
 }
 
 clean() {
