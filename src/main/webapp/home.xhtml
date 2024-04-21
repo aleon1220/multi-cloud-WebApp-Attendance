@@ -11,6 +11,20 @@
   </h:head>
 
   <body>
+  <div>
+    <!-- Menu on the left -->
+    <h:form>
+      <p:menu>
+        <p:submenu label="Menu">
+          <p:menuitem value="Home" url="home.xhtml" />
+          <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+          <p:menuitem value="Reports" url="06-Reports.xhtml" />
+          <p:menuitem value="Support" url="support.xhtml" />
+        </p:submenu>
+      </p:menu>
+    </h:form>
+    <h2>Reports Attendance Tracking</h2>
+  </div>
     <p:panel>
       <f:facet name="header">Attendance Class AttendTrak</f:facet>
       <h:form id="attendance">
@@ -39,43 +53,6 @@
         Generate a code to register attendance for this session. Remember each
         student in the class has a time frame for 1 minute.
       </p>
-
-      <table>
-        <tr>
-          <th>
-            <h:outputText value="Generate Random Code" />
-          </th>
-          <th rowspan="1">
-            <p:commandButton
-              value="Generate Attendance Code"
-              id="generateCode"
-              actionListener="#{attendanceGenerate.generateAttendanceCode}"
-              update="codeId"
-              icon="ui-icon-transferthick-e-w"
-            />
-          </th>
-        </tr>
-      </table>
-
-      <table>
-        <tr>
-          <th rowspan="3" />
-          <th rowspan="2">
-            <p:button
-              icon="ui-icon-locked"
-              title="Attendance Code"
-              disabled="true"
-            />
-          </th>
-
-          <th>
-            <p:outputLabel
-              id="codeId"
-              value="#{attendanceGenerate.randomCode}"
-            />
-          </th>
-        </tr>
-      </table>
       <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="main" />
     </p:panel>
   </body>

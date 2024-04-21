@@ -9,33 +9,47 @@
     Reporting
 </h:head>
 <h:body>
-        <h:form id="SignForm">
-            <p:panel>
-                <f:facet name="header">Sign Up</f:facet>
-                <p>Attendance System Sign Up</p>
-                <div class="dialog">
-                    <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                        <h:outputLabel for="username">Username</h:outputLabel>
-                        <h:inputText id="username" value="#{userBean.username}"/>
-                        <h:outputLabel for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{userBean.password}"/>
-                        <h:outputLabel for="confirmPassword">Confirm Password</h:outputLabel>
-                        <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>                        
-                        <h:outputLabel for="email">email</h:outputLabel>
-                        <h:inputText id="email" value="#{userBean.email}"/>                        
-                    </h:panelGrid>
-                </div>
-
-                <div class="actionButtons">
-                    <center>
-                        <h:commandButton id="submit" value="Sign Up" action="#{userBean.SignUp}"
-                                         style="height: 31px; width: 85px; "/>
-                    </center>
-                </div>
-                <p>
-                    <i>Info: </i> Sign Up to the attendance web App
-                </p>
-            </p:panel>
+    <div>
+        <!-- Menu on the left -->
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="home.xhtml" />
+                    <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                </p:submenu>
+            </p:menu>
         </h:form>
+        <h2>Reports Attendance Tracking</h2>
+    </div>
+    <h:form id="SignForm">
+        <p:panel>
+            <f:facet name="header">Sign Up</f:facet>
+            <p>Attendance System Sign Up</p>
+            <div class="dialog">
+                <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+                    <h:outputLabel for="username">Username</h:outputLabel>
+                    <h:inputText id="username" value="#{userBean.username}"/>
+                    <h:outputLabel for="password">Password</h:outputLabel>
+                    <h:inputSecret id="password" value="#{userBean.password}"/>
+                    <h:outputLabel for="confirmPassword">Confirm Password</h:outputLabel>
+                    <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>
+                    <h:outputLabel for="email">email</h:outputLabel>
+                    <h:inputText id="email" value="#{userBean.email}"/>
+                </h:panelGrid>
+            </div>
+
+            <div class="actionButtons">
+                <center>
+                    <h:commandButton id="submit" value="Sign Up" action="#{userBean.SignUp}"
+                                     style="height: 31px; width: 85px; "/>
+                </center>
+            </div>
+            <p>
+                <i>Info: </i> Sign Up to the attendance web App
+            </p>
+        </p:panel>
+    </h:form>
 </h:body>
 </html>
