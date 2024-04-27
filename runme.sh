@@ -26,7 +26,7 @@ export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
 version="$APP_WAR_FILE_VERSION"
 
 build() {
-  gradle clean war --warn || true
+  gradle clean assemble war --warn || true
   docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly . || true
 }
 
@@ -44,7 +44,6 @@ run_smoke_test() {
 
 clean() {
   printf "Executing local CLEAN-UP \n\n"
-  gradle clean || true
   docker kill $version
   docker rm $version
   docker image rm aleon1220/attendance-webapp:$version
