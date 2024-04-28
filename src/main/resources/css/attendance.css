@@ -11,7 +11,7 @@
     padding: 10px;
     border: 5px solid #ddd;
     float: right;
-    width: 85%;
+    width: 80%;
 }
 
 #leftBlockDiv {
@@ -19,5 +19,5 @@
     padding: 5px;
     border: 1px solid #ddd;
     float: left;
-    width: 20%;
+    width: 10%;
 }
