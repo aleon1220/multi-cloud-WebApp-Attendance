@@ -4,12 +4,13 @@ import java.net.InetAddress
 group = "soa.nz.aut"
 version = "0.8.0"
 description = "Student Attendance WebApp"
+val warDeploymentName = "AttendanceTrak"
 // java.sourceCompatibility = JavaVersion.VERSION_17
 
 plugins {
     java
     // id ("com.adarshr.test-logger") version "3.0.0"
-    // https://docs.gradle.org/7.3/dsl/org.gradle.api.tasks.bundling.War.html
+    // https://docs.gradle.org/current/userguide/war_plugin.html
     war
     id ("jacoco")
 }
@@ -102,6 +103,7 @@ fun getAppVersion() {
 fun getWarpackageVersion() {
     val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
     val hostname = InetAddress.getLocalHost().getHostName()
+    val warDeploymentContextName = "$warDeploymentName-$version"
     
     // Define the page names
     val pages = listOf(
@@ -119,14 +121,14 @@ fun getWarpackageVersion() {
         "404-loginError.xhtml"
     )
     project.version?.let { version ->
-        println("WAR Version is $version")
+        println("\t\t WAR Version is $version")
         println("Kotlin hostname variable value " + hostname_local)
         println("export APP_WAR_FILE_VERSION=" + version.toString())
-        println("http://" + hostname + ":8080/Attendance-"+ version.toString())
+        println("http://" + hostname + ":8080/$warDeploymentContextName")
     }
     // Print URLs for each page
     pages.forEach { page ->
-        println("http://$hostname:8080/Attendance-$version/$page")
+        println("http://$hostname:8080/$warDeploymentContextName/$page")
     }
 }
 
@@ -142,9 +144,9 @@ tasks.register<DefaultTask>("getAppVersion") {
 
 
 tasks.war {
-    archiveBaseName.set("Attendance")
-    webAppDirectory.set(file("src/main/webapp"))
-    // from("src/rootContent") // adds a file-set to the root of the archive
+    archiveBaseName.set(warDeploymentName)
+    //    webAppDirectory.set(file("src/main/webapp"))
+    from("src/main/resources/css") // adds a file-set to the root of the archive
     // webInf { from("src/additionalWebInf") } // adds a file-set to the WEB-INF dir.
     // classpath(fileTree("additionalLibs")) // adds a file-set to the WEB-INF/lib dir.
     // classpath(moreLibs) // adds a configuration to the WEB-INF/lib dir.
