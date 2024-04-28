@@ -3,37 +3,76 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+>
 
   <h:head>
     <title>Attendance Training Session</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
 
   <h:body>
-    <p:panel>
-      <h:outputText value="Attendance System Main Menu Center" />
-      <!-- Center area with buttons -->
-      <div style="margin-left: 250px; margin-top: 50px;">
-        <h:form>
-            <div style="text-align: center;">
-                <!-- Button with clock icon -->
-                <p:button icon="pi pi-clock" value="Clock" action="#{attendanceBean.button1Action}" />
+    <div id="leftBlockDiv">
+      <!-- Menu on the left -->
+      <h:form>
+        <p:menu>
+          <p:submenu label="Menu">
+            <p:menuitem value="Home" url="home.xhtml" />
+            <p:menuitem value="Settings" url="home.xhtml" />
+            <p:menuitem value="Reports" url="06-Reports.xhtml" />
+            <p:menuitem value="Support" url="support.xhtml" />
+          </p:submenu>
+        </p:menu>
+      </h:form>
+    </div>
 
-                <!-- Button with go-back icon -->
-                <p:button icon="pi pi-arrow-left" value="Go Back" action="#{attendanceBean.button2Action}" />
-            </div>
+    <div id="rightBlockDiv">
+      <p>
+        Welcome student ID
+        <p:outputLabel value="#{userBean.id}" />
+        to the session Room.obtainSessionNumber
+        <p:outputLabel value="Lecturer" />
+        <h:outputLabel value="Your studentID:" />
+      </p>
+      <h3>Register your session attendance</h3>
+      <h4>Remember you have time frame for attendance.timeFrameSeconds</h4>
+      <p:panel style="width:10%" >
+        <p:clock displayMode="analog" />
+      </p:panel>
+
+      <p:panel>
+        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:500px" />
+        <p:button id="submitCode" icon="ui-icon-transferthick-e-w" title="Confirm Class attendance" outcome="index" />
+      </p:panel>
+
+      <h:form>
+        <!-- https://www.primefaces.org/showcase-ext/sections/timer/basic.jsf -->
+        <p:growl id="growl" showDetail="true" showSummary="true">
+          <p:autoUpdate />
+        </p:growl>
+        <pe:timer timeout="40" singleRun="true" listener="#{attendance.onTimeout}" style="color: rgba(198, 4, 4, 0.906);"/>
+        <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
+      </h:form>
+      <p:panel>
+        <h:outputText value="Attendance System Main Menu Center" />
+        <!-- Center area with buttons -->
+        <h:form>
+          <!-- Button with clock icon -->
+          <p:button icon="pi pi-clock" value="Clock" action="#{attendanceBean.button1Action}" />
+          <p:button icon="pi pi-arrow-left" value="Go Back" action="#{attendanceBean.button2Action}" />
         </h:form>
-      </div>
-        
-      <div id="countdownPanel">
-        <h:outputText id="countdown" value="30" />
-        <p:clock />
-      </div>
-      <f:facet name="footer">
-        <h:outputText value="Footer Text " />
-        <p:linkButton outcome="index" value="Go Back" icon="pi pi-sign-out"/>
-        <p:button outcome="03-attendanceOK" value="Confirm Attendance" icon="pi pi-sign-in"/>
-      </f:facet>
-    </p:panel>
+
+        <div id="countdownPanel">
+          <h:outputText id="countdown" value="30" />
+          <p:clock />
+        </div>
+        <f:facet name="footer">
+          <h:outputText value="Footer Text " />
+          <p:linkButton outcome="index" value="Go Back" icon="pi pi-sign-out"/>
+          <p:button outcome="03-attendanceOK" value="Confirm Attendance" icon="pi pi-sign-in"/>
+        </f:facet>
+      </p:panel>
+    </div>
   </h:body>
 </html>

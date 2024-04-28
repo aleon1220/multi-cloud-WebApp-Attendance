@@ -8,80 +8,70 @@
 <!-- https://github.com/primefaces-extensions/primefaces-extensions.github.com/wiki/Getting-Started#using-in-facelets -->
 <h:head>
     <title>Attendance System Lecturer Trainer</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
 
 <h:body>
-    <h:outputLabel value="for Lecture/Training Class:" />
-    <div>
+    <h1>Lecture/Trainer Administration Settings</h1>
+
+    <div id="leftBlockDiv">
         <!-- Menu on the left -->
         <h:form>
             <p:menu>
                 <p:submenu label="Menu">
-                    <p:menuitem value="Home" url="home.xhtml" />
-                    <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Home" url="04-lecturerHome.xhtml" />
+                    <p:submenu label="Lecturer Actions">
+                        <p:menuitem value="Student Management" url="07-StudentManagement.xhtml" />
+                        <p:menuitem value="Class Management" url="08-ClassManagement.xhtml" />
+                        <p:menuitem value="User Directory" url="09-UserManagement.xhtml" />
+                    </p:submenu>
                     <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
                     <p:menuitem value="Support" url="support.xhtml" />
                 </p:submenu>
             </p:menu>
         </h:form>
-        <h2>Administration Settings</h2>
-    </div>
-    <div>
-        <p>
-            Welcome student ID
-            <p:outputLabel value="#{userBean.id}" />
-            to the session Room.obtainSessionNumber
-            <p:outputLabel value="Lecturer" />
-            <h:outputLabel value="Your studentID:" />
-        </p>
-        <h3>Register your session attendance</h3>
-        <h4>Remember you have time frame for attendance.timeFrameSeconds</h4>
     </div>
 
-    <p:panel style="width:10%" >
-        <p:clock displayMode="analog" />
-    </p:panel>
+    <div id="rightBlockDiv">
+        <h:outputLabel value="for Lecturer/Trainer Class:" />
+        <div>
+            <h3>Submenu with functionality to complete</h3>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Check previous sessions by date" url="04-lecturerHome.xhtml" />
+                    <p:menuitem value="Manual Attendance override" url="04-lecturerHome.xhtml" />
+                    <p:menuitem value="" url="04-lecturerHome.xhtml" />
+                </p:submenu>
+            </p:menu>
+            <table class="tg">
+                <caption>2018 version use of a table</caption>
+                <tr>
+                    <th class="tg-yw4l">
+                        <p:outputLabel value="Table Header inside of row" />
+                    </th>
+                    <th class="tg-yw4l">
+                        <p:outputLabel value="Table Header inside of row" />
+                    </th>
+                </tr>
+                <tr>
+                    <th class="tg-yw4l">
+                        <h:outputText value="Yet another th" />
+                    </th>
+                    <th class="tg-yw4l">
+                    </th>
+                </tr>
 
-    <p:panel>
-        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:500px" />
-        <p:button id="submitCode" icon="ui-icon-transferthick-e-w" title="Confirm Class attendance" outcome="index" />
-    </p:panel>
-    <h:form>
-        <!-- https://www.primefaces.org/showcase-ext/sections/timer/basic.jsf -->
-        <p:growl id="growl" showDetail="true" showSummary="true">
-            <p:autoUpdate />
-        </p:growl>
-        <pe:timer timeout="40" singleRun="true" listener="#{attendance.onTimeout}" style="color: rgba(198, 4, 4, 0.906);"/>    
-        <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
-    </h:form>
-    <div>
-        <table class="tg">
-            <caption>2018 version use of a table</caption>
-            <tr>
-                <th class="tg-yw4l">
-                    <p:outputLabel value="Table Header inside of row" />
-                </th>
-                <th class="tg-yw4l">
-                    <p:outputLabel value="Table Header inside of row" />
-                </th>
-            </tr>
-            <tr>
-                <th class="tg-yw4l">
-                    <h:outputText value="Yet another th" />
-                </th>
-                <th class="tg-yw4l">
-                </th>
-            </tr>
-
-            <tr>
-                <th class="tg-yw4l">
-                    <h:outputText value="Enter Attendance Code" />
-                </th>
-                <th class="tg-yw4l">
-                    <p:inputText id="inputCode"/>
-                </th>
-            </tr>
-        </table>
+                <tr>
+                    <th class="tg-yw4l">
+                        <h:outputText value="Enter Attendance Code" />
+                    </th>
+                    <th class="tg-yw4l">
+                        <p:inputText id="inputCode"/>
+                    </th>
+                </tr>
+            </table>
+        </div>
     </div>
 </h:body>
 </html>

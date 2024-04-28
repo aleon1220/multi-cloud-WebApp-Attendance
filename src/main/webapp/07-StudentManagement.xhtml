@@ -8,22 +8,31 @@
 >
   <h:head>
     <title>Class Management Attendance System</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
 
   <h:body>
-      <div>
+      <div id="leftBlockDiv">
           <!-- Menu on the left -->
           <h:form>
               <p:menu>
                   <p:submenu label="Menu">
-                      <p:menuitem value="Home" url="home.xhtml" />
-                      <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+                      <p:menuitem value="Home" url="04-lecturerHome.xhtml" />
+                      <p:submenu label="Lecturer Actions">
+                          <p:menuitem value="Student Management" url="07-StudentManagement.xhtml" />
+                          <p:menuitem value="Class Management" url="08-ClassManagement.xhtml" />
+                          <p:menuitem value="User Directory" url="09-UserManagement.xhtml" />
+                      </p:submenu>
                       <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                      <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
                       <p:menuitem value="Support" url="support.xhtml" />
                   </p:submenu>
               </p:menu>
           </h:form>
-          <h2>Reports Attendance Tracking</h2>
+      </div>
+
+      <div id="rightBlockDiv">
+
       </div>
   </h:body>
 </html>

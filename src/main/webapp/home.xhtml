@@ -7,53 +7,40 @@
   xmlns:p="http://primefaces.org/ui"
 >
   <h:head>
-    <title>Attendance System</title>
+    <title>AttendanceTrak Training Session System</title>
+    <!-- <h:outputStylesheet library="css" name="attendance.css" />-->
+    <!-- <h:outputStylesheet name="attendance.css" />-->
+    <!-- <h:outputStylesheet name="css/attendance.css" />-->
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
 
-  <body>
-  <div>
+<body>
+  <div id="leftBlockDiv" name="leftBlock">
     <!-- Menu on the left -->
     <h:form>
       <p:menu>
         <p:submenu label="Menu">
           <p:menuitem value="Home" url="home.xhtml" />
-          <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+          <p:menuitem value="Settings" url="home.xhtml" />
           <p:menuitem value="Reports" url="06-Reports.xhtml" />
           <p:menuitem value="Support" url="support.xhtml" />
         </p:submenu>
       </p:menu>
     </h:form>
-    <h2>Reports Attendance Tracking</h2>
   </div>
-    <p:panel>
-      <f:facet name="header">Attendance Class AttendTrak</f:facet>
-      <h:form id="attendance">
-        <p>Attendance System Date</p>
-        <h4>Time and Date</h4>
-        <p:clock pattern="HH:mm:ss dd/MM/yyyy" mode="server" />
-      </h:form>
-      <p:outputLabel for="class" value="Select Class: " />
-      <p:selectOneMenu
-        id="class"
-        value="#{attendanceGenerate.className}"
-        lazy="true"
-        style="width: 150px"
-      >
-        <f:selectItem itemLabel="Select One Class" itemValue="" />
-        <f:selectItems value="#{attendanceGenerate.classes}" />
-      </p:selectOneMenu>
-
+    <!-- Purpose of the Application (right) -->
+    <div id="rightBlockDiv" name="rightBlock">
+      <h1>AttendanceTrak</h1>
+      <h2>Reports Attendance Tracking</h2>
       <p>
-        Welcome
-        <p:outputLabel value="#{userBean.id}" />
-        to the session
-        <p:outputLabel value="#{Room.obtainSessionNumber}" />
-        for Lecture.
-        <p:outputLabel value="#{paper.lecturerId}" />
-        Generate a code to register attendance for this session. Remember each
-        student in the class has a time frame for 1 minute.
+        Welcome to the Reports Attendance Tracking web application! Our platform is designed to streamline attendance management, making it easier for organizations to track and analyze attendance data.
       </p>
-      <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="main" />
-    </p:panel>
+      <p>
+        Whether you're an administrator, teacher, or student, our system provides efficient tools for recording attendance, generating reports, and ensuring accurate attendance records.
+      </p>
+      <p>
+        Explore the various features in the menu to get started. If you have any questions or need assistance, visit our <a href="support.xhtml">Support</a> page.
+      </p>
+    </div>
   </body>
 </html>

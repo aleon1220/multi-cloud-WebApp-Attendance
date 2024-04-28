@@ -6,32 +6,39 @@
       xmlns:p="http://primefaces.org/ui">
   <h:head>
     <title>User Management Attendance System</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
   <body>
-    <h:outputText value="Attendance System User management" />
-    <p:panel>
-        <div>
-            <!-- Menu on the left -->
-            <h:form>
-                <p:menu>
-                    <p:submenu label="Menu">
-                        <p:menuitem value="Home" url="home.xhtml" />
-                        <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
-                        <p:menuitem value="Reports" url="06-Reports.xhtml" />
-                        <p:menuitem value="Support" url="support.xhtml" />
+    <div id="leftBlockDiv">
+        <!-- Menu on the left -->
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="04-lecturerHome.xhtml" />
+                    <p:submenu label="Lecturer Actions">
+                        <p:menuitem value="Student Management" url="07-StudentManagement.xhtml" />
+                        <p:menuitem value="Class Management" url="08-ClassManagement.xhtml" />
+                        <p:menuitem value="User Directory" url="09-UserManagement.xhtml" />
                     </p:submenu>
-                </p:menu>
-            </h:form>
-        </div>
-        <h2>Reports Attendance Tracking</h2>
-        <div>
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
+    <div id="rightBlockDiv">
+        <h:outputText value="Attendance System User management" />
+        <h2>Manage Students per class</h2>
+        <p:panel>
+            <p:button value="Show Directory Structure" action="index" icon="ui-icon-info" />
+            <p:button value="List Enabled Users" icon="ui-icon-home" />
+        </p:panel>
+        <p:panel>
+            <h2>Reports Attendance Tracking</h2>
             <h2>Reports Attendance Tracking</h2>
             <p:button value="Attendance Report" icon="ui-icon-home" />
-        </div>
-    </p:panel>
-    <p:panel>
-        <p:button value="Show Directory Structure" action="index" icon="ui-icon-info" />
-        <p:button value="List Enabled Users" icon="ui-icon-home" />
-    </p:panel>
+        </p:panel>
+    </div>
   </body>
 </html>

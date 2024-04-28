@@ -6,27 +6,32 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
   <title>Administrator Attendance System</title>
+  <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
 
 <h:body>
-  <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
-    <div>
+  <div id="leftBlockDiv">
+    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
       <!-- Menu on the left -->
       <h:form>
         <p:menu>
           <p:submenu label="Menu">
-            <p:menuitem value="Home" url="home.xhtml" />
-            <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+            <p:menuitem value="Home" url="05-adminStaff.xhtml" />
+            <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
             <p:menuitem value="Reports" url="06-Reports.xhtml" />
+            <p:menuitem value="Teacher" url="04-lecturerHome.xhtml" />
             <p:menuitem value="Support" url="support.xhtml" />
           </p:submenu>
         </p:menu>
       </h:form>
-    </div>
+    </p:panelGrid>
+  </div>
+
+  <div id="rightBlockDiv">
     <h:outputLabel value="Name" />
     <h2>Administration Settings</h2>
-  </p:panelGrid>
-  <p:button icon="ui-icon-circle-close" title="Log Out" outcome="01-login" style="background: 287DF9; color: white" />
+    <p:button icon="ui-icon-circle-close" title="Log Out" outcome="01-login" style="background: 287DF9; color: white" />
+  </div>
 </h:body>
 
 </html>
