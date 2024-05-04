@@ -22,6 +22,7 @@
             <p:menuitem value="Settings" url="home.xhtml" />
             <p:menuitem value="Reports" url="06-Reports.xhtml" />
             <p:menuitem value="Support" url="support.xhtml" />
+            <p:menuitem value="About webapp" url="about.xhtml" />
           </p:submenu>
         </p:menu>
       </h:form>
@@ -38,35 +39,27 @@
         <p:outputLabel value="Lecturer" />
         <h:outputLabel value="Your studentID:" />
       </p>
-
       <p:panel style="width:10%" >
         <p:clock displayMode="analog" />
+        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:40%" />
       </p:panel>
-
-      <p:panel>
-        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:500px" />
-        <p:button id="submitCode" icon="ui-icon-transferthick-e-w" title="Confirm Class attendance" outcome="index" />
-      </p:panel>
-
       <h:form>
         <!-- https://www.primefaces.org/showcase-ext/sections/timer/basic.jsf -->
         <p:growl id="growl" showDetail="true" showSummary="true">
           <p:autoUpdate />
         </p:growl>
-        <pe:timer timeout="35" singleRun="true" listener="#{attendance.onTimeout}" style="color: rgba(198, 4, 4, 0.906);"/>
+        <div style="color: orange; width: 100px; height: 120px">
+          <pe:timer timeout="35" singleRun="true" listener="#{attendance.onTimeout}"/>
+        </div>
+        <p:inputText id="attendanceCode" value="#{attendanceBean.attendanceCode}" required="true" />
+        <div>
+          <p:button icon="pi pi-clock" value="Confirm Attendance" action="#{attendanceBean.button1Action}" />
+        </div>
       </h:form>
       <p:panel>
-        <!-- Center area with buttons -->
-        <h:form>
-          <!-- Button with clock icon -->
-          <p:button icon="pi pi-clock" value="Clock" action="#{attendanceBean.button1Action}" />
-          <p:inputText id="attendanceCode" value="#{attendanceBean.attendanceCode}" required="true" />
-        </h:form>
-
         <f:facet name="footer">
-          <p:linkButton icon="pi pi-arrow-left" outcome="index" value="Go Back"/>
+          <p:linkButton icon="pi pi-arrow-left" outcome="home" value="Go Back"/>
           <p:button icon="pi pi-sign-in" outcome="03-attendanceOK" value="Confirm Attendance"/>
-          <p:button value="Register Attendance" action="#{attendanceBean.button2Action}" />
         </f:facet>
       </p:panel>
     </div>

@@ -8,20 +8,18 @@
 >
   <h:head>
     <title>Attendance Successfully Registered</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
   <h:body>
     <img src="https://i.imgur.com/pjAIJBp.jpg" alt="Attendance Registered" />  
     <h1>Attendance Successfully Registered</h1>
-    <h2>You may close this tab</h2>
     <p>Student has confirmed attendance to session</p>
-    
-    <h:link outcome="index">Go Back to Login Page</h:link>
-    <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
-
+    <h2>You may close this tab</h2>
     <p:panel>
       <h:outputText value="App Attendance System Main Menu" />
-      <h:link outcome="index">Go Back to Login Page</h:link>
-      <p:button icon="ui-icon-circle-arrow" title="Go back" outcome="index" />
+      <p:button icon="ui-icon-circle-arrow" title="Go back" outcome="home" />
+      <h:link outcome="home">hlink Go Back to Login Page</h:link>
+      <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="home" />
     </p:panel>
   </h:body>
 </html>

@@ -12,9 +12,7 @@
 </h:head>
 
 <h:body>
-    <h1>Attendtrak Web App Support</h1>
-    <div>
-        <!-- Menu on the left -->
+    <div id="leftBlockDiv" name="leftBlock">
         <h:form>
             <p:menu>
                 <p:submenu label="Menu">
@@ -22,12 +20,14 @@
                     <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
                     <p:menuitem value="Reports" url="06-Reports.xhtml" />
                     <p:menuitem value="Support" url="support.xhtml" />
+                    <p:menuitem value="About webapp" url="about.xhtml" />
                 </p:submenu>
             </p:menu>
         </h:form>
     </div>
 
     <div id="rightBlockDiv">
+        <h1>Attendtrak Web App Support</h1>
         <p>This page contains information and references to support the web application.</p>
         <p:messages />
         <h:form>

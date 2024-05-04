@@ -24,6 +24,7 @@
           <p:menuitem value="Settings" url="home.xhtml" />
           <p:menuitem value="Reports" url="06-Reports.xhtml" />
           <p:menuitem value="Support" url="support.xhtml" />
+          <p:menuitem value="About app" url="about.xhtml" />
         </p:submenu>
       </p:menu>
     </h:form>
@@ -39,8 +40,13 @@
         Whether you're an administrator, teacher, or student, our system provides efficient tools for recording attendance, generating reports, and ensuring accurate attendance records.
       </p>
       <p>
-        Explore the various features in the menu to get started. If you have any questions or need assistance, visit our <a href="support.xhtml">Support</a> page.
+        Explore the various features in the menu to get started.
+        If you have any questions or need assistance, visit our <a href="support.xhtml">Support</a> page.
       </p>
+      <p:button icon="pi pi-sign-in" outcome="02-attendance" value="Register your Attendance for Session DATE SESSION_NAME"/>
+      <p:panel>
+        <p:linkButton icon="pi pi-arrow-left" outcome="01-login" value="Logout"/>
+      </p:panel>
     </div>
   </body>
 </html>
