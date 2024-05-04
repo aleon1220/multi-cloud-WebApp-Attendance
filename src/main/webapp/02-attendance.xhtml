@@ -28,6 +28,9 @@
     </div>
 
     <div id="rightBlockDiv">
+      <h2>Register your session attendance</h2>
+      <h3>Remember you have time frame for attendance.timeFrameSeconds</h3>
+      <h:outputText value="Attendance System Main Menu Center" />
       <p>
         Welcome student ID
         <p:outputLabel value="#{userBean.id}" />
@@ -35,8 +38,7 @@
         <p:outputLabel value="Lecturer" />
         <h:outputLabel value="Your studentID:" />
       </p>
-      <h3>Register your session attendance</h3>
-      <h4>Remember you have time frame for attendance.timeFrameSeconds</h4>
+
       <p:panel style="width:10%" >
         <p:clock displayMode="analog" />
       </p:panel>
@@ -51,26 +53,20 @@
         <p:growl id="growl" showDetail="true" showSummary="true">
           <p:autoUpdate />
         </p:growl>
-        <pe:timer timeout="40" singleRun="true" listener="#{attendance.onTimeout}" style="color: rgba(198, 4, 4, 0.906);"/>
-        <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
+        <pe:timer timeout="35" singleRun="true" listener="#{attendance.onTimeout}" style="color: rgba(198, 4, 4, 0.906);"/>
       </h:form>
       <p:panel>
-        <h:outputText value="Attendance System Main Menu Center" />
         <!-- Center area with buttons -->
         <h:form>
           <!-- Button with clock icon -->
           <p:button icon="pi pi-clock" value="Clock" action="#{attendanceBean.button1Action}" />
-          <p:button icon="pi pi-arrow-left" value="Go Back" action="#{attendanceBean.button2Action}" />
+          <p:inputText id="attendanceCode" value="#{attendanceBean.attendanceCode}" required="true" />
         </h:form>
 
-        <div id="countdownPanel">
-          <h:outputText id="countdown" value="30" />
-          <p:clock />
-        </div>
         <f:facet name="footer">
-          <h:outputText value="Footer Text " />
-          <p:linkButton outcome="index" value="Go Back" icon="pi pi-sign-out"/>
-          <p:button outcome="03-attendanceOK" value="Confirm Attendance" icon="pi pi-sign-in"/>
+          <p:linkButton icon="pi pi-arrow-left" outcome="index" value="Go Back"/>
+          <p:button icon="pi pi-sign-in" outcome="03-attendanceOK" value="Confirm Attendance"/>
+          <p:button value="Register Attendance" action="#{attendanceBean.button2Action}" />
         </f:facet>
       </p:panel>
     </div>
