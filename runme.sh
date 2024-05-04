@@ -2,7 +2,7 @@
 set -e
 
 # Array  avoids word splitting issues
-COMMANDS=(build run clean test help)
+COMMANDS=(help build clean run_smoke_test run_stack test_stack)
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
 command=$1
 
@@ -26,28 +26,41 @@ export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
 version="$APP_WAR_FILE_VERSION"
 
 build() {
-  gradle clean war --warn || true
+  gradle clean assemble war --warn || true
   docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly . || true
 }
 
-run() {
+run_smoke_test() {
+  clean
+  build
   printf "Executing webapp Locally \n\n" || true
   docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
-  printf "Executing Java Webapp Attendance version %s\n" $version
+  source .env
+  gradle getProjectInfo
+  printf "\t\tLoaded .env variables file succesfully\n\n"
+  printf "\t\tExecuting Java Webapp Attendance version %s\n" $APP_WAR_FILE_VERSION || true
+  printf "\t\tExecuting Java Webapp Attendance version %s\n" $version
 }
 
 clean() {
   printf "Executing local CLEAN-UP \n\n"
-  gradle clean || true
   docker kill $version
   docker rm $version
   docker image rm aleon1220/attendance-webapp:$version
   printf "docker clean up completed \n\n"
 }
 
-test() {
+test_stack() {
   printf "Executing TESTING \n\n"
   gradle test || true
+}
+
+run_stack() {
+  clean
+  build
+  test_stack
+  run
+  printf "Executing webapp stack Locally \n\n" || true
 }
 
 help() {

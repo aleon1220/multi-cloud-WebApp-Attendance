@@ -4,6 +4,7 @@ services:
     # https://github.com/osixia/docker-openldap
     # https://www.openldap.org
     image: osixia/openldap:1.2.4
+    env_file: .env
     environment:
       LDAP_ORGANISATION: "IT Latinos NZ"
       LDAP_DOMAIN: "latintech.org"
@@ -11,10 +12,11 @@ services:
     ports:
       - 389:389
       - 636:636
-    volumes:
-      - ./ldap:/var/lib/ldap
-      - ./ldap:/etc/ldap/slapd.d
+    # volumes:
+    #   - ./ldap:/var/lib/ldap
+    #   - ./ldap:/etc/ldap/slapd.d
   webapp:
     image: aleon1220/soa:latest
+    env_file: .env
     ports:
       - 8080:8080

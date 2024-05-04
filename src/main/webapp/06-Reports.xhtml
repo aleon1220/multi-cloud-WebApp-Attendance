@@ -1,56 +1,58 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    Reporting
+    <title>Reporting AttendanceTrak</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
-<body>
+<h:body>
+    <div id="leftBlockDiv">
+        <!-- Menu on the left -->
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="home.xhtml" />
+                    <p:menuitem value="Settings" url="home.xhtml" />
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
 
-<p:layout fullPage="true">
-
-    <p:layoutUnit position="north" size="100" header="Top" resizable="false" closable="true" collapsible="true">
-        <h:outputText value="North unit content."/>
-    </p:layoutUnit>
-
-    <p:layoutUnit position="center">
+    <div id="rightBlockDiv">
+        <h2>Reports Attendance Tracking</h2>
+        <p>
+            <i>Info: </i> example primefaces panel signup to the attendance web App
+        </p>
         <h:form id="SignForm">
             <p:panel>
                 <f:facet name="header">Sign Up</f:facet>
                 <p>Attendance System Sign Up</p>
-
                 <div class="dialog">
                     <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                    
                         <h:outputLabel for="username">Username</h:outputLabel>
                         <h:inputText id="username" value="#{userBean.username}"/>
                         <h:outputLabel for="password">Password</h:outputLabel>
                         <h:inputSecret id="password" value="#{userBean.password}"/>
                         <h:outputLabel for="confirmPassword">Confirm Password</h:outputLabel>
-                        <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>                        
+                        <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>
                         <h:outputLabel for="email">email</h:outputLabel>
-                        <h:inputText id="email" value="#{userBean.email}"/>                        
-                        
+                        <h:inputText id="email" value="#{userBean.email}"/>
                     </h:panelGrid>
                 </div>
 
                 <div class="actionButtons">
                     <center>
-                        <h:commandButton id="submit" value="Sign Up" action="#{userBean.SignUp}"
-                                         style="height: 31px; width: 85px; "/>
+                        <h:outputLabel>submit changes</h:outputLabel>
                     </center>
                 </div>
-                <p>
-                    <i>Info: - </i> Sign Up to the attendance web App
-                </p>
             </p:panel>
         </h:form>
-    </p:layoutUnit>
-
-</p:layout>
-
-</body>
+    </div>
+</h:body>
 </html>

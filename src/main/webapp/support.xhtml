@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <title>Support Page</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
+</h:head>
+
+<h:body>
+    <div id="leftBlockDiv" name="leftBlock">
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="home.xhtml" />
+                    <p:menuitem value="Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                    <p:menuitem value="About webapp" url="about.xhtml" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
+
+    <div id="rightBlockDiv">
+        <h1>Attendtrak Web App Support</h1>
+        <p>This page contains information and references to support the web application.</p>
+        <p:messages />
+        <h:form>
+            <p:inputText placeholder="Enter your support request" />
+            <p:commandButton value="Submit" />
+        </h:form>
+        <p>For detailed documentation, visit the <a href="https://www.primefaces.org/showcase/support.xhtml">PrimeFaces Showcase Support</a> page.</p>
+    </div>
+</h:body>
+
+</html>

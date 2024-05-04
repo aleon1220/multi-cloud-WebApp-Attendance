@@ -2,14 +2,15 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
 
 group = "soa.nz.aut"
-version = "0.7.8"
+version = "0.8.0"
 description = "Student Attendance WebApp"
+val warDeploymentName = "AttendanceTrak"
 // java.sourceCompatibility = JavaVersion.VERSION_17
 
 plugins {
     java
     // id ("com.adarshr.test-logger") version "3.0.0"
-    // https://docs.gradle.org/7.3/dsl/org.gradle.api.tasks.bundling.War.html
+    // https://docs.gradle.org/current/userguide/war_plugin.html
     war
     id ("jacoco")
 }
@@ -25,9 +26,9 @@ dependencies {
     // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
     // implementation("org.primefaces:primefaces:primefaces-14.0.0-RC1")
-    implementation("org.primefaces:primefaces:14.0.0-RC1:jakarta")
+    implementation("org.primefaces:primefaces:14.0.0-RC2:jakarta")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
-    // implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC1:jakarta")
+    implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC2:jakarta")
     // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/primefaces/14.0.0-RC1/primefaces-14.0.0-RC1-jakarta.jar"))
     // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/extensions/primefaces-extensions/14.0.0-RC1/primefaces-extensions-14.0.0-RC1-jakarta.jar"))
     // PrimeFaces Dependencies
@@ -47,9 +48,11 @@ dependencies {
     
     // Jakarta EE
     // https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api
-    // implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
+    implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
     // implementation("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
+    // https://mvnrepository.com/artifact/jakarta.platform/jakartaee-api-parent
+    implementation("jakarta.platform:jakartaee-api-parent:10.0.0")
     // https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
     // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client
     implementation("org.glassfish.jersey.core:jersey-client:3.1.5")
@@ -100,6 +103,7 @@ fun getAppVersion() {
 fun getWarpackageVersion() {
     val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
     val hostname = InetAddress.getLocalHost().getHostName()
+    val warDeploymentContextName = "$warDeploymentName-$version"
     
     // Define the page names
     val pages = listOf(
@@ -113,20 +117,18 @@ fun getWarpackageVersion() {
         "08-ClassManagement.xhtml",
         "09-UserManagement.xhtml",
         "home.xhtml",
-        "404-attendanceError.xhtml",
-        "404-loginError.xhtml",
-        "home.xhtml",
-        "index.xhtml"
-    )    
+        "index.xhtml",
+        "404-loginError.xhtml"
+    )
     project.version?.let { version ->
-        println("WAR Version is $version")
-        println("Set env variable with")
+        println("\t\t WAR Version is $version")
+        println("Kotlin hostname variable value " + hostname_local)
         println("export APP_WAR_FILE_VERSION=" + version.toString())
-        println("http://" + hostname + ":8080/Attendance-"+ version.toString())
+        println("http://" + hostname + ":8080/$warDeploymentContextName")
     }
     // Print URLs for each page
     pages.forEach { page ->
-        println("http://$hostname:8080/Attendance-$version/$page")
+        println("http://$hostname:8080/$warDeploymentContextName/$page")
     }
 }
 
@@ -142,9 +144,9 @@ tasks.register<DefaultTask>("getAppVersion") {
 
 
 tasks.war {
-    archiveBaseName.set("Attendance")
-    webAppDirectory.set(file("src/main/webapp"))
-    // from("src/rootContent") // adds a file-set to the root of the archive
+    archiveBaseName.set(warDeploymentName)
+    //    webAppDirectory.set(file("src/main/webapp"))
+    from("src/main/resources/css") // adds a file-set to the root of the archive
     // webInf { from("src/additionalWebInf") } // adds a file-set to the WEB-INF dir.
     // classpath(fileTree("additionalLibs")) // adds a file-set to the WEB-INF/lib dir.
     // classpath(moreLibs) // adds a configuration to the WEB-INF/lib dir.

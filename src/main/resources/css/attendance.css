@@ -4,3 +4,20 @@
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg .tg-yw4l{vertical-align:top}
+
+#rightBlockDiv {
+    /* style="width: 70%;" */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 5px solid #ddd;
+    float: right;
+    width: 80%;
+}
+
+#leftBlockDiv {
+    background-color: #f9f9f9;
+    padding: 5px;
+    border: 1px solid #ddd;
+    float: left;
+    width: 10%;
+}

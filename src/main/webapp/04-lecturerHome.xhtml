@@ -1,68 +1,77 @@
 <!DOCTYPE html>
-<html
-  xmlns="http://www.w3c.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
->
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- https://github.com/primefaces-extensions/primefaces-extensions.github.com/wiki/Getting-Started#using-in-facelets -->
 <h:head>
     <title>Attendance System Lecturer Trainer</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
 
-<h:body> 
-    <p:layout fullPage="true"  >
-        <p:layoutUnit position="center">
-                <p:panel>
-                    <p>
-                        Welcome studentId 
-                        <p:outputLabel value="#{userBean.id}" />
-                        to the session
-                        <p:outputLabel value="#{Room.obtainSessionNumber}" />
-                        for Lecture Class SOA:
-                        <p:outputLabel value="#{paper.lecturerId}" />
+<h:body>
+    <h1>Lecture/Trainer Administration Settings</h1>
 
-                        <br /> Your studentID:
-                        <p:outputLabel value="#{userBean.id}" />
-                        is about to register attendance.
+    <div id="leftBlockDiv">
+        <!-- Menu on the left -->
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="04-lecturerHome.xhtml" />
+                    <p:submenu label="Lecturer Actions">
+                        <p:menuitem value="Student Management" url="07-StudentManagement.xhtml" />
+                        <p:menuitem value="Class Management" url="08-ClassManagement.xhtml" />
+                        <p:menuitem value="User Directory" url="09-UserManagement.xhtml" />
+                    </p:submenu>
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
 
-                    </p>
-                    <h4>Remember 246810 you have time frame for 1 minute.</h4>
+    <div id="rightBlockDiv">
+        <h:outputLabel value="for Lecturer/Trainer Class:" />
+        <div>
+            <h3>Submenu with functionality to complete</h3>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Check previous sessions by date" url="04-lecturerHome.xhtml" />
+                    <p:menuitem value="Manual Attendance override" url="04-lecturerHome.xhtml" />
+                    <p:menuitem value="" url="04-lecturerHome.xhtml" />
+                </p:submenu>
+            </p:menu>
+            <table class="tg">
+                <caption>2018 version use of a table</caption>
+                <tr>
+                    <th class="tg-yw4l">
+                        <p:outputLabel value="Table Header inside of row" />
+                    </th>
+                    <th class="tg-yw4l">
+                        <p:outputLabel value="Table Header inside of row" />
+                    </th>
+                </tr>
+                <tr>
+                    <th class="tg-yw4l">
+                        <h:outputText value="Yet another th" />
+                    </th>
+                    <th class="tg-yw4l">
+                    </th>
+                </tr>
 
-                    <table class="tg">
-                        <tr>
-                            <th class="tg-yw4l">
-                                <p:clock displayMode="analog" />
-                            </th>
-                            <th class="tg-yw4l">
-                                <pe:timer timeout="60" singleRun="true" listener="#{attendanceRegister.onTimeout}" />
-                            </th>
-                        </tr>			
-                        
-                        <tr>
-                            <th class="tg-yw4l"> 
-                                <h:outputText value="SomeValue" />
-                            </th>						
-                            <th class="tg-yw4l">
-                                <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px" />
-                            </th>						
-                        </tr>
-
-                        <tr>
-                            <th class="tg-yw4l"> 
-                                <h:outputText value="Enter Attendance Code" />
-                            </th>
-                            <th class="tg-yw4l"> 
-                                <p:inputText id="inputCode" value="#{attendanceRegister.inputCode}" required="true" />
-                            </th>						
-                        </tr>
-                    </table>
-                    <br/>
-                    <p:commandButton value="Confirm Class attendance" id="submitCode" action="#{attendanceRegister.confirmAttendance}" icon="ui-icon-transferthick-e-w" />
-                    <br />
-                    <p:button icon="ui-icon-circle-arrow-w" title="Go back" outcome="index" />
-                </p:panel>
-        </p:layoutUnit>
-    </p:layout>
+                <tr>
+                    <th class="tg-yw4l">
+                        <h:outputText value="Enter Attendance Code" />
+                    </th>
+                    <th class="tg-yw4l">
+                        <p:inputText id="inputCode"/>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
 </h:body>
 </html>

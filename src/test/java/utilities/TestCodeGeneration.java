@@ -10,6 +10,6 @@ public class TestCodeGeneration {
     @Test
     public void testRandomCode() {
         AttendanceBean at = new AttendanceBean();
-        assertNotNull("data", at.generateAttendanceCode());
+        assertNotNull("data", at.getAttendanceCode());
     } // testRandomCode()
 }

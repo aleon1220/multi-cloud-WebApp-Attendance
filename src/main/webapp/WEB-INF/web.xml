@@ -16,7 +16,7 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>01-login.xhtml</welcome-file>
   </welcome-file-list>
   <error-page>
     <error-code>404</error-code>

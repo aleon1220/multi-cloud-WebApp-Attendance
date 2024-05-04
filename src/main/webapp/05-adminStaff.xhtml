@@ -1,97 +1,37 @@
-<!DOCTYPE composition
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
-    xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Main Menu Attendance System</title>
+  <title>Administrator Attendance System</title>
+  <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
 
-<body>
+<h:body>
+  <div id="leftBlockDiv">
+    <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
+      <!-- Menu on the left -->
+      <h:form>
+        <p:menu>
+          <p:submenu label="Menu">
+            <p:menuitem value="Home" url="05-adminStaff.xhtml" />
+            <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
+            <p:menuitem value="Reports" url="06-Reports.xhtml" />
+            <p:menuitem value="Teacher" url="04-lecturerHome.xhtml" />
+            <p:menuitem value="Support" url="support.xhtml" />
+          </p:submenu>
+        </p:menu>
+      </h:form>
+    </p:panelGrid>
+  </div>
 
-    <p:layout fullPage="true">
-
-        <p:layoutUnit position="north" size="100" header="Attendance System Main Menu" resizable="true" closable="true"
-            collapsible="false">
-            <table style="width: 40%">
-                <tr>
-                    <th>WSDL Invokation</th>
-                    <th>REST Get invokation</th>
-                </tr>
-                <tr>
-                    <td>
-                        <h:outputText value="#{main.geoIpWS}" />
-                    </td>
-                    <td>
-                        <h:outputText value="#{main.bibleVerse}" />
-                    </td>
-                </tr>
-            </table>
-
-        </p:layoutUnit>
-
-        <p:layoutUnit position="center">
-
-            <h:form id="mainMenu" target="_blank">
-
-                <p:panel>
-
-                    <table style="width: 40%">
-                        <tr>
-                            <th>Role: Lecturer</th>
-                            <th>Role: Student</th>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <p:button value="Generate Attendance" action="mainMenu" icon="ui-icon-info"
-                                    outcome="attendanceGenerate" style="background:#287DF9; color:white;" />
-                            </td>
-                            <td>
-                                <p:button value="Register Attendance" icon="ui-icon-home" outcome="attendanceRegister"
-                                    style="background:#287DF9; color:white;" />
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <br />
-                    <center>
-                        <p:button icon="ui-icon-circle-close" title="Log Out" outcome="login"
-                            style="background:287DF9; color:white;" />
-                    </center>
-
-                </p:panel>
-
-            </h:form>
-        </p:layoutUnit>
-
-        <p:layoutUnit position="south" size="100" header="Authentication/Session Data" resizable="true" closable="true"
-            collapsible="true">
-            <p>
-                <strong>AccessToken :</strong>
-                <h:outputText value="#{userBean.accessToken}" />
-            </p>
-            <p>
-                <strong>ExpiresIn :</strong>
-                <h:outputText value="#{userBean.expiresIn}" />
-            </p>
-            <p>
-                <strong>IdToken :</strong>
-                <h:outputText value="#{userBean.idToken}" />
-            </p>
-            <p>
-                <strong>RefreshToken :</strong>
-                <h:outputText value="#{userBean.refreshToken}" />
-            </p>
-            <p>
-                <strong>TokenType:</strong>
-                <h:outputText value="#{userBean.tokenType}" />
-            </p>
-
-        </p:layoutUnit>
-
-    </p:layout>
-
-</body>
+  <div id="rightBlockDiv">
+    <h:outputLabel value="Name" />
+    <h2>Administration Settings</h2>
+    <p:button icon="ui-icon-circle-close" title="Log Out" outcome="01-login" style="background: 287DF9; color: white" />
+  </div>
+</h:body>
 
 </html>

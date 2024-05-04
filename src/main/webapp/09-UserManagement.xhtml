@@ -1,45 +1,44 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns="http://www.w3.org/1999/xhtml"
->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
   <h:head>
-    <title>Main Menu Attendance System</title>
+    <title>User Management Attendance System</title>
+    <link rel="stylesheet" type="text/css" href="attendance.css"/>
   </h:head>
   <body>
-    <p:layout fullPage="true">
-      <p:layoutUnit
-        position="north"
-        size="100"
-        header="Attendance System"
-        collapsible="false"
-      >
-        <h:outputText value="Attendance System Main Menu." />
-      </p:layoutUnit>
-
-      <p:layoutUnit position="center">
-        <h:form id="mainMenu" target="_blank">
-          <p:panel>
-            <p:button
-              value="Generate Attendance"
-              action="mainMenu"
-              icon="ui-icon-info"
-            >
-              <f:param name="linkedPage" value="1" />
-              <!-- <h:link value="generate Attendance" outcome="attendance" /> -->
-            </p:button>
-
-            <p:button
-              value="Register Attendance"
-              icon="ui-icon-home"
-            >
-              <f:param name="linkedPage" value="2" />
-            </p:button>
-          </p:panel>
+    <div id="leftBlockDiv">
+        <!-- Menu on the left -->
+        <h:form>
+            <p:menu>
+                <p:submenu label="Menu">
+                    <p:menuitem value="Home" url="04-lecturerHome.xhtml" />
+                    <p:submenu label="Lecturer Actions">
+                        <p:menuitem value="Student Management" url="07-StudentManagement.xhtml" />
+                        <p:menuitem value="Class Management" url="08-ClassManagement.xhtml" />
+                        <p:menuitem value="User Directory" url="09-UserManagement.xhtml" />
+                    </p:submenu>
+                    <p:menuitem value="Reports" url="06-Reports.xhtml" />
+                    <p:menuitem value="Admin Settings" url="05-adminStaff.xhtml" />
+                    <p:menuitem value="Support" url="support.xhtml" />
+                </p:submenu>
+            </p:menu>
         </h:form>
-      </p:layoutUnit>
-    </p:layout>
+    </div>
+    <div id="rightBlockDiv">
+        <h:outputText value="Attendance System User management" />
+        <h2>Manage Students per class</h2>
+        <p:panel>
+            <p:button value="Show Directory Structure" action="index" icon="ui-icon-info" />
+            <p:button value="List Enabled Users" icon="ui-icon-home" />
+        </p:panel>
+        <p:panel>
+            <h2>Reports Attendance Tracking</h2>
+            <h2>Reports Attendance Tracking</h2>
+            <p:button value="Attendance Report" icon="ui-icon-home" />
+        </p:panel>
+    </div>
   </body>
 </html>
