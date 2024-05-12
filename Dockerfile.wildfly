@@ -1,5 +1,5 @@
 # https://quay.io/repository/wildfly/wildfly?tab=tags
-FROM quay.io/wildfly/wildfly:29.0.0.Final-jdk20
+FROM quay.io/wildfly/wildfly:32.0.0.Final-1-jdk21
 
 ARG APP_WAR_FILE_VERSION
 ENV APP_WAR_FILE_VERSION=$APP_WAR_FILE_VERSION
