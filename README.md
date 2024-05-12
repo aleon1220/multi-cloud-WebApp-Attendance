@@ -1,3 +1,7 @@
+[![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-brightgreen.svg)](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/projects)
+[![Automation engineers wanted](https://img.shields.io/badge/Automation%20engineers%20wanted-Yes-brightgreen.svg)](https://github.com/my-org/my-project/issues/new)
+[![Feedback welcome](https://img.shields.io/badge/Feedback%20welcome-Yes-brightgreen.svg)](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/issues/new)
+
 - [Attendance WebApp](#attendance-webapp)
   - [Introduction](#introduction)
   - [GitHub Reports](#github-reports)

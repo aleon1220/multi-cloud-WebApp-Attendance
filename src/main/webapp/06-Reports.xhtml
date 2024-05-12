@@ -3,10 +3,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
-    <title>Reporting AttendanceTrak</title>
+    <title>Reporting AttendTrak</title>
     <link rel="stylesheet" type="text/css" href="attendance.css"/>
 </h:head>
 <h:body>
@@ -19,6 +20,7 @@
                     <p:menuitem value="Settings" url="home.xhtml" />
                     <p:menuitem value="Reports" url="06-Reports.xhtml" />
                     <p:menuitem value="Support" url="support.xhtml" />
+                    <p:menuitem value="About app" url="about.xhtml" />
                 </p:submenu>
             </p:menu>
         </h:form>
@@ -27,32 +29,78 @@
     <div id="rightBlockDiv">
         <h2>Reports Attendance Tracking</h2>
         <p>
-            <i>Info: </i> example primefaces panel signup to the attendance web App
+            <i>Info: </i> Reports for admin staff
         </p>
-        <h:form id="SignForm">
+        <div>
+        <!-- https://www.primefaces.org/showcase-ext/sections/orgchart/basicUsage.jsf -->
+            <pe:orgchart id="orgChart"
+                         widgetVar="orgChartViewWidget"
+                         value="#{orgchartController.orgChartNode}"
+                         draggable="false"
+                         exportButton="false"
+                         pan="true"
+                         parentNodeSymbol="oci-leader"
+                         zoom="true"
+                         exportFileextension="pdf"
+                         direction="#{orgchartController.direction}"
+                         toggleSiblingsResp="true"
+                         style="height:300px">
+            </pe:orgchart>
+        </div>
             <p:panel>
-                <f:facet name="header">Sign Up</f:facet>
-                <p>Attendance System Sign Up</p>
+                <f:facet name="header">Absence Report</f:facet>
+                <p>AttendTrak Absent Report. use https://www.primefaces.org/showcase/ui/chartjs/pie.xhtml</p>
                 <div class="dialog">
+                    <p:button icon="pi pi-sign-in" value="Attendance Session DATE SESSION_NAME"/>
                     <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                        <h:outputLabel for="username">Username</h:outputLabel>
-                        <h:inputText id="username" value="#{userBean.username}"/>
-                        <h:outputLabel for="password">Password</h:outputLabel>
-                        <h:inputSecret id="password" value="#{userBean.password}"/>
-                        <h:outputLabel for="confirmPassword">Confirm Password</h:outputLabel>
-                        <h:inputSecret id="confirmPassword" value="#{userBean.password}"/>
-                        <h:outputLabel for="email">email</h:outputLabel>
-                        <h:inputText id="email" value="#{userBean.email}"/>
+                        <h:outputLabel for="absent">Total absence</h:outputLabel>
+                        <h:outputLabel id="absent">2 students</h:outputLabel>
+                        <h:outputLabel for="trainee01">student 01</h:outputLabel>
+                        <h:outputLabel id="trainee01">john.doe</h:outputLabel>
+                        <h:outputLabel for="trainee02">student 02</h:outputLabel>
+                        <h:outputLabel id="trainee02">juana.marquez</h:outputLabel>
                     </h:panelGrid>
                 </div>
-
-                <div class="actionButtons">
-                    <center>
-                        <h:outputLabel>submit changes</h:outputLabel>
-                    </center>
-                </div>
             </p:panel>
-        </h:form>
+        <h3>Class Attendance Summary Report</h3>
+        <p>Provides an overview of attendance for a specific class within a chosen timeframe.</p>
+        <ul>
+            <li>Total enrolled students: 150</li>
+            <li>Average attendance percentage: 85%</li>
+            <li>Attendance breakdown:</li>
+            <ul>
+                <li>Present: 120 students</li>
+                <li>Absent: 20 students</li>
+                <li>Late: 10 students</li>
+            </ul>
+            <li>Total attendance percentage: 90%</li>
+            <li>Average attendance: 27 students per class</li>
+            <li>Trends:</li>
+            <ul>
+                <li>Weekly spikes after holidays</li>
+                <li>Monthly drops during exam weeks</li>
+            </ul>
+        </ul>
+
+        <h3>Comparative Attendance Report</h3>
+        <p>Compares attendance data across multiple classes or cohorts.</p>
+        <ul>
+            <li>Class A: 80% average attendance</li>
+            <li>Class B: 95% average attendance</li>
+            <li>Class C: 70% average attendance</li>
+            <li>Assessment of teaching methods:</li>
+            <ul>
+                <li>Class B shows the highest attendance; consider sharing their practices with other classes.</li>
+            </ul>
+        </ul>
+
+        <h3>Absence Reason Report</h3>
+        <p>Categorizes absences by reason.</p>
+        <ul>
+            <li>Illness: 40%</li>
+            <li>Family emergency: 40%</li>
+            <li>Approved absence: 20%</li>
+        </ul>
     </div>
 </h:body>
 </html>

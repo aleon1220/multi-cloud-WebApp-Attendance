@@ -4,10 +4,12 @@ set -e
 # Array  avoids word splitting issues
 COMMANDS=(help build clean run_smoke_test run_stack test_stack)
 export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
+# build
+version="$APP_WAR_FILE_VERSION"
 command=$1
 
 print_usage() {
-  printf "Usage: %s <command> [options] Available commands: \n\n" $0
+  printf "Usage: %s <command> [options] Available commands: \n\n" "$0"
   printf "\t %s " "${COMMANDS[@]}"
   printf "\n\n Script tested in Linux Bash 5.1.16 \n\n"
   printf "This OS bash version is: \n\n" 
@@ -16,22 +18,19 @@ print_usage() {
 
 # Function to handle invalid command
 invalid_command() {
-  printf "Invalid command: %s \n\n" $1
+  printf "Invalid command: %s \n\n" "$1"
   print_usage
   exit 1
 }
 
-# build
-export APP_WAR_FILE_VERSION=$(gradle getAppVersion --quiet) || true
-version="$APP_WAR_FILE_VERSION"
-
 build() {
-  gradle clean assemble war --warn || true
-  docker build --build-arg APP_WAR_FILE_VERSION=$version --tag aleon1220/attendance-webapp:$version --file Dockerfile.wildfly . || true
+#  gradle clean assemble war --warn || true
+  gradle clean war --warn || true
+  docker build --build-arg APP_WAR_FILE_VERSION="$version" --tag aleon1220/attendance-webapp:"$version" --file Dockerfile.wildfly . || true
 }
 
 run_smoke_test() {
-  clean
+  clean "$version"
   build
   printf "Executing webapp Locally \n\n" || true
   docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
@@ -43,6 +42,13 @@ run_smoke_test() {
 }
 
 clean() {
+  # Check if a version argument is provided
+  if [ -z "$2" ]; then
+    version="$version"
+  else
+    # Version provided, use it directly
+    version="$2"
+  fi
   printf "Executing local CLEAN-UP \n\n"
   docker kill $version
   docker rm $version
