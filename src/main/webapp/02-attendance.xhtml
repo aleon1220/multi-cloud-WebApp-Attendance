@@ -22,7 +22,7 @@
             <p:menuitem value="Settings" url="home.xhtml" />
             <p:menuitem value="Reports" url="06-Reports.xhtml" />
             <p:menuitem value="Support" url="support.xhtml" />
-            <p:menuitem value="About webapp" url="about.xhtml" />
+            <p:menuitem value="About app" url="about.xhtml" />
           </p:submenu>
         </p:menu>
       </h:form>
@@ -52,16 +52,14 @@
           <pe:timer timeout="35" singleRun="true" listener="#{attendance.onTimeout}"/>
         </div>
         <p:inputText id="attendanceCode" value="#{attendanceBean.attendanceCode}" required="true" />
-        <div>
-          <p:button icon="pi pi-clock" value="Confirm Attendance" action="#{attendanceBean.button1Action}" />
-        </div>
+
+        <p:panel>
+          <f:facet name="footer">
+            <p:linkButton icon="pi pi-arrow-left" outcome="home" value="Go Back"/>
+            <p:button icon="pi pi-sign-in" outcome="03-attendanceOK" value="Confirm Attendance"/>
+          </f:facet>
+        </p:panel>
       </h:form>
-      <p:panel>
-        <f:facet name="footer">
-          <p:linkButton icon="pi pi-arrow-left" outcome="home" value="Go Back"/>
-          <p:button icon="pi pi-sign-in" outcome="03-attendanceOK" value="Confirm Attendance"/>
-        </f:facet>
-      </p:panel>
     </div>
   </h:body>
 </html>
