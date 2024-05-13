@@ -106,20 +106,17 @@ public class UserService {
         Invocation.Builder request = webTarget
         .request(MediaType.APPLICATION_JSON)
         .header("Authorization", json_token);
-
         Response response = request.get();
         // getting JSON data
         System.out.println("Created Session With JSON token" + response);
         //validate if the result is {"username":"10295765","groups":"administrator"} then return OK otherwise return failed
-        String sessionResult = "ok";
-        return sessionResult;
+        return "ok";
     }
 
     private String getUserBeanAsJson(UserBean userBean) {
         // Before converting to GSON check value of id
         Gson gson = null;
         gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        userBean.toString();
         return gson.toJson(userBean);
     }
 

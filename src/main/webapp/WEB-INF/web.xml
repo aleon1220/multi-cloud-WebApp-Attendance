@@ -18,6 +18,22 @@
   <welcome-file-list>
     <welcome-file>01-login.xhtml</welcome-file>
   </welcome-file-list>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/protected/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>*</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/01-login.xhtml</form-login-page>
+      <form-error-page>/404-loginError.xhtml</form-error-page>
+    </form-login-config>
+  </login-config>
   <error-page>
     <error-code>404</error-code>
     <location>/404-loginError.xhtml</location>

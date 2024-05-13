@@ -14,28 +14,16 @@ public class UserBean {
     private String lastName;
     private String email;
     private String token;
-    private String returnMsg;
     private String accessToken;
     private String expiresIn;
     private String idToken;
     private String refreshToken;
     private String tokenType;
+    private String returnMsg;
 
     public UserBean() {
         super();
         setId("userID123");
-    }
-
-    public String login() {
-        // LdapAuthenticator ldapAuthenticator = new LdapAuthenticator();
-        // boolean isAuthenticated = ldapAuthenticator.authenticate(username, password);
-        boolean isAuthenticated = true;
-
-        if (isAuthenticated) {
-            return "home"; // navigate to home page
-        } else {
-            return "404-loginError"; // stay on login page
-        }
     }
 
     public String loginToken() {
@@ -64,7 +52,7 @@ public class UserBean {
             System.out.println("UserBean. inside exception catch");
             return "loginError";
         }
-    }// end of login method
+    }// end of loginToken method
 
     public String getAccessToken() {
         return accessToken;
@@ -114,10 +102,6 @@ public class UserBean {
         return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getReturnMsg() {
         return returnMsg;
     }
@@ -136,6 +120,10 @@ public class UserBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setReturnMsg(String returnMsg) {
