@@ -3,7 +3,7 @@ services:
   openldap:
     # https://github.com/osixia/docker-openldap
     # https://www.openldap.org
-    image: osixia/openldap:1.2.4
+    image: osixia/openldap:1.2.5
     env_file: .env
     environment:
       LDAP_ORGANISATION: "IT Latinos NZ"
@@ -12,11 +12,27 @@ services:
     ports:
       - 389:389
       - 636:636
-    # volumes:
-    #   - ./ldap:/var/lib/ldap
-    #   - ./ldap:/etc/ldap/slapd.d
-  webapp:
-    image: aleon1220/soa:latest
+#    volumes:
+#      - ./ldap:/var/lib/ldap
+#      - ./ldap:/etc/ldap/slapd.d
+  ldap-client:
+#   https://hub.docker.com/r/leenooks/phpldapadmin
+    image: leenooks/phpldapadmin:2.0.0-dev
+    depends_on:
+      - openldap
+    env_file: .env
+    environment:
+#      https://github.com/leenooks/phpLDAPadmin/wiki/Configuration-Variables
+      APP_KEY: ${APP_KEY}
+      LDAP_HOST: localhost
+      LDAP_PORT: 389
+      LDAP_USERNAME: ${LDAP_ADMIN}
+      LDAP_PASSWORD: ${LDAP_ADMIN_PASS}
+    ports:
+      - "80:80"
+
+  attendTrak:
+    image: "aleon1220/attendance-webapp:${APP_WAR_FILE_VERSION}"
     env_file: .env
     ports:
-      - 8080:8080
+      - "8080:8080"
