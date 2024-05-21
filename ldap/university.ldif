@@ -1,11 +1,21 @@
-dn: ou=lecturers,dc=university,dc=nz,dc=andres
+dn: ou=lecturers,dc=latintech,dc=org
 objectClass: organizationalUnit
 ou: lecturers
 
-dn: ou=staff,dc=university,dc=nz,dc=andres
+dn: ou=staff,dc=latintech,dc=org
 objectClass: organizationalUnit
 ou: staff
 
-dn: ou=students,dc=university,dc=nz,dc=andres
+dn: ou=students,dc=latintech,dc=org
 objectClass: organizationalUnit
 ou: students
+
+dn: uid=fernando.rangel,ou=lecturers,dc=latintech,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Fernando
+sn: Rangel
+uid: fernando.rangel
+userPassword:: e1NTSEF9WXRFcFNSeVFwV1RueWw2SDNKNkc5aWxoMHhySTZLWVR5RjJjSWc9PQ==
