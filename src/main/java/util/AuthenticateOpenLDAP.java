@@ -6,7 +6,20 @@ import com.unboundid.ldap.sdk.SearchResult;
 import com.unboundid.ldap.sdk.SearchResultEntry;
 import com.unboundid.ldap.sdk.SearchScope;
 
+import static java.lang.System.getProperty;
+
 public class AuthenticateOpenLDAP {
+
+    public AuthenticateOpenLDAP(){
+        bindDnPassword = getProperty("LDAP_ADMIN_PASS");
+    }
+
+    private String bindDnPassword;
+
+    public String getBindDnPassword() {
+        return bindDnPassword;
+    }
+
     public void openLDAPAdminSearch() {
         // LDAP connection parameters
         String ldapURL = "ldap://localhost";
