@@ -9,7 +9,7 @@
   </h:head>
 
   <h:body>
-    <h:graphicImage name="/img/logo.jpeg" />
+    <h:graphicImage name="img/logo.jpeg" />
 
     <img id="logo" src="img/logo.jpeg" alt="Attendance" style="width: 400px; height: 270px"/>
     <h1>Training Session Attendance System</h1>
@@ -17,15 +17,16 @@
       <i>Information:</i> Enter the username and password provided to you.
     </p>
     
-    <h:form>
+    <h:form id="loginForm">
+      <p:messages id="messages" />
       <p:panel header="AttendTrak Login">
         <!-- https://primefaces.github.io/primefaces-->
         <h:panelGrid columns="2">
-          <h:outputLabel for="username" value="Username ID" />
-          <p:inputText id="username" value="#{credentials.username}" required="true" />
-          <h:outputLabel for="password" value="#{credentials.password}" />
-          <p:password id="password" required="true" />
-          <p:commandButton value="Login" action="#{userBean.login}" update="messages" />
+          <h:outputLabel for="username" value="Username" />
+          <p:inputText id="username" value="#{credential.username}" required="true" />
+          <h:outputLabel for="password" value="Password" />
+          <p:password id="password" required="true" value="#{credential.password}" />
+          <p:commandButton value="Login" action="#{credential.login}" update="messages" />
         </h:panelGrid>
       </p:panel>
     </h:form>
