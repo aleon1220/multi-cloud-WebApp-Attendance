@@ -3,7 +3,6 @@ package auth.login;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import bean.Credentials;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
@@ -28,10 +27,6 @@ public class TestLogin {
         assertSame("home", authService.login("demo.user@testing.com", user.getPassword()));
     }
 
-    public void loginGeneralUserNOK() {
-    }
-
     public void loginLecturer() {
     }
-
-}
+} // End of TestLogin
