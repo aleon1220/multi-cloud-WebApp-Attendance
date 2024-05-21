@@ -28,11 +28,10 @@ services:
       APP_KEY: ${APP_KEY}
       LDAP_HOST: openldap
       LDAP_PORT: 389
-      LDAP_USERNAME: ${LDAP_ADMIN}
+      LDAP_USERNAME: cn=admin,dc=latintech,dc=org
       LDAP_PASSWORD: ${LDAP_ADMIN_PASS}
     ports:
       - "80:80"
-
 
   attendTrak:
     image: "aleon1220/attendance-webapp:${APP_WAR_FILE_VERSION}"
