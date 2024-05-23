@@ -108,20 +108,10 @@ fun getWarpackageVersion() {
     val hostname = InetAddress.getLocalHost().getHostName()
     val warDeploymentContextName = "$warDeploymentName-$version"
     
-    // Define the page names
+    // list the directory contents
     val pages = listOf(
         "01-login.xhtml",
-        "02-attendance.xhtml",
-        "03-attendanceOK.xhtml",
-        "04-lecturerHome.xhtml",
-        "05-adminStaff.xhtml",
-        "06-Reports.xhtml",
-        "07-StudentManagement.xhtml",
-        "08-ClassManagement.xhtml",
-        "09-UserManagement.xhtml",
-        "home.xhtml",
-        "index.xhtml",
-        "404-loginError.xhtml"
+        "home.xhtml"
     )
     project.version?.let { version ->
         println("\t\t WAR Version is $version")
