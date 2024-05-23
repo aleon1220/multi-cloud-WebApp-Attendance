@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app
-  xmlns="https://jakarta.ee/xml/ns/jakartaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-  version="6.0"
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0"
 >
   <display-name>Class AttendTrak</display-name>
   <!-- JSF mapping -->
@@ -20,15 +19,19 @@
   <welcome-file-list>
     <welcome-file>01-login.xhtml</welcome-file>
   </welcome-file-list>
+
   <security-constraint>
+    <display-name>Restrict XHTML Documents</display-name>
     <web-resource-collection>
-      <web-resource-name>Protected Area</web-resource-name>
+      <web-resource-name>XHTML</web-resource-name>
       <url-pattern>/protected/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
+      <!-- could be person role in the directory -->
       <role-name>*</role-name>
     </auth-constraint>
   </security-constraint>
+
   <login-config>
     <auth-method>FORM</auth-method>
     <form-login-config>
@@ -36,8 +39,14 @@
       <form-error-page>/404-loginError.xhtml</form-error-page>
     </form-login-config>
   </login-config>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/errorPage.xhtml</location>
+  </error-page>
+
   <error-page>
     <error-code>404</error-code>
-    <location>/404-loginError.xhtml</location>
+    <location>/errorPage.xhtml</location>
   </error-page>
 </web-app>
