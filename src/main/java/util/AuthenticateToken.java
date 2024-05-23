@@ -84,7 +84,7 @@ public class AuthenticateToken {
 
     public String onTimeout() {
         System.out.println("Timeout Try again!!");
-        return "index";
+        return "01-login";
     }
 
     public void cancel() {

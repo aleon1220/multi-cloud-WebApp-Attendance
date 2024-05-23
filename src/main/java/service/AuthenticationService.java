@@ -12,7 +12,7 @@ import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 )
 @LoginToContinue(
         loginPage = "/01-login.xhtml",
-        errorPage = "/404-loginError.xhtml"
+        errorPage = "/errorPage.xhtml"
 )
 public class AuthenticationService {
 
@@ -23,9 +23,9 @@ public class AuthenticationService {
         boolean isAuthenticated = true;
 
         if (isAuthenticated) {
-            result = "home";
+            result = "protected/home";
         } else {
-            result = "404-loginError";
+            result = "errorPage";
         }
         return result;
     }
