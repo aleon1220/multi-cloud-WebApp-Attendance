@@ -54,6 +54,8 @@ dependencies {
     implementation("jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0-M2")
     // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
     implementation("jakarta.validation:jakarta.validation-api:3.1.0-M2")
+    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
 
     // Utilities
     // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client

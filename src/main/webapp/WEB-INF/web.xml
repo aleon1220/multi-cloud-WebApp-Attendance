@@ -36,7 +36,7 @@
     <auth-method>FORM</auth-method>
     <form-login-config>
       <form-login-page>/01-login.xhtml</form-login-page>
-      <form-error-page>/404-loginError.xhtml</form-error-page>
+      <form-error-page>/404-errorLogin</form-error-page>
     </form-login-config>
   </login-config>
 

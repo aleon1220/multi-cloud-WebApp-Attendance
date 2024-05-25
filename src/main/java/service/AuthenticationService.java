@@ -21,9 +21,11 @@ public class AuthenticationService {
         // LdapAuthenticator ldapAuthenticator = new LdapAuthenticator();
         // boolean isAuthenticated = ldapAuthenticator.authenticate(username, password);
         boolean isAuthenticated = true;
+        System.out.println("\t\t\t login function in service");
 
         if (isAuthenticated) {
             result = "protected/home";
+//            result = "protected/home?faces-redirect=true";
         } else {
             result = "errorPage";
         }

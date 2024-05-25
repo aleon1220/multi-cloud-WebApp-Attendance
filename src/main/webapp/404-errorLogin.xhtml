@@ -7,15 +7,16 @@
   xmlns:p="http://primefaces.org/ui"
 >
   <h:head>
-    <title>Error</title>
+    <title>Login Error</title>
   </h:head>
 
   <h:body>
     <p:panel>
-      <h1>Please report to system Admin</h1>
-      <h2>Operation eror in webapp</h2>
-      <h:link outcome="01-login">Go Back to Login Page</h:link>
+      <h1>Please Verify user name or password</h1>
+      <h2>Invalid login attempt</h2>
+      <p>Error authenticating the user</p>
       <img src="https://i.imgur.com/KEdFWDA.jpg" alt="Login Error" />
+      <h:link outcome="01-login">Go Back to Login Page</h:link>
       <p:button icon="ui-icon-circle-arrow-w" title="Go Back to Login Page" outcome="01-login" />
     </p:panel>
   </h:body>

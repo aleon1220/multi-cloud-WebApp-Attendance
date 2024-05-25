@@ -25,8 +25,8 @@
           <h:outputLabel for="username" value="Username" />
           <p:inputText id="username" value="#{credential.username}" required="true" />
           <h:outputLabel for="password" value="Password" />
-          <p:password id="password" required="true" value="#{credential.password}" />
-          <p:commandButton value="Login" action="#{credential.login}" update="messages" />
+          <p:password id="password" value="#{credential.password}" required="true" />
+          <p:commandButton value="Login" action="#{credential.login}" update="messages" ajax="false"/>
         </h:panelGrid>
       </p:panel>
     </h:form>
