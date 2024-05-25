@@ -25,12 +25,9 @@ dependencies {
     // https://www.primefaces.org
     // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
-    // implementation("org.primefaces:primefaces:primefaces-14.0.0-RC1")
     implementation("org.primefaces:primefaces:14.0.0-RC3:jakarta")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
     implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC3:jakarta")
-    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/primefaces/14.0.0-RC1/primefaces-14.0.0-RC1-jakarta.jar"))
-    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/extensions/primefaces-extensions/14.0.0-RC1/primefaces-extensions-14.0.0-RC1-jakarta.jar"))
     // PrimeFaces Dependencies
     // https://primefaces.github.io/primefaces/14_0_0/#/gettingstarted/dependencies
     // https://mvnrepository.com/artifact/org.glassfish/jakarta.faces
@@ -41,21 +38,25 @@ dependencies {
     // implementation("net.sf.barcode4j:barcode4j-light:2.3.0") // barcode4j-light
     // implementation("net.glxn.qrgen:qrgen:1.8.0") // qrgen QR Code support for Barcode
     // implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20220608.1")
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5
+    implementation("org.apache.httpcomponents.client5:httpclient5:5.3.1")
 
     // Jakarta EE
     // https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api
     implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
     // implementation("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
     // https://mvnrepository.com/artifact/jakarta.platform/jakartaee-api-parent
     implementation("jakarta.platform:jakartaee-api-parent:10.0.0")
     // https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
+    // https://jakarta.ee/specifications/platform/10/apidocs/jakarta/security/enterprise/identitystore/ldapidentitystoredefinition#bindDnPassword--
     // https://mvnrepository.com/artifact/jakarta.security.enterprise/jakarta.security.enterprise-api
     implementation("jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0-M2")
     // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
     implementation("jakarta.validation:jakarta.validation-api:3.1.0-M2")
     // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    // https://mvnrepository.com/artifact/jakarta.resource/jakarta.resource-api
+    implementation("jakarta.resource:jakarta.resource-api:2.1.0")
 
     // Utilities
     // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client

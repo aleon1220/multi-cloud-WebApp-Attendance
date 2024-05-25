@@ -23,10 +23,10 @@
         <!-- https://primefaces.github.io/primefaces-->
         <h:panelGrid columns="2">
           <h:outputLabel for="username" value="Username" />
-          <p:inputText id="username" value="#{credential.username}" required="true" />
+          <p:inputText id="username" value="#{login.username}" required="true" />
           <h:outputLabel for="password" value="Password" />
-          <p:password id="password" value="#{credential.password}" required="true" />
-          <p:commandButton value="Login" action="#{credential.login}" update="messages" ajax="false"/>
+          <p:password id="password" value="#{login.password}" required="true" />
+          <p:commandButton value="Login" action="#{login.login}" update="messages" ajax="false"/>
         </h:panelGrid>
       </p:panel>
     </h:form>
