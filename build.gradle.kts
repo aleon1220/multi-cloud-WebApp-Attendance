@@ -1,5 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.net.InetAddress
+import java.nio.file.Files
+import java.nio.file.Paths
 
 group = "soa.nz.aut"
 version = "0.9.0"
@@ -110,9 +112,14 @@ fun getWarpackageVersion() {
     val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
     val hostname = InetAddress.getLocalHost().getHostName()
     val warDeploymentContextName = "$warDeploymentName-$version"
+    val dir = Paths.get("src/main/webapp")
+
+    val pages = Files.list(dir)
+    .filter { Files.isRegularFile(it) && it.toString().endsWith(".xhtml") }
+    .toList()
     
     // list the directory contents
-    val pages = listOf(
+    val pagesManual = listOf(
         "01-login.xhtml",
         "home.xhtml"
     )
@@ -120,6 +127,7 @@ fun getWarpackageVersion() {
         println("\t\t WAR Version is $version")
         println("Kotlin hostname variable value " + hostname_local)
         println("export APP_WAR_FILE_VERSION=" + version.toString())
+        println("\t\t Public Accesible xhtml pages ")
         println("http://" + hostname + ":8080/$warDeploymentContextName")
     }
     // Print URLs for each page
