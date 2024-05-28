@@ -9,7 +9,6 @@ val warDeploymentName = "AttendanceTrak"
 
 plugins {
     java
-    // id ("com.adarshr.test-logger") version "3.0.0"
     // https://docs.gradle.org/current/userguide/war_plugin.html
     war
     id ("jacoco")
@@ -25,20 +24,13 @@ dependencies {
     // https://www.primefaces.org
     // https://primefaces.github.io/primefaces
     // https://mvnrepository.com/artifact/org.primefaces/primefaces
-    // implementation("org.primefaces:primefaces:primefaces-14.0.0-RC1")
+    // jakarta classifier https://forum.primefaces.org/viewtopic.php?t=75921
     implementation("org.primefaces:primefaces:14.0.0-RC2:jakarta")
     // https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions
     implementation("org.primefaces.extensions:primefaces-extensions:14.0.0-RC2:jakarta")
-    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/primefaces/14.0.0-RC1/primefaces-14.0.0-RC1-jakarta.jar"))
-    // implementation(files("https://repo.maven.apache.org/maven2/org/primefaces/extensions/primefaces-extensions/14.0.0-RC1/primefaces-extensions-14.0.0-RC1-jakarta.jar"))
-    // PrimeFaces Dependencies
     // https://primefaces.github.io/primefaces/14_0_0/#/gettingstarted/dependencies
-    // https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api Apache myFaces
-    // implementation("org.apache.myfaces.core:myfaces-api:4.0.2")  // API https://myfaces.apache.org
-    // implementation("org.apache.myfaces.core:myfaces-impl:4.0.2")
     // https://mvnrepository.com/artifact/org.glassfish/jakarta.faces
     implementation("org.glassfish:jakarta.faces:4.0.5")
-    // https://mvnrepository.com/artifact/org.apache.bval/bval-jsr
     // implementation("org.apache.poi:poi:5.2.5") // apache POI DataExporter (Excel XML)
     // implementation("com.rometools:rome:1.15.0") // FeedReader
     // Apache Commons FileUpload 1.5
@@ -53,6 +45,8 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
     // https://mvnrepository.com/artifact/jakarta.platform/jakartaee-api-parent
     implementation("jakarta.platform:jakartaee-api-parent:10.0.0")
+
+    // other utilities
     // https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
     // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client
     implementation("org.glassfish.jersey.core:jersey-client:3.1.5")
