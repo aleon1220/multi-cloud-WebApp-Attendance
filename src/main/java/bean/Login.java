@@ -2,6 +2,7 @@ package bean;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -23,6 +24,7 @@ import jakarta.resource.spi.ConfigProperty;
 import org.primefaces.context.PrimeFacesContext;
 import service.AuthenticationService;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import static jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters.withParams;
@@ -36,8 +38,8 @@ import static jakarta.security.enterprise.authentication.mechanism.http.Authenti
 //https://jakarta.ee/specifications/platform/9/apidocs/jakarta/security/enterprise/identitystore/ldapidentitystoredefinition
 @LdapIdentityStoreDefinition(
         url = "ldap://openldap:389",
-//        callerBaseDn = "dc=latintech,dc=org",
-        groupSearchBase = "ou=People,dc=latintech,dc=org",
+//        groupSearchBase = "ou=group,dc=latintech,dc=org",
+        callerBaseDn = "dc=latintech,dc=org",
         bindDn = "cn=admin,dc=latintech,dc=org",
         bindDnPassword = ""
 //        bindDnPassword ="#{login.bindDnPassword}" // bind Distinguished Name password
@@ -67,15 +69,15 @@ public class Login implements Serializable {
     AuthenticationService authService = new AuthenticationService();
 
     public void login() {
-        PrimeFacesContext facesContext;
+        PrimeFacesContext primeFacesContext;
         FacesContext context = FacesContext.getCurrentInstance();
         Credential credential = new UsernamePasswordCredential(username, new Password(password));
 
         try {
             System.out.println("\t\t\t login function in Login");
             CredentialValidationResult validationResult = identityStoreHandler.validate(credential);
-            System.out.println("\t\t\t login function DN" + validationResult.getCallerDn());
-            System.out.println("\t\t\t login function credential valid? "+credential.isValid());
+            System.out.println("\t\t Login function validation Result " + validationResult.getStatus());
+            System.out.println("\t\t\t login function credential valid? " + credential.isValid());
             // Request for authentication
             AuthenticationStatus status = securityContext.authenticate(
                     getRequest(context),
@@ -83,11 +85,18 @@ public class Login implements Serializable {
                     withParams().credential(credential));
 
 //            AuthenticationStatus status = identityStoreHandler.validate(credential);
-            if (status.equals(AuthenticationStatus.SEND_CONTINUE)) {
-                // Authentication mechanism has send a redirect, should not continue the login process
-                FacesContext.getCurrentInstance().responseComplete();
-//                context.responseComplete(); //gh:soteria-customform-ldap-example
-            } else if (status.equals(AuthenticationStatus.SEND_FAILURE)) {
+            var fancyValidation = status.equals(AuthenticationStatus.SEND_CONTINUE);
+            System.out.println("\t\t Login function fancyValidation Result " + fancyValidation);
+
+            if (credential.isValid()) {
+                // Authentication mechanism has sent a redirect, continue the login process
+                System.out.println("\t\t Login function If statement credential success validation");
+                FacesContext facesContext = FacesContext.getCurrentInstance();
+                ExternalContext externalContext = facesContext.getExternalContext();
+                externalContext.redirect(externalContext.getRequestContextPath() + "/protected/home");
+                facesContext.responseComplete();
+            } else {
+//            else if (status.equals(AuthenticationStatus.SEND_FAILURE)) {
                 // Something went wrong during authentication
                 addError("Authentication failed");
             }
@@ -99,6 +108,8 @@ public class Login implements Serializable {
                 "Error: check username or password to find issues"+ e.getMessage()));
             System.out.println("\t\t\t login function credential valid? "+ e.getMessage());
 //            return "errorPage"; // Redirect to error page
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
