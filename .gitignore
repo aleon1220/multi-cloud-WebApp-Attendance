@@ -1,4 +1,6 @@
 # Security secrets
+# local ldif file
+*.ldif
 # 1Password locally injected
 *.env
 # avoid the jwt injected file
