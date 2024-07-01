@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.servlet.http.HttpSession;
-import jakarta.resource.spi.ConfigProperty;
 import org.primefaces.context.PrimeFacesContext;
 import service.AuthenticationService;
 
@@ -37,12 +36,12 @@ import static jakarta.security.enterprise.authentication.mechanism.http.Authenti
 )
 //https://jakarta.ee/specifications/platform/9/apidocs/jakarta/security/enterprise/identitystore/ldapidentitystoredefinition
 @LdapIdentityStoreDefinition(
-        url = "ldap://openldap:389",
-//        groupSearchBase = "ou=group,dc=latintech,dc=org",
-        callerBaseDn = "dc=latintech,dc=org",
-        bindDn = "cn=admin,dc=latintech,dc=org",
-        bindDnPassword = ""
-//        bindDnPassword ="#{login.bindDnPassword}" // bind Distinguished Name password
+    url = "ldap://openldap:389",
+//  groupSearchBase = "ou=group,dc=latintech,dc=org",
+    callerBaseDn = "dc=latintech,dc=org",
+    bindDn = "cn=admin,dc=latintech,dc=org",
+    bindDnPassword ="#{login.ldapDnPassword}" // bind Distinguished Name password
+//  bindDnPassword = ""
 )
 
 @Named
@@ -63,7 +62,7 @@ public class Login implements Serializable {
 //    @ConfigProperty(name="ldappassword")
     private String ldapPassword;
 
-    private String bindPassword;
+    private String ldapDnPassword = "${System.getProperty('passwordproperty')}";
 //    String bindPassword = System.getenv("LDAP_ADMIN_PASS");
 
     AuthenticationService authService = new AuthenticationService();
@@ -169,11 +168,12 @@ public class Login implements Serializable {
         this.username = username;
     }
 
-    public String getBindPassword() {
-        return bindPassword;
+    public String getLdapDnPassword() {
+        ldapDnPassword = "${System.getProperty('passwordproperty')}";
+        return ldapDnPassword;
     }
 
-    public void setBindPassword(String bindPassword) {
-        this.bindPassword = System.getenv("LDAP_ADMIN_PASS");
+    public void setLdapDnPassword(String ldapDnPassword) {
+        this.ldapDnPassword = System.getenv("LDAP_ADMIN_PASS");
     }
 }
