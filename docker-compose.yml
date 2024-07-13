@@ -3,8 +3,9 @@ services:
   openldap:
     # https://github.com/osixia/docker-openldap
     # https://www.openldap.org
-    image: osixia/openldap:1.2.5
-#    image: osixia/openldap:stable
+    image: osixia/openldap:stable
+#    image: osixia/openldap:1.2.5
+#    image: osixia/openldap:1.5.0
     env_file: .env
     environment:
       LDAP_ORGANISATION: "IT Latinos NZ"
@@ -15,8 +16,10 @@ services:
       - 636:636
 #    https://github.com/osixia/docker-openldap?tab=readme-ov-file#seed-ldap-database-with-ldif
 #    volumes:
-#       - ./ldap:/container/service/slapd/assets/config/bootstrap/ldif/custom
-#      - ./ldap:/var/lib/ldap
+#      - ./ldap:/container/service/slapd/assets/config/bootstrap/ldif/custom # does not mount files
+#      - ./ldap:/container/service/slapd/assets/config/bootstrap/ldif
+#      - ./ldap:/container/service/slapd/assets/test
+
   ldap-client:
 #   https://hub.docker.com/r/leenooks/phpldapadmin
     image: leenooks/phpldapadmin:2.0.0-dev

@@ -205,11 +205,26 @@ op inject -i .env.tpl -o .env
 ```bash
 op inject -i ./ldap/userDirectory.ldif.tpl -o ./ldap/userDirectory.ldif
 ```
-- single variable
+- example load single secret to a system variable
 ```bash
 export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7delckucvidqhi/password")
 ```
+- load the environment variables
+```bash
+source .env
+```
 
+load LDIF file
+ldapmodify -x -D "cn=admin,dc=latintech,dc=org" -w "$LDAP_ADMIN_PASS" -f ./ldap/userDirectory.ldif
+
+- run the docker compose stack
+```bash
+docker compose down ; ./runme.sh build ; docker compose up --detach
+```
+- check compose logs
+```bash
+docker compose logs --follow
+```
 ## Editing project diagrams
 - From [diagrams.net](https://app.diagrams.net/?src=about) > Open the XML file [project-diagrams.drawio](./project-diagrams.drawio)
 - Export images to preferred format and update this README
