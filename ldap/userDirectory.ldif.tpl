@@ -18,7 +18,7 @@ objectClass: top
 cn: Fernando
 sn: Rangel
 uid: andresito.leon
-userPassword:: "op://Professional-IT Projects/Lecturer user test/OpenLDAP-password"
+userPassword:: "op://Professional-IT Projects/Lecturer user test/password SSHA"
 
 dn: uid=fernando.rangel,ou=students,dc=latintech,dc=org
 objectClass: inetOrgPerson
@@ -38,4 +38,4 @@ objectClass: top
 cn: Fernando
 sn: Rangel
 uid: tet.leon
-userPassword:: "op://Professional-IT Projects/Lecturer user test/OpenLDAP-password"
+userPassword:: "op://Professional-IT Projects/Lecturer user test/password"

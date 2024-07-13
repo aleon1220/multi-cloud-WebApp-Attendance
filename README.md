@@ -213,14 +213,33 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 ```bash
 source .env
 ```
-
-load LDIF file
-ldapmodify -x -D "cn=admin,dc=latintech,dc=org" -w "$LDAP_ADMIN_PASS" -f ./ldap/userDirectory.ldif
-
-- run the docker compose stack
+- Run the docker compose stack
 ```bash
 docker compose down ; ./runme.sh build ; docker compose up --detach
 ```
+
+- load LDIF file
+LDIF file contains user name and passwords.
+Passwords do NOT need to be SSHA encypted as i am using a password manager anyway
+  -  run a command inside a container
+```bash
+docker exec -it multi-cloud-webapp-attendance-openldap-1 sh -c "uname -a"
+```
+- copy LDIF file to container. I tested using the import features from the docker image to no avail.
+```bash
+docker cp ./ldap/userDirectory.ldif multi-cloud-webapp-attendance-openldap-1:/container/service/slapd/assets/test
+```
+- exec into the container via bash
+```bash
+docker exec --interactive --tty multi-cloud-webapp-attendance-openldap-1 /bin/bash
+```
+- change directory and add entires based on LDIF file. Password is already defined as variable from docker-compose
+```bash
+cd /container/service/slapd/assets/test
+
+ldapmodify -v -a -x -D "cn=admin,dc=latintech,dc=org" -w "$LDAP_ADMIN_PASS" -f ./userDirectory.ldif
+```
+
 - check compose logs
 ```bash
 docker compose logs --follow
