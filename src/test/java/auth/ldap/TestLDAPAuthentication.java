@@ -18,11 +18,11 @@ import com.unboundid.ldap.sdk.SearchScope;
 import util.AuthenticateOpenLDAP;
 
 public class TestLDAPAuthentication {
-    // - Mocks LDAPConnection to avoid real connection
-    // - Mocks search result and entries returned
-    // - Stubs the behavior for the mocks
-    // - Calls the method under test
-    // - Verifies expected methods are called on the mocks
+    // Mocks LDAPConnection to avoid real connection
+    // Mocks search result and entries returned
+    // Stubs the behavior for the mocks
+    // Calls the method under test
+    // Verifies expected methods are called on the mocks
 
     @Test
     public void testMockOpenLDAPAdminSearch() throws LDAPSearchException {
@@ -69,7 +69,6 @@ public class TestLDAPAuthentication {
         int ldapPort = 389;
         String bindDN = "cn=admin,dc=my-company,dc=com";
         String bindPassword = System.getenv("LDAP_ADMIN_PASS");
-        // var bindPassword = "adminpassword";
         String baseDN = "dc=my-company,dc=com";
         String searchFilter = "(objectClass=*)";
 
@@ -80,7 +79,7 @@ public class TestLDAPAuthentication {
 
             SearchRequest searchRequest = new SearchRequest(baseDN, SearchScope.SUB, searchFilter);
             // Performing the search
-            SearchResult result = connection.search(baseDN, SearchScope.SUB, "(objectClass=*)");
+            SearchResult result = connection.search(baseDN, SearchScope.SUB, searchFilter);
 
             // Verify search returned results
             assertTrue(result.getEntryCount() > 0);
@@ -88,6 +87,7 @@ public class TestLDAPAuthentication {
             // Print entries
             for (SearchResultEntry entry : result.getSearchEntries()) {
                 System.out.println(entry.toLDIFString());
+                System.out.println("LDAP Operation type" + result.getOperationType().name());
             }
 
             SearchResult searchResult = connection.search(searchRequest);
@@ -100,6 +100,5 @@ public class TestLDAPAuthentication {
             System.err.println("LDAP Error connecting: " + e.getMessage());
             e.printStackTrace();
         }
-
     }
 }
