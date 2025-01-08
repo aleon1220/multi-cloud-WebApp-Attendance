@@ -200,5 +200,32 @@ export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7d
 - open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
 
+## Git Diagram
+```mermaid
+gitGraph
+   branch master
+   commit id: "2017 init Commit"
+
+    branch develop
+    commit id: "develop"   
+    checkout master
+
+   branch feature/sot-workshop
+   commit id: "School of tech"
+   checkout master
+
+   branch hotfix/master-gitHubActions
+   commit id: "add gitHub Actions"
+   checkout master
+
+   branch feature/login-LDAP
+   commit id: "test new functionality"
+   checkout develop
+   
+   branch hotfix/stable-build-latest-primefaces-2024
+   commit id: "Latest UI framework"
+   checkout develop
+```
+
 # References
 - [free website templates](http://all-free-download.com/free-website-templates)
