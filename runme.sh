@@ -32,13 +32,13 @@ build() {
 run_smoke_test() {
   clean "$version"
   build
-  printf "Executing webapp Locally \n\n" || true
+  printf "======= Executing webapp Locally \n\n" || true
   docker run --interactive --tty --detach --publish 8080:8080 --name $version aleon1220/attendance-webapp:$version || true
   source .env
   gradle getProjectInfo
-  printf "\t\tLoaded .env variables file succesfully\n\n"
-  printf "\t\tExecuting Java Webapp Attendance version %s\n" $APP_WAR_FILE_VERSION || true
-  printf "\t\tExecuting Java Webapp Attendance version %s\n" $version
+  printf "======= \t\tLoaded .env variables file succesfully\n\n"
+  printf "======= \t\tExecuting Java Webapp Attendance version %s\n" $APP_WAR_FILE_VERSION || true
+  printf "======= \t\tExecuting Java Webapp Attendance version %s\n" $version
 }
 
 clean() {
@@ -49,7 +49,7 @@ clean() {
     # Version provided, use it directly
     version="$2"
   fi
-  printf "Executing local CLEAN-UP \n\n"
+  printf "======= Executing local CLEAN-UP \n\n"
   docker kill $version
   docker rm $version
   docker image rm aleon1220/attendance-webapp:$version
@@ -57,7 +57,7 @@ clean() {
 }
 
 test_stack() {
-  printf "Executing TESTING \n\n"
+  printf "======= Executing TESTING \n\n"
   gradle test || true
 }
 
@@ -65,8 +65,8 @@ run_stack() {
   clean
   build
   test_stack
-  run
-  printf "Executing webapp stack Locally \n\n" || true
+  run_smoke_test
+  printf "======= Executing webapp stack Locally \n\n" || true
 }
 
 help() {
