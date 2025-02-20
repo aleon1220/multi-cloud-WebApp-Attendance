@@ -5,13 +5,18 @@ group = "soa.nz.aut"
 version = "0.9.0"
 description = "Student Attendance WebApp"
 val warDeploymentName = "AttendanceTrak"
-// java.sourceCompatibility = JavaVersion.VERSION_17
 
 plugins {
     java
     // https://docs.gradle.org/current/userguide/war_plugin.html
     war
     id ("jacoco")
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
 }
 
 repositories {
@@ -135,7 +140,6 @@ tasks.register<DefaultTask>("getAppVersion") {
     description = "Get current App version"
     getAppVersion()
 }
-
 
 tasks.war {
     archiveBaseName.set(warDeploymentName)
