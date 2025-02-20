@@ -37,13 +37,12 @@ Attendance WebApp is an app to improve the way attendance is managed at training
 The student will have a short timeframe to submit a random generated code by the lecturer so that attendance can be registered in the system.
 
 ## GitHub Reports
-### Security warnings
+### Security Vulnerability report
 > Security Warnings to check
-GitHub found 2 vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
+GitHub found vulnerabilities on aleon1220/multi-cloud-WebApp-Attendance's default branch (2 moderate).
 To find out more, visit:
-[This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
-### GitHub Vulnerability report
-https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
+- [This project security report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security)
+- [dependabot report](https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot)
 
 ## Attendance WebApp Architecture (re-architected)
 
@@ -54,9 +53,9 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
   [95f44386]: https://github.com/aleon1220/multi-cloud-AttendWebApp/wiki/4-Architecture-and-Technical-Design "Project Wiki"
 
 ### 2018-Attendance WebApp high level Architecture
-2018 project with a lot of things to change
+2018 university project
 
-* Simplification of used services
+* WSDL Services
 * Streamline app to use 100% rest and deprecate SOAP and WSDL
 * Create a simple test OpenLDAP instance for users and roles
 * Host the WebApp in Azure
@@ -75,24 +74,9 @@ https://github.com/aleon1220/multi-cloud-WebApp-Attendance/security/dependabot
 Cleans, builds and executes the docker-compose stack locally. Provides a version number for the app found from the build.gradle file
 
 ```bash
-./runme.sh clean ; ./runme.sh build ; ./runme.sh run
+./runme.sh run_stack
 ```
-
-- Gradle Build Web Package
-build and test the .WAR WebArchive file. The .WAR file located at `build/libs/*.war`
-``` bash
-gradle clean build --console plain --warning-mode all
-```
-- Gradle Check the generated version from the build.gradle.kts
-```bash
-gradle getAppversion
-```
-- localDev Run the WebApp
-Run the tomcat server with the latest pre-built WAR web Archive file
-Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
-```bash
-docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
-```
+---
 
 ## Project general guidelines
 
@@ -116,13 +100,13 @@ IDEs can be Eclipse, IntelliJ (suggested) or use online IDE (Github codespaces)
 > maven has been deprecated and moved to [maven](./maven)
 
 #### Use 1Password CLI to inject the secrets
-- as a pre-requisite you must have access to the shared vault
-- login in the CLI
+- as a pre-requisite you must have access to the 1Password shared vault
+- CLI Login to 1Password
 ```bash
 # Linux Ubuntu tested 2023-12-10
 op signin
 ```
-- inject the secrets for testing Authentication property file
+- Inject the secrets for testing Authentication property file
 ```bash
 op inject -i token_auth.properties.tpl -o token_auth.properties
 ```
@@ -135,6 +119,23 @@ op inject -i secrets.env.tpl -o secrets.env
 - inject the secrets for Testing docker-compose
 ```bash
 op inject -i .env.tpl -o .env
+```
+## app software delivery lifecycle
+Detailed description on the java app execution
+
+- Gradle Build Web Package build and test the .WAR WebArchive file. .WAR file located at `build/libs/*.war`
+``` bash
+gradle clean build --console plain --warning-mode all
+```
+- Gradle Check the generated version from the build.gradle.kts
+```bash
+gradle getAppversion
+```
+- localDev Run the WebApp
+Run the tomcat server with the latest pre-built WAR web Archive file
+Run from [Docker Hub](https://hub.docker.com/repository/docker/aleon1220/soa/general)
+```bash
+docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:latest
 ```
 
 ## Package/Run WebApp
@@ -168,7 +169,6 @@ Test the container webapp after building the image locally
 ```bash
 docker run --interactive --tty --detach --publish 8080:8080 --name attendance_webapp_container aleon1220/soa:$APP_WAR_FILE_VERSION
 ```
-- Get the name of the running container
 - get the name of the running container
 ``` bash
 CONTAINER_NAME=$(docker container ls --all --filter publish=8080 --format "{{.Names}}")
@@ -198,7 +198,7 @@ op inject -i .env.tpl -o .env
 export LDAP_ADMIN_PASS=$(op read "op://uqbpxejq7gifvi6mg3c7xxokre/jvuj7juvlxlg7delckucvidqhi/password")
 ```
 
-## Editing project diagrams
+### Editing project diagrams
 - Go to [diagrams.net](https://app.diagrams.net/?src=about)
 - Open the file [project-diagrams.drawio](./project-diagrams.drawio) XML file with the diagrams
 - Explore > export images to convinience and update this README
