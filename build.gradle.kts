@@ -15,7 +15,7 @@ plugins {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
@@ -95,10 +95,6 @@ fun setWarVersion() {
     }
 }
 
-fun getAppVersion() {
-    println(version)
-}
-
 fun getWarpackageVersion() {
     val hostname_local = System.getenv("HOSTNAME") ?: "localhost"
     val hostname = InetAddress.getLocalHost().getHostName()
@@ -138,7 +134,7 @@ tasks.register<DefaultTask>("getProjectInfo") {
 
 tasks.register<DefaultTask>("getAppVersion") {
     description = "Get current App version"
-    getAppVersion()
+    println(version)
 }
 
 tasks.war {
